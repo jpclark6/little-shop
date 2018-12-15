@@ -284,6 +284,7 @@
         null,
         1,
         1,
+        1,
         null
       ],
       "/Users/maddieg/turing/2module/little_shop/app/models/application_record.rb": [
@@ -292,6 +293,6 @@
         null
       ]
     },
-    "timestamp": 1544905098
+    "timestamp": 1544905251
   }
 }
