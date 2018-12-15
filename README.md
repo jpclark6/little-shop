@@ -1,2 +1,2 @@
 # Database Schema:
-![Alt text](./public/BookClubSchema.png?raw=true "Title")
+![Alt text](./public/Database.png?raw=true "Title")
