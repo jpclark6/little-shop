@@ -30,5 +30,7 @@ describe 'as a visitor' do
       expect(User.last.city).to eq("Denver")
       expect(User.last.email).to eq("john@gmail.com")
     end
+    xit 'after registering it should check that you are logged in'
+    end 
   end
 end
