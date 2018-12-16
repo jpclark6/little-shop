@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
+      flash[:success] = "You are registered and logged in"
       redirect_to profile_path
     else
       redirect_to register_path

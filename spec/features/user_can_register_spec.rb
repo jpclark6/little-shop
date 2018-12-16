@@ -23,6 +23,9 @@ describe 'as a visitor' do
       click_on "Create User"
 
       expect(current_path).to eq("/profile")
+      within ".alert" do
+        expect(page).to have_content("You are registered and logged in")
+      end
       expect(User.last.name).to eq("John Doe")
       expect(User.last.city).to eq("Denver")
       expect(User.last.email).to eq("john@gmail.com")

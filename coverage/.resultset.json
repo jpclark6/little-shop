@@ -29,6 +29,9 @@
         1,
         1,
         1,
+        null,
+        1,
+        1,
         1,
         null,
         null,
@@ -433,23 +436,13 @@
         1,
         null
       ],
-      "/Users/maddieg/turing/2module/little_shop/app/controllers/items_controller.rb": [
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/maddieg/turing/2module/little_shop/app/controllers/application_controller.rb": [
-        1,
-        1,
-        null
-      ],
       "/Users/maddieg/turing/2module/little_shop/app/controllers/users_controller.rb": [
         1,
         1,
         2,
         null,
         null,
+        1,
         1,
         1,
         1,
@@ -469,8 +462,19 @@
         null,
         null,
         null
+      ],
+      "/Users/maddieg/turing/2module/little_shop/app/controllers/application_controller.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/maddieg/turing/2module/little_shop/app/controllers/items_controller.rb": [
+        1,
+        1,
+        null,
+        null
       ]
     },
-    "timestamp": 1544989150
+    "timestamp": 1544989606
   }
 }
