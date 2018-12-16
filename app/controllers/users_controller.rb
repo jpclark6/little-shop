@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       flash[:success] = "You are registered and logged in"
       redirect_to profile_path
     else
+      flash[:fail] = "Missing content"
       redirect_to register_path
     end
   end
