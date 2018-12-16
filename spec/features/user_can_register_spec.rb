@@ -47,6 +47,33 @@ describe 'as a visitor' do
         expect(page).to have_content("Missing content")
       end
     end
+    it "cannot fill in form if info is not valid, redirects to registration" do
+      visit register_path
+
+      fill_in :user_name, with: "John Doe"
+      fill_in :user_address, with: "433 Larimer"
+      fill_in :user_city, with: "Denver"
+      fill_in :user_zip_code, with: 80026
+      fill_in :user_email, with: "john@gmail.com"
+      fill_in :user_password, with: "john"
+      fill_in :user_password_confirmation, with: "john"
+      click_on "Create User"
+      visit register_path
+
+      fill_in :user_name, with: "Maddie Doe"
+      fill_in :user_address, with: "450 Larimer"
+      fill_in :user_city, with: "Boulder"
+      fill_in :user_zip_code, with: 80302
+      fill_in :user_email, with: "john@gmail.com"
+      fill_in :user_password, with: "maddie"
+      fill_in :user_password_confirmation, with: "maddie"
+      click_on "Create User"
+
+      expect(current_path).to eq("/register")
+      within ".alert" do
+        expect(page).to have_content("Missing content")
+      end
+    end
     xit 'after registering it should check that you are logged in' do
     end
   end
