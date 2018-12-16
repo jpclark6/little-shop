@@ -10,21 +10,20 @@ FactoryBot.define do
     role { 0 }
     enabled { true }
     factory :merchant do
-      role 1
+      role { 1 }
     end
     factory :admin do
-      role 2
+      role { 2 }
     end
   end
 
   factory :item do
     association :user, factory: :merchant
-    # merchant
     sequence(:name) { |n| "Thing #{n}" }
-    instock_qty { 27 }
-    price { 44 }
-    image { 'fgkfgkjd' }
-    description { 'this thing is....' }
+    sequence(:instock_qty) { |n| 27 + n }
+    sequence(:price) { |n| 44 + n }
+    sequence(:image) { "/public/no_image_available.jpg" }
+    sequence(:description) { |n| "this thing is....#{n}" }
     enabled { true }
   end
 end
