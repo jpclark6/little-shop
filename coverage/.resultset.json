@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/maddieg/turing/2module/little_shop/spec/features/user_sees_navigation_bar_spec.rb": [
+      "/Users/maddieg/turing/2module/little_shop/spec/features/user_can_register_spec.rb": [
         1,
         null,
         1,
@@ -10,6 +10,15 @@
         1,
         null,
         1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
         1,
         1,
         1,
@@ -17,9 +26,10 @@
         1,
         1,
         null,
-        null,
         1,
-        null,
+        1,
+        1,
+        1,
         null,
         null,
         null
@@ -278,7 +288,9 @@
         1,
         1,
         1,
+        1,
         null,
+        1,
         1,
         1,
         1,
@@ -291,6 +303,29 @@
       ],
       "/Users/maddieg/turing/2module/little_shop/app/helpers/application_helper.rb": [
         1,
+        null
+      ],
+      "/Users/maddieg/turing/2module/little_shop/spec/features/user_sees_navigation_bar_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/maddieg/turing/2module/little_shop/spec/models/item_spec.rb": [
@@ -379,6 +414,7 @@
         2,
         2,
         2,
+        2,
         null,
         1,
         2,
@@ -387,6 +423,7 @@
         null
       ],
       "/Users/maddieg/turing/2module/little_shop/app/models/user.rb": [
+        1,
         1,
         1,
         1,
@@ -406,8 +443,34 @@
         1,
         1,
         null
+      ],
+      "/Users/maddieg/turing/2module/little_shop/app/controllers/users_controller.rb": [
+        1,
+        1,
+        2,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
       ]
     },
-    "timestamp": 1544984834
+    "timestamp": 1544989150
   }
 }
