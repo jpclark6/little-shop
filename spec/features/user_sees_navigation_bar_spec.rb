@@ -2,13 +2,8 @@ require 'rails_helper'
 
 describe 'as a visitor' do
   describe 'on the navbar' do
-<<<<<<< HEAD
-    xit 'sees links in the navbar' do
-      visit root_path
-=======
     it 'sees links in the navbar' do
       visit "/"
->>>>>>> 04e31eaec57d37081e460b029aff42fab410f642
 
       within "nav" do
         expect(page).to have_link("Home", href: "/")

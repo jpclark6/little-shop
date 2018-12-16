@@ -10,9 +10,9 @@ describe 'user visits their own profile page' do
     state = 'CO'
     zip_code = 80015
 
-    user = FactoryBot.build_stubbed(:user, name: name, address: address, email: email, password: password, city: city, state: state, zip_code: zip_code )
+    user = FactoryBot.create(:user, name: name, address: address, email: email, password: password, city: city, state: state, zip_code: zip_code )
 
-    visit user_path(user)
+    visit profile_path(user)
 
     expect(page).to have_content(user.name)
     expect(page).to have_content(user.address)
@@ -22,5 +22,16 @@ describe 'user visits their own profile page' do
     expect(page).to have_content(user.state)
     expect(page).to have_content(user.zip_code)
   end
+
+  it 'can see a link to edit my profile data' do
+    user = FactoryBot.create(:user)
+
+    visit profile_path(user)
+
+    click_on 'Edit Profile'
+
+    expect(current_path).to eq(edit_user_path(user))
+  end
+
 
 end
