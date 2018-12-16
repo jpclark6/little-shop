@@ -1,0 +1,13 @@
+<% @items.each do |item| %>
+  <div id="item-<%= item.id %>">
+    <h3><%= item.name %></h3>
+    <img src="<%=  item.image %>" alt="<%= item.name %>-image">
+    <ul>
+      <li>Sold by: <%= item.user.name %> </li>
+      <li>In Stock: <%= item.instock_qty %> items</li>
+      <li>Price: $<%= item.price %></li>
+      <li><%= item.description %></li>
+
+    </ul>
+  </div>
+<% end %>
