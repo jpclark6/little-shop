@@ -9,13 +9,13 @@
         1,
         1,
         null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         1,
@@ -395,8 +395,19 @@
         1,
         1,
         null
+      ],
+      "/Users/maddieg/turing/2module/little_shop/app/controllers/items_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/maddieg/turing/2module/little_shop/app/controllers/application_controller.rb": [
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1544983712
+    "timestamp": 1544984834
   }
 }
