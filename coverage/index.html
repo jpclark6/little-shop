@@ -14,14 +14,14 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-12-16T10:51:58-07:00">2018-12-16T10:51:58-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-12-16T11:08:32-07:00">2018-12-16T11:08:32-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">93.08%</span></span>
+    (<span class="covered_percent"><span class="green">93.57%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>26</b> files in total.
-    <b>130</b> relevant lines. 
-    <span class="green"><b>121</b> lines covered</span> and
+    <b>140</b> relevant lines. 
+    <span class="green"><b>131</b> lines covered</span> and
     <span class="red"><b>9</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -233,9 +233,9 @@
       <tr>
         <td class="strong"><a href="#5808266c65f8b5947b4c72273194d7b1ff8888a5" class="src_link" title="config/routes.rb">config/routes.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>3</td>
-        <td>1</td>
-        <td>1</td>
+        <td>14</td>
+        <td>10</td>
+        <td>10</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -252,12 +252,12 @@
       
       <tr>
         <td class="strong"><a href="#7a78271af1d31a7b62c4af495c205ae2ee9d072d" class="src_link" title="spec/features/user_sees_navigation_bar_spec.rb">spec/features/user_sees_navigation_bar_spec.rb</a></td>
-        <td class="red strong">41.67 %</td>
-        <td>18</td>
-        <td>12</td>
-        <td>5</td>
+        <td class="red strong">46.15 %</td>
+        <td>21</td>
+        <td>13</td>
+        <td>6</td>
         <td>7</td>
-        <td>0.4</td>
+        <td>0.5</td>
       </tr>
       
       <tr>
@@ -1777,8 +1777,8 @@
     <h3>config/routes.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>1</b> relevant lines. 
-      <span class="green"><b>1</b> lines covered</span> and
+      <b>10</b> relevant lines. 
+      <span class="green"><b>10</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1792,13 +1792,79 @@
           <code class="ruby">Rails.application.routes.draw do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="2">
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  root &#39;items#index&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  resources :items</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  resources :merchants</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  get &#39;/profile&#39;, to: &#39;users#show&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  get &#39;/profile/orders&#39;, to: &#39;orders#index&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  get &#39;/login&#39;, to: &#39;sessions#new&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  post &#39;/login&#39;, to: &#39;sessions#create&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  delete &#39;/logout&#39;, to: &#39;sessions#destroy&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  get &#39;/dashboard&#39;, to: &#39;users#show&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
           
           
           <code class="ruby">  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="3">
+        <li class="never" data-hits="" data-linenumber="14">
           
           
           <code class="ruby">end</code>
@@ -1831,10 +1897,10 @@
         <div class="source_table" id="7a78271af1d31a7b62c4af495c205ae2ee9d072d">
   <div class="header">
     <h3>spec/features/user_sees_navigation_bar_spec.rb</h3>
-    <h4><span class="red">41.67 %</span> covered</h4>
+    <h4><span class="red">46.15 %</span> covered</h4>
     <div>
-      <b>12</b> relevant lines. 
-      <span class="green"><b>5</b> lines covered</span> and
+      <b>13</b> relevant lines. 
+      <span class="green"><b>6</b> lines covered</span> and
       <span class="red"><b>7</b> lines missed.</span>
     </div>
   </div>
@@ -1875,7 +1941,7 @@
         <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
-          <code class="ruby">      visit root_path</code>
+          <code class="ruby">      visit &quot;/&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
@@ -1929,7 +1995,7 @@
         <li class="never" data-hits="" data-linenumber="15">
           
           
-          <code class="ruby">      end </code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="16">
@@ -1938,13 +2004,31 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="17">
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    xit &quot;sees count of cart items&quot; do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby">      #add code here</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="21">
           
           
           <code class="ruby">end</code>

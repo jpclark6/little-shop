@@ -18,6 +18,9 @@
         0,
         null,
         null,
+        1,
+        null,
+        null,
         null,
         null
       ],
@@ -272,6 +275,17 @@
       ],
       "/Users/maddieg/turing/2module/little_shop/config/routes.rb": [
         1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null,
         null
       ],
@@ -383,6 +397,6 @@
         null
       ]
     },
-    "timestamp": 1544982718
+    "timestamp": 1544983712
   }
 }

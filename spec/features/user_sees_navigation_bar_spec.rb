@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'as a visitor' do
   describe 'on the navbar' do
     it 'sees links in the navbar' do
-      visit root_path
+      visit "/"
 
       within "nav" do
         expect(page).to have_link("Home", href: "/")
@@ -14,7 +14,7 @@ describe 'as a visitor' do
         expect(page).to have_link("Register", href: "/register")
       end
     end
-    xit "sees count of cart items" do 
+    xit "sees count of cart items" do
       #add code here
     end
   end
