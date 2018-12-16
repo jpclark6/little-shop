@@ -1,13 +1,13 @@
 # Database Schema:
 ![Alt text](./public/Database.png?raw=true "Title")
 
-
-The schema:
+# Schema:
 https://dbdiagram.io/d/5c1539dc97b0960014c337df
 
-The rubric: https://github.com/turingschool-projects/little_shop_v2/blob/master/LittleShopRubric.pdf
+# Rubric: https://github.com/turingschool-projects/little_shop_v2/blob/master/LittleShopRubric.pdf
 
-The DTR: https://docs.google.com/document/d/1Yk3XVh2ThZJTLu6YO8zYsrDdLwssvQEewJIszPIGfcg/edit?usp=sharing
+
+# DTR: https://docs.google.com/document/d/1Yk3XVh2ThZJTLu6YO8zYsrDdLwssvQEewJIszPIGfcg/edit?usp=sharing
 
 Project: Little Shop
 
@@ -27,7 +27,7 @@ Complete all 3s with 4s as a stretch goal. Front load work in the first week. Le
 Team strengths:
 Large Team.
 Tom: helpful when asked, resourceful when finding answers, attention to detail, good at reading errors. Old dog with new tricks.
-Ben: core Ruby, CSS, helpful in explaining. Patience and humor. 
+Ben: core Ruby, CSS, helpful in explaining. Patience and humor.
 Maddie: TDD, communication, organization and next steps, reminder for breaks and taking a step back from rabbit holes, reaching out for help
 Justin: core Ruby, CSS, Rails, communication, researching unknown topics
 Mackenzie: next steps, team management, organizational, scheduling, problem solving, points to place where doesn’t understand a line of code, which sometimes results in refactoring, reaching out to resources in a time effective, evaluating if current tasks are effective for learning or if we should focus on other things
@@ -50,18 +50,18 @@ Assign to yourself on Waffle.
 Finish Date-> 29th finish all functionality. On 29th we go story by story to check we did everything. Allow a buffer to finish the project and to do front end after this time.
 
 Upcoming Week (1) ->
-Expectations: 
+Expectations:
 JC evening person
 
 Mackenzie, Maddie, Ben, not working after 9pm.
-Sunday - 
+Sunday -
 Work day for all.
 Maddie @ Turing ~9:30 to ~1:40pm
 Mackenzie @ Turing ~10:30 - 6pm
 Tom @ Turing ~10:30 to 6 pm. Maybe remote for second part of day.
 Justin @ Turing 10 am - 2. Maybe remote from there for 3-7 pm
 Ben @ Turing 9:30 - 4
-Allot time for everyone to do CFU and LinkedIn, Survey and Tuesday HW, gear-up reflection. 
+Allot time for everyone to do CFU and LinkedIn, Survey and Tuesday HW, gear-up reflection.
 
 Maddie - morning person - Monday 12/17 Maddie leaves at 4pm.
 All available during project work time. Monday Mackenzie leaves at 4 pm and cannot work on the project that evening due to mentor meeting. Maddie does not want to code during lunch, Mackenzie would prefer not to work during lunches
@@ -69,10 +69,10 @@ Tuesday -
 Tom likes working together, but also like to break off and work solo.
 Maddie allison 3:30-4. Mackenzie w/ Ian 2:15 - 3.  JC unavailable after 6. Preferences for working at Turing until 6 pm.
 
-Wednesday - 
+Wednesday -
 Maddie Dione pairing 2-3. Mackenzie pairing Dione 1-1:45. Maddie not available 5-6. Maddie can work until 9 from Turing or home. Group meeting at 4 pm.
 
-Thursday - 
+Thursday -
 Be prepared for 1 hour with Ian.
 After school TBD - Brothers
 
@@ -121,4 +121,3 @@ Tools:
 
 
 Additional Notes:
-
