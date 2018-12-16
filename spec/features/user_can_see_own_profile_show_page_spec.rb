@@ -10,7 +10,7 @@ describe 'user visits their own profile page' do
     state = 'CO'
     zip_code = 80015
 
-    Factorybot.build_stubbed(:user, name: name, address: address, email: email, password: password, city: city, state: state, zip_code: zip_code )
+    user = FactoryBot.build_stubbed(:user, name: name, address: address, email: email, password: password, city: city, state: state, zip_code: zip_code )
 
     visit user_path(user)
 
