@@ -111,6 +111,11 @@ label {
   padding: 3px;
 }
 
+.inner-flex h4 {
+  text-transform: capitalize;
+  margin-left: 30px
+}
+
 .thumb {
   width: 230px;
   height: 200px;
