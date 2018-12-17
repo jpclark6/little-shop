@@ -38,3 +38,51 @@ nav li {
   margin-left: 20px;
   margin-right: 20px;
 }
+
+.grid-container {
+  display: grid;
+  grid-column: 1fr 1200px 1fr;
+}
+
+main {
+  margin-top: 60px;
+  min-height: 200px;
+  background: whitesmoke;
+  width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.main-flex {
+  display: flex;
+  justify-content: center;
+  background: white;
+  height: 1000px;
+  width: 100%;
+}
+
+form {
+  margin:30px;
+  width: 250px;
+  /* background: aliceblue; */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+  padding-top: 40px;
+
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+}
