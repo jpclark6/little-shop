@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
+    @user = User.new(user_params)
+    if @user.save
       flash[:success] = "You are registered and logged in"
-      redirect_to profile_path
+      redirect_to profile_path(@user)
     else
       flash[:fail] = "Missing content"
       redirect_to register_path
@@ -15,6 +15,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
   end
 
   private

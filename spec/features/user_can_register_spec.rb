@@ -22,7 +22,7 @@ describe 'as a visitor' do
       fill_in :user_password_confirmation, with: "john"
       click_on "Create User"
 
-      expect(current_path).to eq("/profile")
+      expect(current_path).to eq(profile_path(User.last))
       within ".alert" do
         expect(page).to have_content("You are registered and logged in")
       end
