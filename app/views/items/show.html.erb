@@ -1,3 +1,13 @@
 <h1><%= @item.name %></h1>
+<main>
+<div class="item-img">
+  <%= image_tag(@item.image, class: "big-picture") %>
+</div>
 <ul>
+  <li>Description:<%= @item.description %></li>
+  <li>Merchant Name: <%= @item.user.name %></li>
+  <li>Inventory: <%= @item.instock_qty %></li>
+
+  <li><strong>Price: $</strong><%= @item.price %></li>
 </ul>
+</main>
