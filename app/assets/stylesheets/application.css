@@ -86,3 +86,8 @@ input {
 label {
   display: block;
 }
+
+.thumb {
+  width: 100px;
+  height: 100px;
+}
