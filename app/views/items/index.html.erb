@@ -1,3 +1,4 @@
+
 <% @items.each do |item| %>
   <div id="item-<%= item.id %>">
     <h3><%= link_to(item.name, item_path(item)) %></h3>
@@ -8,6 +9,7 @@
       <li>In Stock: <%= item.instock_qty %> items</li>
       <li>Price: $<%= item.price %></li>
       <li><%= item.description %></li>
+      <%= button_to "Add Item", carts_path(item_id: item.id) %>
 
     </ul>
   </div>

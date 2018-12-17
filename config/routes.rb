@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :items
   resources :merchants
   resources :users, only: [:index, :create, :edit]
+  resources :carts, only: [:create]
 
   get '/profile/:id', to: 'users#show', as: :profile
   get '/profile/orders', to: 'orders#index'
