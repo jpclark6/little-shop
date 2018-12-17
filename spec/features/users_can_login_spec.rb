@@ -59,3 +59,54 @@ describe 'as any user' do
     expect(page).to have_content("Invalid credentials.")
   end
 end
+
+describe 'as a regular user' do
+  it 'if I am already logged in I am redirected to /profile' do
+    user = FactoryBot.create(:user)
+
+    visit login_path
+
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+    click_on 'Log In'
+
+    visit login_path
+
+    expect(current_path).to eq(profile_path(user))
+    expect(page).to have_content("You are already logged in")
+  end
+end
+
+describe 'as a merchant user' do
+  it 'if I am already logged in I am redirected to my merchant dashboard page' do
+    merchant = FactoryBot.create(:merchant)
+
+    visit login_path
+
+    fill_in :email, with: merchant.email
+    fill_in :password, with: merchant.password
+    click_on 'Log In'
+
+    visit login_path
+
+    expect(current_path).to eq("/dashboard/#{merchant.id}")
+    expect(page).to have_content("You are already logged in")
+  end
+end
+
+describe 'as an admin user' do
+  it 'if I am already logged in I am redirected to the home page' do
+    admin = FactoryBot.create(:admin)
+
+    visit login_path
+
+    fill_in :email, with: admin.email
+    fill_in :password, with: admin.password
+    click_on 'Log In'
+
+    visit login_path
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("You are already logged in")
+  end
+end
