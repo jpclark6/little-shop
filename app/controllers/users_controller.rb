@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       redirect_to profile_path(@user)
     else
       flash[:fail] = "Missing content"
-      redirect_to register_path
+      render :new
     end
   end
 
