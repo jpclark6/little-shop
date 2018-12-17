@@ -23,7 +23,7 @@ merchants = []
     name = Faker::Hipster.word
     instock_qty = rand(0..50)
     price = Faker::Commerce.price
-    image = Faker::Internet.url
+    image = "/no_image_available.jpg"
     description = Faker::Hipster.sentence
     user.items.create(name: name, instock_qty: instock_qty, price: price, image: image, description: description)
   end
