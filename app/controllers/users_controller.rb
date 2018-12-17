@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "You are registered and logged in"
+      flash[:message] = "You are registered and logged in"
       redirect_to profile_path(@user)
     else
-      flash[:fail] = "Missing content"
+      flash[:message] = "Missing content"
       render :new
     end
   end

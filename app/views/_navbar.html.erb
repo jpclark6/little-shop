@@ -7,8 +7,15 @@
       <li><h3><%= link_to "Browse", "/items" %></h3></li>
       <li><h3><%= link_to "Merchants", "/merchants" %></h3></li>
       <li><h3><%= link_to "Cart", "/cart" %></h3></li>
-      <li><h3><%= link_to "Log in", "/login" %></h3></li>
-      <li><h3><%= link_to "Register", "/register" %></h3></li>
+      <% if current_user %>
+        <li><h3><%= link_to "Profile", profile_path(current_user.id) %></h3></li>
+        <li><h3><%= link_to "Orders", "/profile/orders" %></h3></li>
+        <li><h3><%= link_to "Log Out", logout_path, method: :delete %></h3></li>
+        <li><h3>Logged in as <%= current_user.name %></h3></li>
+      <% else %>
+        <li><h3><%= link_to "Log in", "/login" %></h3></li>
+        <li><h3><%= link_to "Register", "/register" %></h3></li>
+      <% end %>
 
     </ul>
   </div>
