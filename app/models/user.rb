@@ -4,6 +4,6 @@ class User < ApplicationRecord
  validates_confirmation_of :password
 
  has_many :orders
- has_many :items
+ has_many :items, dependent: :destroy
  enum role: ["registered", "merchant", "admin"]
 end
