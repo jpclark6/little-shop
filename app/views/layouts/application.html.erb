@@ -10,10 +10,16 @@
   </head>
 
   <body>
+    <header>
     <%= render partial: "/navbar" %>
+    </header>
     <% flash.each do |key, value| %>
       <div class="alert"><%= value %></div>
     <% end %>
-    <%= yield %>
+    <div class="main-flex">
+      <main>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

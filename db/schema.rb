@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181216214152) do
+ActiveRecord::Schema.define(version: 20181217195631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20181216214152) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "enabled"
+    t.boolean "enabled", default: true, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20181216214152) do
     t.bigint "item_id"
     t.decimal "price"
     t.integer "quantity"
-    t.boolean "fulfilled", default: false
+    t.boolean "fulfilled", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_order_items_on_item_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20181216214152) do
     t.string "email"
     t.integer "role", default: 0
     t.string "password"
-    t.boolean "enabled"
+    t.boolean "enabled", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "city"
