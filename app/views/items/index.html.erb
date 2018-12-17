@@ -1,7 +1,6 @@
-
-<% @items.each do |item| %>
-  <div class="flex-container">
-    <div id="item-<%= item.id %>">
+<div class="flex-container">
+  <% @items.each do |item| %>
+    <div id="item-<%= item.id %>" class="inner-flex shadow">
       <h3><%= link_to(item.name, item_path(item)) %></h3>
       <%= link_to image_tag(item.image, class: :thumb), item_path(item) %>
 
@@ -13,5 +12,5 @@
 
       </ul>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
