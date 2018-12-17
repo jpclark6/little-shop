@@ -42,10 +42,10 @@ describe 'as a visitor' do
       fill_in :user_password_confirmation, with: "john"
       click_on "Create User"
 
-      expect(current_path).to eq("/register")
       within ".alert" do
         expect(page).to have_content("Missing content")
       end
+      expect(page).to have_css(".new_user")
     end
     it "cannot fill in form if info is not valid, redirects to registration" do
       visit register_path
@@ -69,7 +69,8 @@ describe 'as a visitor' do
       fill_in :user_password_confirmation, with: "maddie"
       click_on "Create User"
 
-      expect(current_path).to eq("/register")
+      expect(page).to have_css(".new_user")
+
       within ".alert" do
         expect(page).to have_content("Missing content")
       end
