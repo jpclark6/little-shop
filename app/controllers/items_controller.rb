@@ -1,4 +1,9 @@
 class ItemsController < ApplicationController
   def index
-  end 
+    @items = Item.where(enabled: true)
+  end
+  
+  def show
+    @item = Item.find(params[:id])
+  end
 end
