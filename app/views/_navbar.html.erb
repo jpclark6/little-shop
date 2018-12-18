@@ -6,9 +6,7 @@
       <li><h3><%= link_to "Home", "/" %></h3></li>
       <li><h3><%= link_to "Browse", "/items" %></h3></li>
       <li><h3><%= link_to "Merchants", "/merchants" %></h3></li>
-      <% unless current_user && (current_user.merchant? || current_user.admin?) %>
-        <li><h3><%= link_to "Cart", "/cart" %></h3></li>
-      <% end %>
+
       <% if current_user && current_user.merchant? %>
         <li><h3><%= link_to "Dashboard", "/dashboard/#{current_user.id}" %></h3></li>
       <% elsif current_user && current_user.admin? %>
@@ -23,7 +21,9 @@
         <li><h3><%= link_to "Log in", "/login" %></h3></li>
         <li><h3><%= link_to "Register", "/register" %></h3></li>
       <% end %>
-
+      <% unless current_user && (current_user.merchant? || current_user.admin?) %>
+        <li><i class="fas fa-shopping-cart"></i><h3><%= link_to "Cart", "/cart" %></h3></li>
+      <% end %>
     </ul>
   </div>
 
