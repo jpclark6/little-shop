@@ -5,7 +5,7 @@ describe "when user adds songs to their cart" do
     user = FactoryBot.build_stubbed(:user)
     item = FactoryBot.create(:item)
 
-    visit items_path
+    visit item_path(item)
 
     click_button "Add Item"
 
@@ -19,7 +19,7 @@ describe "when user adds songs to their cart" do
     user = FactoryBot.build_stubbed(:user)
     item = FactoryBot.create(:item)
 
-    visit items_path
+    visit item_path(item)
 
     expect(page).to have_content("Cart: 0")
 

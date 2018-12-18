@@ -18,10 +18,10 @@
         <%= yield %>
       </main>
     </div>
-    <div class='alert'>
-    <% flash.each do |type, message| %>
-      <%= content_tag :div, message, class: type %>
-    <% end %>
+    <div class='flash-flex'>
+      <% flash.each do |type, message| %>
+        <%= content_tag :div, message, class: "flash #{type}" %>
+      <% end %>
     </div>
   </body>
 </html>

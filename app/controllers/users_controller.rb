@@ -6,10 +6,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "You are registered and logged in"
+      flash[:message] = "You are registered and logged in"
+      session[:user_id] = @user.id
       redirect_to profile_path(@user)
     else
-      flash[:fail] = "Missing content"
+      flash[:message] = "Missing content"
       render :new
     end
   end
@@ -19,6 +20,10 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def index
+    @merchants = User.where(enabled: true, role: "merchant")
   end
 
   private
