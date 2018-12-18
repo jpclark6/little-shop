@@ -9,5 +9,7 @@
   <li>Inventory: <%= @item.instock_qty %></li>
 
   <li><strong>Price: $</strong><%= @item.price %></li>
+  <%= button_to "Add Item", carts_path(item_id: @item.id) %>
+
 </ul>
 </main>

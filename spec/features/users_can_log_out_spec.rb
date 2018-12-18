@@ -12,7 +12,7 @@ describe 'as a registered user' do
 
     click_on 'Log Out'
 
-    within ".alert" do
+    within ".flash-flex" do
       expect(page).to have_content("You are logged out.")
     end
     expect(user.cart.empty?).to eq(true)
@@ -28,7 +28,7 @@ describe 'as a registered user' do
     click_on 'Log In'
     click_on 'Log Out'
 
-    within ".alert" do
+    within ".flash-flex" do
       expect(page).to have_content("You are logged out.")
     end
 
@@ -45,7 +45,7 @@ describe 'as a registered user' do
     click_on 'Log In'
     click_on 'Log Out'
 
-    within ".alert" do
+    within ".flash-flex" do
       expect(page).to have_content("You are logged out.")
     end
 

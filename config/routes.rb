@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     get 'merchants/:id', to: "users#show", as: "merchant"
   end
   resources :items
-
+  resources :carts, only: [:create]
+  
   resources :users, only: [:index, :create, :edit] do
     resources :orders, only: [:index]
   end

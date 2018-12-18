@@ -23,7 +23,7 @@ describe 'as a visitor' do
       click_on "Create User"
 
       expect(current_path).to eq(profile_path(User.last))
-      within ".alert" do
+      within ".flash-flex" do
         expect(page).to have_content("You are registered and logged in")
       end
       expect(User.last.name).to eq("John Doe")
@@ -42,7 +42,7 @@ describe 'as a visitor' do
       fill_in :user_password_confirmation, with: "john"
       click_on "Create User"
 
-      within ".alert" do
+      within ".flash-flex" do
         expect(page).to have_content("Missing content")
       end
       expect(page).to have_css(".new_user")
@@ -71,7 +71,7 @@ describe 'as a visitor' do
 
       expect(page).to have_css(".new_user")
 
-      within ".alert" do
+      within ".flash-flex" do
         expect(page).to have_content("Missing content")
       end
     end

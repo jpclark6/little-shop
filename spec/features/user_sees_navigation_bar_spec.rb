@@ -9,7 +9,7 @@ describe 'as a visitor' do
         expect(page).to have_link("Home", href: "/")
         expect(page).to have_link("Browse", href: "/items" )
         expect(page).to have_link("Merchants", href: "/merchants")
-        expect(page).to have_link("Cart", href: "/cart")
+        # expect(page).to have_css(".cart-button")
         expect(page).to have_link("Log in", href: "/login")
         expect(page).to have_link("Register", href: "/register")
       end
@@ -32,7 +32,7 @@ describe 'as a registered user' do
         expect(page).to have_link("Home", href: "/")
         expect(page).to have_link("Browse", href: "/items" )
         expect(page).to have_link("Merchants", href: "/merchants")
-        expect(page).to have_link("Cart", href: "/cart")
+        # expect(page).to have_css(".cart-button")
         expect(page).to have_link("Profile", href: "/profile/#{user.id}")
         expect(page).to have_link("Orders", href: user_orders_path(user.id))
         expect(page).to have_link("Log Out", href: logout_path)
