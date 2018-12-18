@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @merchants = User.where(enabled: true, role: "merchant") 
+    @merchants = User.where(enabled: true, role: "merchant")
   end
 
   private
