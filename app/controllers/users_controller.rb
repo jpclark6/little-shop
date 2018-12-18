@@ -22,6 +22,10 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def index
+    @merchants = User.where(enabled: true, role: "merchant")
+  end
+
   private
 
   def user_params
