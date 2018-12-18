@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   root 'items#index'
   namespace :admin do
     get 'merchants/:id', to: "users#show", as: "merchant"
+    get 'users/:id', to: "users#show", as: "user"
+    get 'users', to: "users#index", as: "users"
   end
   resources :items
   resources :carts, only: [:create]
-  
+
   resources :users, only: [:index, :create, :edit] do
     resources :orders, only: [:index]
   end

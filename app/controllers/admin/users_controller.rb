@@ -5,6 +5,10 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def index
+    @users = User.where.not(role: ["admin", "merchant"])
+  end
+
   private
 
   def require_admin
