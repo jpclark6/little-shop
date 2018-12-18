@@ -25,4 +25,18 @@ describe "when user adds songs to their cart" do
 
     expect(page).to have_content("You now have 2 copies of #{item.name} in your cart")
   end
+  it 'the total number of songs in the cart increments' do
+    user = FactoryBot.build_stubbed(:user)
+    item = FactoryBot.create(:item)
+
+    visit items_path
+
+    click_button "Add Item"
+
+    expect(page).to have_content("Cart: 0")
+
+    click_button "Add Item"
+
+    expect(page).to have_content("Cart: 1")
+  end
 end

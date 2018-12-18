@@ -6,7 +6,7 @@
       <li><h3><%= link_to "Home", "/" %></h3></li>
       <li><h3><%= link_to "Browse", "/items" %></h3></li>
       <li><h3><%= link_to "Merchants", "/merchants" %></h3></li>
-      <li><h3><%= link_to "Cart", "/cart" %></h3></li>
+      <li><h3><%= link_to "Cart", "/cart" %></h3><%= @cart.total_count %></li>
       <li><h3><%= link_to "Log in", "/login" %></h3></li>
       <li><h3><%= link_to "Register", "/register" %></h3></li>
 
