@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    name {"Lisa"}
+    sequence(:name) { |n| "Lisa#{n}"}
     sequence(:email) { |n| "Lisa#{n}@gmail.com" }
     address {"123 Happy St"}
     city { "Denver" }
@@ -14,6 +14,9 @@ FactoryBot.define do
     end
     factory :admin do
       role { 2 }
+    end
+    trait :disabled do
+      enabled false
     end
   end
 
