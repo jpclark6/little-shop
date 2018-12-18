@@ -9,5 +9,5 @@ class CartsController < ApplicationController
     flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
     redirect_to items_path
   end
-  #start back at model test for add_item
+
 end
