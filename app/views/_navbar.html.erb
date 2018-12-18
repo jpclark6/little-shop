@@ -22,7 +22,15 @@
         <li><h3><%= link_to "Register", "/register" %></h3></li>
       <% end %>
       <% unless current_user && (current_user.merchant? || current_user.admin?) %>
-        <li><i class="fas fa-shopping-cart"></i><h3><%= link_to "Cart", "/cart" %></h3></li>
+        <li><h3>
+              <%= button_to "/cart", method: "get" do  %>
+                <div>
+                  <i class="fas fa-shopping-cart"></i>
+                </div>
+                Cart
+              <% end %>
+            </h3>
+        </li>
       <% end %>
     </ul>
   </div>

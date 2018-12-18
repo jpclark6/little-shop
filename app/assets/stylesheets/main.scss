@@ -64,8 +64,8 @@ nav li {
 
 main {
   overflow: scroll;
-  margin-top: 60px;
-  min-height: 200px;
+  margin-top: 100px;
+  height: 570px;
   background: whitesmoke;
   width: 960px;
   display: flex;
@@ -82,7 +82,7 @@ main {
   width: 100%;
 }
 
-form {
+.user-input-form {
   margin:30px;
   width: 250px;
   /* background: aliceblue; */
