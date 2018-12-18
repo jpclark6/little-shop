@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe "when user adds songs to their cart" do
   it 'the message correctly increments for multiple songs' do
-    user = FactoryBot.build_stubbed(:user)
     item = FactoryBot.create(:item)
 
     visit item_path(item)
@@ -16,7 +15,6 @@ describe "when user adds songs to their cart" do
     expect(page).to have_content("You now have 2 copies of #{item.name} in your cart")
   end
   it 'the total number of songs in the cart increments' do
-    user = FactoryBot.build_stubbed(:user)
     item = FactoryBot.create(:item)
 
     visit item_path(item)
