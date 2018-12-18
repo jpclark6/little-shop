@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'as a Merchant' do
   it 'displays the merchants own profile data on the dashboard, but cannot edit' do
-    user = FactoryBot.create(:user, role: 1)
+    user = FactoryBot.create(:merchant)
 
-    visit "/dashboard/(#{user.id})"
+    visit "/dashboard/#{user.id}"
 
     expect(page).to have_content(user.name)
     expect(page).to have_content(user.email)
@@ -13,13 +13,9 @@ describe 'as a Merchant' do
     expect(page).to have_content(user.city)
     expect(page).to have_content(user.state)
     expect(page).to have_content(user.zip_code)
+    expect(page).to have_no_link('Edit Profile')
   end
 
 end
 
-# DO WE WANT PASSWORD TO DISPLAY
-
-# Merchant Dashboard Show Page
-# As a merchant user
-# When I visit my dashboard ("/dashboard")
 # I see my profile data, but cannot edit it --- TEST FOR THIS?????
