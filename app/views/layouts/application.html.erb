@@ -13,14 +13,13 @@
     <header>
     <%= render partial: "/navbar" %>
     </header>
-    <% flash.each do |key, value| %>
-      <div class="alert"><%= value %></div>
-      <%= content_tag :div, value, class: key%>
-    <% end %>
     <div class="main-flex">
       <main>
         <%= yield %>
       </main>
     </div>
+    <% flash.each do |key, value| %>
+    <div class="alert"><%= value %></div>
+    <% end %>
   </body>
 </html>
