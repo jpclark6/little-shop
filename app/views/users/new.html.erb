@@ -1,4 +1,4 @@
-<%= form_for @user, class: :shadow do |f|  %>
+<%= form_for @user, html: {class: "new_user user-input-form shadow"} do |f|  %>
   <%= f.label :user_name %>
   <%= f.text_field :name %>
   <%= f.label :user_address %>

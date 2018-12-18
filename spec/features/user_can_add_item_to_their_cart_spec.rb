@@ -19,14 +19,14 @@ describe "when user adds songs to their cart" do
 
     visit item_path(item)
 
-    expect(page).to have_content("Cart: 0")
+    expect(page).to have_content("Cart(0)")
 
     click_button "Add Item"
 
-    expect(page).to have_content("Cart: 1")
+    expect(page).to have_content("Cart(1)")
 
     click_button "Add Item"
 
-    expect(page).to have_content("Cart: 2")
+    expect(page).to have_content("Cart(2)")
   end
 end
