@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'items#index'
+  namespace :admin do
+    get 'merchants/:id', to: "users#show", as: "merchant"
+  end
   resources :items
-  resources :merchants
   resources :users, only: [:index, :create, :edit]
 
   get '/profile/:id', to: 'users#show', as: :profile
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard/:id', to: 'users#show'
   get '/register', to: 'users#new'
+  get '/merchants', to: 'users#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
