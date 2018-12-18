@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:message] = "You are registered and logged in"
+      session[:user_id] = @user.id
       redirect_to profile_path(@user)
     else
       flash[:message] = "Missing content"
