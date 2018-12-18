@@ -7,6 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "faker"
+
+OrderItem.destroy_all
+Item.destroy_all
+Order.destroy_all
+User.destroy_all
+
+
 merchants = []
 20.times do
   name = Faker::Name.name
