@@ -37,6 +37,18 @@ body {
   max-width: 960px;
 }
 
+.alert {
+  position: absolute;
+    background: wheat;
+    z-index: 100;
+    top: 69px;
+    padding: 7px;
+    border-color: coral;
+    border-style: double;
+    left: 2;
+    left: 100px;
+}
+
 nav li {
   display: inline-block;
   margin-left: 20px;
