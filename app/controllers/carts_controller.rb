@@ -3,12 +3,11 @@ class CartsController < ApplicationController
 
   def create
     item = Item.find(params[:item_id])
-    item_id_str = item.id.to_s
-    session[:cart] ||= Hash.new(0)
-    session[:cart][item_id_str] ||= 0
-    session[:cart][item_id_str] = session[:cart][item_id_str] + 1
-    quantity = session[:cart][item_id_str]
+    @cart.add_item(item.id)
+    session[:cart] = @cart.contents
+    quantity = @cart.count_of(item.id)
     flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
     redirect_to items_path
   end
+  #start back at model test for add_item
 end
