@@ -42,4 +42,56 @@ RSpec.describe Cart do
       expect(cart.current_items).to eq([item_1, item_2, item_3])
     end
   end
+  describe "#qty(item)" do
+    it "can return the qty of an item in the cart" do
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      item_3 = FactoryBot.create(:item)
+      cart = Cart.new({})
+      cart.add_item(item_1.id.to_s)
+      cart.add_item(item_1.id.to_s)
+      cart.add_item(item_1.id.to_s)
+      cart.add_item(item_2.id.to_s)
+      cart.add_item(item_2.id.to_s)
+      cart.add_item(item_3.id.to_s)
+
+      expect(cart.qty(item_1)).to eq(3)
+      expect(cart.qty(item_2)).to eq(2)
+      expect(cart.qty(item_3)).to eq(1)
+    end
+  end
+  describe "#total_cost" do
+    it "can find the total dollar amount in the cart" do
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      item_3 = FactoryBot.create(:item)
+      cart = Cart.new({})
+      cart.add_item(item_1.id.to_s)
+      cart.add_item(item_1.id.to_s)
+      cart.add_item(item_1.id.to_s)
+      cart.add_item(item_2.id.to_s)
+      cart.add_item(item_2.id.to_s)
+      cart.add_item(item_3.id.to_s)
+
+      expected = item_1.price * 3 + item_2.price * 2 + item_3.price
+
+      expect(cart.total_cost).to eq(expected)
+    end
+  end
+  describe "#empty?" do
+    it 'can check if cart is empty' do
+      cart = Cart.new({})
+      expect(cart.empty?).to eq(true)
+    end
+  end
+  describe "#empty_cart" do
+    it 'empties the cart' do
+      item_1 = FactoryBot.create(:item)
+      cart = Cart.new({})
+      cart.add_item(item_1.id.to_s)
+      expect(cart.empty?).to eq(false)
+      cart.empty_cart
+      expect(cart.empty?).to eq(true)
+    end
+  end
 end

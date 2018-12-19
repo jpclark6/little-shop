@@ -24,4 +24,20 @@ class Cart
   def count_of(id)
    @contents[id.to_s].to_i
   end
+
+  def qty(item)
+    @contents[item.id.to_s]
+  end
+
+  def total_cost
+    @contents.sum { |item_id, qty| Item.find(item_id).price * qty }
+  end
+
+  def empty?
+    @contents.empty?
+  end
+
+  def empty_cart
+    @contents = {}
+  end
 end
