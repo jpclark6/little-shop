@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
+    if user && user.authenticate(params[:password]) && user.enabled?
       session[:user_id] = user.id
       flash[:success] = "Welcome, #{user.name}"
       if user.registered?
@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
       end
     else
       flash[:failure] = "Invalid credentials."
+      flash[:failure] = "Account Disabled." unless user.enabled?
       render :new
     end
   end

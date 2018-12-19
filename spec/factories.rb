@@ -16,7 +16,7 @@ FactoryBot.define do
       role { 2 }
     end
     trait :disabled do
-      enabled false
+      enabled { false }
     end
   end
 

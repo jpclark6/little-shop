@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def new
+
     @user = User.new
   end
 
@@ -23,7 +24,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @merchants = User.where(enabled: true, role: "merchant")
+    if current_user && current_user.admin?
+      @merchants = User.where(role: "merchant")
+    else
+      @merchants = User.where(enabled: true, role: "merchant")
+    end
   end
 
   private
