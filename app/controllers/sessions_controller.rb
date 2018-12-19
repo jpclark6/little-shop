@@ -4,9 +4,9 @@ class SessionsController < ApplicationController
       flash[:logged_in] = "You are already logged in."
       case current_user.role
       when 'registered'
-        redirect_to profile_path(current_user)
+        redirect_to profile_path
       when 'merchant'
-        redirect_to "/dashboard/#{current_user.id}"
+        redirect_to "/dashboard"
       when 'admin'
         redirect_to root_path
       end
@@ -19,9 +19,9 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:success] = "Welcome, #{user.name}"
       if user.registered?
-        redirect_to profile_path(user)
+        redirect_to profile_path
       elsif user.merchant?
-        redirect_to "/dashboard/#{user.id}"
+        redirect_to "/dashboard"
       elsif user.admin?
         redirect_to root_path
       end

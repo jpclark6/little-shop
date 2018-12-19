@@ -5,4 +5,10 @@
 <%= @user.state %>
 <%= @user.zip_code %>
 
-<%= link_to 'Edit Profile', edit_user_path(@user) %>
+<% if current_user && current_user.registered? %>
+  <%= link_to 'Edit Profile', edit_user_path(@user) %>
+<% end %>
+
+<% if current_user && current_user.merchant? %>
+  <%= link_to 'View Items', "/dashboard/items"%>
+<% end %>
