@@ -5,4 +5,4 @@
 <%= @user.state %>
 <%= @user.zip_code %>
 
-<%= link_to 'Edit Profile', edit_user_path(@user) %>
+<%= link_to 'Edit Profile', edit_user_path(@user) unless current_user && current_user.merchant? %>
