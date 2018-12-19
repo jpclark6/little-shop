@@ -110,3 +110,19 @@ describe 'as an admin user' do
     expect(page).to have_content("You are already logged in")
   end
 end
+
+describe 'as a disabled user' do
+  it 'I cannot log in' do
+    user = FactoryBot.create(:user, :disabled)
+    # allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(user)
+    visit login_path
+
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+    click_on 'Log In'
+
+    expect(current_path).to eq(login_path)
+    expect(page).to have_content("Account Disabled.")
+  end
+
+end
