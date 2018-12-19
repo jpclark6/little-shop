@@ -20,11 +20,30 @@ describe 'user index page' do
       visit admin_users_path
 
       within "#user-#{user.id}" do
-        save_and_open_page
         expect(page).to have_content("Status: Disabled")
+      end
+    end
 
+    it "enables a user when I click enable" do
+      user = FactoryBot.create(:user, :disabled)
+      admin = FactoryBot.create(:admin)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit admin_users_path
+      within "#user-#{user.id}" do
+        click_on "Enable"
       end
 
+      expect(current_path).to eq(admin_users_path)
+
+      expect(page).to have_content("#{user.name} (id:#{user.id}) is now enabled.")
+
+      visit admin_users_path
+
+      within "#user-#{user.id}" do
+        expect(page).to have_content("Status: Enabled")
+      end
     end
   end
 end
