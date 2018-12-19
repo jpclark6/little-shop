@@ -23,7 +23,8 @@ merchants = []
   zip_code = Faker::Address.zip_code
   email = Faker::Internet.unique.email
   role = 1
-  password = Faker::Name.name
+  password = rand(0..100).to_s
+  puts "Email #{email} password '#{password}''"
   user = User.create(name: name, address: address, city: city, state: state, zip_code: zip_code, email: email, role: role, password: password, enabled: true)
   merchants << user
   20.times do
@@ -52,3 +53,18 @@ end
     order.items = merchants.sample(1)[0].items.sample(rand(2..8))
   end
 end
+
+
+#Email lorinapollich@krisyundt.io password '40''
+# Email gaynelleruel@leannonwindler.org password '87''
+# Email roman@schmeler.co password '44''
+# Email merilynkuhic@kemmer.net password '94''
+# Email luciusbednar@considine.co password '92''
+# Email christinia@kreiger.com password '33''
+# Email pasquale@boyle.io password '21''
+# Email antony@cummings.net password '10''
+# Email romanpollich@binshayes.co password '23''
+# Email starrdenesik@kirlin.com password '62''
+# Email ianbrekke@runolfsdottir.com password '90''
+# Email hector@boehm.name password '26''
+# Email teisha@kunde.com password '62''
