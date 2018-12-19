@@ -29,4 +29,24 @@ FactoryBot.define do
     sequence(:description) { |n| "this thing is....#{n}" }
     enabled { true }
   end
+
+  factory :order do
+    association :user
+    factory :pending do
+      status { 0 }
+    end
+    factory :fulfilled do
+      status { 1 }
+    end
+    factory :cancelled do
+      status { 2 }
+    end
+  end
+
+  factory :order_item do
+    association :order
+    item = association :item
+    price { item.price }
+    sequence(:quanity) { |n| 1 + n }
+  end
 end
