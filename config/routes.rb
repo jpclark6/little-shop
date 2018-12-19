@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     get "", to: 'users#show'
     get "/items", to: 'items#index'
-    get "/items/edit/:id", to: "item#edit"
+    get "/items/edit/:id", to: "item#edit", as: "item_edit"
   end
 
   #
