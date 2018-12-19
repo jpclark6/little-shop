@@ -64,6 +64,25 @@ describe 'user index page' do
       end
     end
 
+    it "enables a merchant when I click enable" do
+      merchant = FactoryBot.create(:merchant, :disabled)
+      admin = FactoryBot.create(:admin)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit merchants_path
+      within "#merchant-#{merchant.id}" do
+        click_on "Enable"
+      end
+
+      expect(current_path).to eq(merchants_path)
+
+      expect(page).to have_content("#{merchant.name} (id:#{merchant.id}) is now enabled.")
+
+      within "#merchant-#{merchant.id}" do
+        expect(page).to have_content("Status: Enabled")
+      end
+    end
 
   end
 end
