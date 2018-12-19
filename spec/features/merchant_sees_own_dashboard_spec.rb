@@ -30,7 +30,7 @@ describe 'As a Merchant' do
     expect(current_path).to eq(dashboard_items_path)
   end
 
-  it 'If any users have pending orders containing items I sell, then I see a list of these orders' do
+  xit 'If any users have pending orders containing items I sell, then I see a list of these orders' do
     # Current_user
     user = FactoryBot.create(:merchant)
 
