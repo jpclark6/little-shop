@@ -10,7 +10,7 @@ describe 'as a regular user' do
     fill_in :password, with: user.password
     click_on 'Log In'
 
-    expect(current_path).to eq(profile_path(user))
+    expect(current_path).to eq(profile_path)
     expect(page).to have_content("Welcome, #{user.name}")
   end
 end
@@ -25,7 +25,7 @@ describe 'as a merchant user' do
     fill_in :password, with: merchant.password
     click_on 'Log In'
 
-    expect(current_path).to eq("/dashboard/#{merchant.id}")
+    expect(current_path).to eq("/dashboard")
     expect(page).to have_content("Welcome, #{merchant.name}")
   end
 end
@@ -72,7 +72,7 @@ describe 'as a regular user' do
 
     visit login_path
 
-    expect(current_path).to eq(profile_path(user))
+    expect(current_path).to eq(profile_path)
     expect(page).to have_content("You are already logged in")
   end
 end
@@ -89,7 +89,7 @@ describe 'as a merchant user' do
 
     visit login_path
 
-    expect(current_path).to eq("/dashboard/#{merchant.id}")
+    expect(current_path).to eq("/dashboard")
     expect(page).to have_content("You are already logged in")
   end
 end

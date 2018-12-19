@@ -8,24 +8,23 @@ Rails.application.routes.draw do
     patch 'disable_user/:id', to: "users#update", as: "disable_user"
     patch 'enable_user/:id', to: "users#update", as: "enable_user"
   end
+
   resources :items
   resources :carts, only: [:create]
+  resources :users, only: [:index, :create, :edit]
+
+
+  get '/profile', to: 'users#show'
 
   get '/cart', to: 'carts#show'
   delete '/cart', to: 'carts#delete'
 
-
-  resources :users, only: [:index, :create, :edit] do
-    resources :orders, only: [:index]
-  end
-
-
-  get '/profile/:id', to: 'users#show', as: :profile
   get '/profile/orders', to: 'orders#index'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/dashboard/:id', to: 'users#show'
+  get '/dashboard', to: 'users#show'
+  get '/dashboard/items', to: 'items#index', as: 'dashboard_merchant_items'
   get '/register', to: 'users#new'
   get '/merchants', to: 'users#index'
   get '/merchants/:id', to: 'users#show'
