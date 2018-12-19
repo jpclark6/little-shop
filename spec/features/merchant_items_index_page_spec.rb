@@ -46,6 +46,3 @@ describe 'merchant item index page' do
 
   end
 end
-
-# If the item is enabled, I see a button or link to disable the item
-# If the item is disabled, I see a button or link to enable the item
