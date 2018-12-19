@@ -45,8 +45,8 @@ FactoryBot.define do
 
   factory :order_item do
     association :order
-    item = association :item
-    price { item.price }
+    association :item
+    sequence(:price) { |n| n + 1  }
     sequence(:quanity) { |n| 1 + n }
   end
 end
