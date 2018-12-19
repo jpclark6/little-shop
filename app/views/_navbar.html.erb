@@ -13,7 +13,9 @@
         <li><h3><%= link_to "All Users", "/admin/users" %></h3></li>
       <% end %>
       <% if current_user %>
-        <li><h3><%= link_to "Profile", profile_path %></h3></li>
+        <% if current_user.registered? %>
+          <li><h3><%= link_to "Profile", profile_path %></h3></li>
+        <% end %>
         <li><h3><%= link_to "Orders", profile_orders_path %></h3></li>
         <li><h3><%= link_to "Log Out", logout_path, method: :delete %></h3></li>
         <li><h3>Logged in as <%= current_user.name %></h3></li>
