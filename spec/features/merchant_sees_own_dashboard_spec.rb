@@ -28,16 +28,6 @@ describe 'As a Merchant' do
     click_on 'View Items'
 
     expect(current_path).to eq('/dashboard/items')
-
     #did not test for expecting a user_cannot see this.
   end
-
-# Merchant's Items index page
-#
-# As a merchant
-# When I visit my dashboard
-# I see a link to view my own items
-# When I click that link
-# My URI route should be "/dashboard/items"
-
 end

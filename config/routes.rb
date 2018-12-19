@@ -10,11 +10,9 @@ Rails.application.routes.draw do
   end
   resources :items
   resources :carts, only: [:create]
-
   resources :users, only: [:index, :create, :edit] do
     # resources :orders, only: [:index]
   end
-
 
   get '/profile', to: 'users#show'
   get '/profile/orders', to: 'orders#index'
@@ -26,6 +24,5 @@ Rails.application.routes.draw do
 
   get '/register', to: 'users#new'
   get '/merchants', to: 'users#index'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
