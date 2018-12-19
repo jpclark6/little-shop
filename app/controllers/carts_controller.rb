@@ -22,7 +22,11 @@ class CartsController < ApplicationController
   def update
     item = Item.find(params[:item_id])
     if params[:change_quantity] == "+"
-      @cart.add_item(item.id)
+      unless @cart.qty(item) == item.instock_qty
+        @cart.add_item(item.id)
+      else
+        flash[:notice] = "Max quantity reached on item due to inventory availability"
+      end
     elsif params[:change_quantity] == "-"
       @cart.remove_item(item.id)
     elsif params[:change_quantity] == "0"

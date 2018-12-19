@@ -104,20 +104,21 @@ describe 'as a visitor or registered user' do
       expect(page).to have_no_content("#{@item_1.name}")
     end
 
-    xit 'can not increase items in cart past merchant qty' do
+    it 'can not increase items in cart past merchant qty' do
       visit cart_path
-      26.times do
+      @item_1.update(instock_qty: 10)
+      10.times do
         within(".item-#{@item_1.id}") do
           click_on "+"
         end
       end
       within(".item-#{@item_1.id}") do
-        expect(page).to have_content("Qty 28")
+        expect(page).to have_content("Qty 10")
         click_on "+"
       end
-      expect(page).to have_content("Max qty reached on item due to inventory availability")
+      expect(page).to have_content("Max quantity reached on item due to inventory availability")
       within(".item-#{@item_1.id}") do
-        expect(page).to have_content("Qty 28")
+        expect(page).to have_content("Qty 10")
       end
     end
   end
