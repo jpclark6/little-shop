@@ -92,7 +92,12 @@ describe 'as a visitor or registered user' do
     end
 
     xit 'can remove item from cart' do
-
+      visit cart_path
+      within(".item-#{@item_1.id}") do
+        click_on "remove"
+      end
+      expect(current_path).to eq(cart_path)
+      expect(page).to have_no_content(@item_1.name)
     end
 
     it 'can remove items once they decrement to 0' do

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'as a registered user' do
-  xit 'can log out as a user' do
+  it 'can log out as a user' do
     user = FactoryBot.create(:user)
 
     visit login_path
@@ -15,10 +15,12 @@ describe 'as a registered user' do
     within ".flash-flex" do
       expect(page).to have_content("You are logged out.")
     end
-    expect(user.cart.empty?).to eq(true)
+    within 'nav' do
+      expect(page).to have_content("Cart(0)")
+    end
   end
 
-  xit 'can log out as a admin' do
+  it 'can log out as a admin' do
     admin = FactoryBot.create(:admin)
 
     visit login_path
@@ -32,10 +34,12 @@ describe 'as a registered user' do
       expect(page).to have_content("You are logged out.")
     end
 
-    expect(user.cart.empty?).to eq(true)
+    within 'nav' do
+      expect(page).to have_content("Cart(0)")
+    end
   end
 
-  xit 'can log out as a merchant' do
+  it 'can log out as a merchant' do
     merchant = FactoryBot.create(:merchant)
 
     visit login_path
@@ -49,6 +53,8 @@ describe 'as a registered user' do
       expect(page).to have_content("You are logged out.")
     end
 
-    expect(user.cart.empty?).to eq(true)
+    within 'nav' do
+      expect(page).to have_content("Cart(0)")
+    end
   end
 end
