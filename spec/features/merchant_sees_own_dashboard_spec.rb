@@ -30,7 +30,7 @@ describe 'As a Merchant' do
     expect(current_path).to eq(dashboard_items_path)
   end
 
-  xit 'If any users have pending orders containing items I sell, then I see a list of these orders' do
+  it 'If any users have pending orders containing items I sell, then I see a list of these orders' do
     # Current_user
     user = FactoryBot.create(:merchant)
 
@@ -61,7 +61,7 @@ describe 'As a Merchant' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    visit dashboard_items_path
+    visit dashboard_orders_path
 
     expect(page).to have_link(order_2.id)
     expect(page).to have_content(order_2.created_at)
@@ -83,7 +83,6 @@ describe 'As a Merchant' do
     expect(page).to_not have_content(order_4.id)
   end
 end
-
 
 # User Story 39
 # Merchant Dashboard displays Orders
