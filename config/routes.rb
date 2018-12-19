@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     get 'merchants/:id', to: "users#show", as: "merchant"
     get 'users/:id', to: "users#show", as: "user"
     get 'users', to: "users#index", as: "users"
+
+    put 'disable_user/:id', to: "users#disable", as: "disable_user"
+    put 'enable_user/:id', to: "users#enable", as: "enable_user"
   end
   resources :items
   resources :carts, only: [:create]

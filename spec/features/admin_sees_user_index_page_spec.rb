@@ -20,7 +20,6 @@ describe 'user index page' do
         expect(page).to have_content(user_1.name)
         expect(page).to have_content("Registered at #{user_1.created_at.to_date}")
         expect(page).to have_button("Disable")
-
       end
       within "#user-#{user_2.id}" do
         expect(page).to have_content(user_2.name)
