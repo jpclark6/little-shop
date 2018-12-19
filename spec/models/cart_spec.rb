@@ -38,6 +38,17 @@ RSpec.describe Cart do
         expect(cart.contents).to eq({"2" => 2})
     end
   end
+  describe "#delete_item" do
+    it "deletes all of the same items" do
+      cart = Cart.new({
+        "1" => 2,
+        "2" => 3
+        })
+        cart.delete_item(1)
+
+        expect(cart.contents).to eq({"2" => 3})
+    end
+  end
   describe "#count_of" do
     it "can count" do
 

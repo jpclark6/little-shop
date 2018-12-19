@@ -88,14 +88,14 @@ describe 'as a visitor or registered user' do
       end
       within(".item-#{@item_1.id}") do
         expect(page).to have_content("Qty 2")
-      end 
+      end
     end
 
     xit 'can remove item from cart' do
 
     end
 
-    xit 'can remove items once they decrement to 0' do
+    it 'can remove items once they decrement to 0' do
       visit cart_path
       within(".item-#{@item_1.id}") do
         click_on "-"

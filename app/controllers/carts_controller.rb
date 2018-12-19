@@ -25,10 +25,11 @@ class CartsController < ApplicationController
       @cart.add_item(item.id)
     elsif params[:change_quantity] == "-"
       @cart.remove_item(item.id)
+    elsif params[:change_quantity] == "0"
+      @cart.delete_item(item.id)
     end
       session[:cart] = @cart.contents
       quantity = @cart.count_of(item.id)
-      flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
       redirect_to cart_path
   end
 
