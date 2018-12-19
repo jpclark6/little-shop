@@ -1,16 +1,11 @@
 require "rails_helper"
 
-describe 'user visits their own profile page' do
+describe 'registered user visits their own profile page' do
   it 'shows all profile data except password' do
-    name = 'Jill'
-    address = '122 Broadway'
-    email = '123@gmail.com'
-    password = '337*7!'
-    city = 'Denver'
-    state = 'CO'
-    zip_code = 80015
+    user = FactoryBot.create(:user)
+    user_2 = FactoryBot.create(:user)
 
-    user = FactoryBot.create(:user, name: name, address: address, email: email, password: password, city: city, state: state, zip_code: zip_code )
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit profile_path(user)
 
@@ -21,10 +16,15 @@ describe 'user visits their own profile page' do
     expect(page).to have_content(user.city)
     expect(page).to have_content(user.state)
     expect(page).to have_content(user.zip_code)
+
+    expect(page).to_not have_content(user_2.name)
+    expect(page).to_not have_content(user_2.email)
   end
 
   it 'can see a link to edit my profile data' do
     user = FactoryBot.create(:user)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit profile_path(user)
 
