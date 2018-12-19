@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#show'
 
   get '/cart', to: 'carts#show'
+  patch '/cart', to: 'carts#update'
   delete '/cart', to: 'carts#delete'
 
   get '/profile/orders', to: 'orders#index'
