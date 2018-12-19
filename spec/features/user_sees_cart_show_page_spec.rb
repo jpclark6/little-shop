@@ -54,7 +54,6 @@ describe 'as a visitor or registered user' do
       click_on "Empty cart"
       expect(current_path).to eq(cart_path)
 
-      # save_and_open_page
       within('nav') do
         expect(page).to have_content('Cart(0)')
       end
@@ -64,6 +63,43 @@ describe 'as a visitor or registered user' do
       expect(page).to have_content("Cart is empty")
       expect(page).to have_no_content("Empty cart")
     end
+    xit 'can increase or decrease items in cart' do
+      visit cart_path
+      within(".item-#{@item_1.id}") do
+        expect(page).to have_content("Qty 2")
+        click_on "+"
+        expect(page).to have_content("Qty 3")
+        click_on "-"
+        expect(page).to have_content("Qty 2")
+      end
+    end
+    xit 'can remove item from cart' do
 
+    end
+    xit 'can remove items once they decrement to 0' do
+      visit cart_path
+      within(".item-#{@item_1.id}") do
+        click_on "-"
+        click_on "-"
+      end
+      expect(page).to have_no_content("#{@item_1.name}")
+    end
+    xit 'can not increase items in cart past merchant qty' do
+      visit cart_path
+      26.times do
+        within(".item-#{@item_1.id}") do
+          click_on "+"
+        end
+      end
+      within(".item-#{@item_1.id}") do
+        expect(page).to have_content("Qty 28")
+        click_on "+"
+      end
+      expect(page).to have_content("Max qty reached on item due to inventory availability")
+      within(".item-#{@item_1.id}") do
+        expect(page).to have_content("Qty 28")
+      end
+
+    end
   end
 end
