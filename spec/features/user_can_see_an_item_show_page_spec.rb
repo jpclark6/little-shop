@@ -5,7 +5,6 @@ require 'rails_helper'
 
 describe "user sees an item" do
   it "user sees item attributes" do
-    merchant = FactoryBot.create(:merchant)
     item_1 = FactoryBot.create(:item)
     item_2 = FactoryBot.create(:item)
 
@@ -16,7 +15,8 @@ describe "user sees an item" do
     expect(page).to have_content(item_1.price)
     expect(page).to have_content(item_1.instock_qty)
     expect(page).to have_content(item_1.description)
-    expect(page).to have_content(merchant.name)
+    expect(page).to have_content(item_1.user.name)
+
     expect(page).to_not have_content(item_2.name)
   end
 end
