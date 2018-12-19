@@ -71,7 +71,7 @@ describe 'as a mercha t user' do
         expect(page).to have_no_link("Register", href: "/register")
       end
     end
-    xit "sees count of cart items" do
+    xit "sees count of cart ss" do
       #add code here
     end
   end
