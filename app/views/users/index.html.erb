@@ -9,11 +9,13 @@
       <li><%= merchant.created_at.to_date %></li>
     </ul>
     <% if current_user && current_user.admin? %>
-      <% if merchant.enabled? %>
-        <%= button_to("Disable", admin_disable_user_path(merchant)) %>
-      <% else %>
-        <%= button_to("Enable", admin_enable_user_path(merchant)) %>
-      <% end %>
+      <p>Status: <%= merchant.status %>
+        <% if merchant.enabled? %>
+          <%= button_to("Disable", admin_disable_user_path(merchant), method: "patch") %>
+        <% else %>
+          <%= button_to("Enable", admin_enable_user_path(merchant), method: "patch") %>
+        <% end %>
+      </p>
     <% end %>
   </div>
 <% end %>

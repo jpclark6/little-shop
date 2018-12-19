@@ -17,7 +17,6 @@ describe 'user index page' do
 
       expect(page).to have_content("#{user.name} (id:#{user.id}) is now disabled.")
 
-      visit admin_users_path
 
       within "#user-#{user.id}" do
         expect(page).to have_content("Status: Disabled")
@@ -39,20 +38,32 @@ describe 'user index page' do
 
       expect(page).to have_content("#{user.name} (id:#{user.id}) is now enabled.")
 
-      visit admin_users_path
 
       within "#user-#{user.id}" do
         expect(page).to have_content("Status: Enabled")
       end
     end
+
+    it "disables a merchant when I click disable" do
+      merchant = FactoryBot.create(:merchant)
+      admin = FactoryBot.create(:admin)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit merchants_path
+      within "#merchant-#{merchant.id}" do
+        click_on "Disable"
+      end
+
+      expect(current_path).to eq(merchants_path)
+
+      expect(page).to have_content("#{merchant.name} (id:#{merchant.id}) is now disabled.")
+
+      within "#merchant-#{merchant.id}" do
+        expect(page).to have_content("Status: Disabled")
+      end
+    end
+
+
   end
 end
-
-
-# As an admin user
-# When I visit the user index page
-# And I click on a "disable" button for an enabled user
-# I am returned to the admin's user index page
-# And I see a flash message that the user's account is now disabled
-# And I see that the user's account is now disabled
-# This user cannot log in
