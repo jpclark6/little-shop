@@ -49,6 +49,16 @@ describe 'as a visitor or registered user' do
 
       expect(page).to have_content("Total: $#{@item_1.price * 2 + @item_2.price + @item_3.price}")
     end
+
+    it 'has to login or register to check out' do
+      
+      visit cart_path
+
+      expect(page).to have_content("You have to register or log in to checkout")
+      expect(page).to have_link("log in", href: "/login")
+      expect(page).to have_link("register", href: "/register")
+    end
+
     it 'can empty my cart and displays empty cart message' do
       visit cart_path
       click_on "Empty cart"
@@ -84,6 +94,7 @@ describe 'as a visitor or registered user' do
       end
       expect(page).to have_no_content("#{@item_1.name}")
     end
+
     xit 'can not increase items in cart past merchant qty' do
       visit cart_path
       26.times do
@@ -99,7 +110,6 @@ describe 'as a visitor or registered user' do
       within(".item-#{@item_1.id}") do
         expect(page).to have_content("Qty 28")
       end
-
     end
   end
 end

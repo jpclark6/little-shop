@@ -14,9 +14,6 @@ describe 'as a visitor' do
         expect(page).to have_link("Register", href: "/register")
       end
     end
-    xit "sees count of cart items" do
-      #add code here
-    end
   end
 end
 
@@ -41,9 +38,6 @@ describe 'as a registered user' do
         expect(page).to have_no_link("Log in", href: "/login")
         expect(page).to have_no_link("Register", href: "/register")
       end
-    end
-    xit "sees count of cart items" do
-      #add code here
     end
   end
 end
@@ -70,9 +64,6 @@ describe 'as a mercha t user' do
         expect(page).to have_no_link("Log in", href: "/login")
         expect(page).to have_no_link("Register", href: "/register")
       end
-    end
-    xit "sees count of cart items" do
-      #add code here
     end
   end
 end

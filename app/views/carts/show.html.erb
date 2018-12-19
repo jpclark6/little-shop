@@ -1,5 +1,10 @@
 <h1>Shopping Cart</h1>
 <% unless @cart.empty? %>
+  <% unless current_user %>
+   <div class="must_log_in">
+     <h2>You have to <%= link_to "register", register_path %> or <%= link_to "log in", login_path %> to checkout</h2>
+   </div>
+  <% end %>
   <% @cart.current_items.each do |item| %>
     <div class='item-<%= item.id %>'>
       <h2><%= item.name %></h2>
