@@ -22,7 +22,12 @@ describe 'merchant item index page' do
         expect(page).to have_css("img[src='#{item_1.image}']")
         expect(page).to have_content("$#{item_1.price}")
         expect(page).to have_content("In stock: #{item_1.instock_qty}")
+
         expect(page).to have_button("Edit Item")
+        expect(page).to have_button("Delete Item")
+        expect(page).to have_button("Disable Item")
+        expect(page).to_not have_button("Enable Item")
+
       end
 
       within "#item-#{item_2.id}" do
@@ -31,24 +36,16 @@ describe 'merchant item index page' do
         expect(page).to have_css("img[src='#{item_2.image}']")
         expect(page).to have_content("$#{item_2.price}")
         expect(page).to have_content("In stock: #{item_2.instock_qty}")
+
         expect(page).to have_button("Edit Item")
+        expect(page).to_not have_button("Delete Item")
+        expect(page).to have_button("Enable Item")
+
       end
     end
 
   end
 end
 
-# As a merchant
-# When I visit my items page "/dashboard/items"
-# I see a link to add a new item to the system
-# I see each item I have already added to the system, including:
-# - the ID of the item
-# - the name of the item
-# - a thumbnail image for that item
-# - the price of that item
-# - my current inventory count for that item
-# - a link or button to edit the item
-#
-# If no user has ever ordered this item, I see a link to delete the item
 # If the item is enabled, I see a button or link to disable the item
 # If the item is disabled, I see a button or link to enable the item
