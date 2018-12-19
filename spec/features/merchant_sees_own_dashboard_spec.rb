@@ -28,6 +28,5 @@ describe 'As a Merchant' do
     click_on 'View Items'
 
     expect(current_path).to eq('/dashboard/items')
-    #did not test for expecting a user_cannot see this.
   end
 end

@@ -8,11 +8,10 @@ Rails.application.routes.draw do
     put 'disable_user/:id', to: "users#disable", as: "disable_user"
     put 'enable_user/:id', to: "users#enable", as: "enable_user"
   end
+  
   resources :items
   resources :carts, only: [:create]
-  resources :users, only: [:index, :create, :edit] do
-    # resources :orders, only: [:index]
-  end
+  resources :users, only: [:index, :create, :edit]
 
   get '/profile', to: 'users#show'
   get '/profile/orders', to: 'orders#index'
@@ -20,9 +19,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#show'
-  get '/dashboard/items', to: 'users#index'
-
+  get '/dashboard/items', to: 'items#index', as: 'dashboard_merchant_items'
   get '/register', to: 'users#new'
   get '/merchants', to: 'users#index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
