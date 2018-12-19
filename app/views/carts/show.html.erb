@@ -10,7 +10,7 @@
       <h2><%= item.name %></h2>
       <%= image_tag item.image, alt: item.name %>
       <h4>Sold by: <%= link_to "#{item.user.name}", merchants_path(item.user) %></h4>
-      <h4><%= link_to "+", cart_path, method: :patch, change_quantity: "+" %>Qty <%= @cart.qty(item) %> <%= link_to "-", cart_path, method: :patch %> at $<%= item.price %> ea. Subtotal: $<%= item.price * @cart.qty(item) %></h4>
+      <h4><%= link_to "+", cart_path(change_quantity: "+", item_id: item.id), method: :patch %>Qty <%= @cart.qty(item) %> <%= link_to "-", cart_path(change_quantity: "-", item_id: item.id), method: :patch%> at $<%= item.price %> ea. Subtotal: $<%= item.price * @cart.qty(item) %></h4>
     </div>
   <% end %>
   <h2>Total: $<%= @cart.total_cost %></h2>

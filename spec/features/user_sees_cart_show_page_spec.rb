@@ -76,15 +76,19 @@ describe 'as a visitor or registered user' do
 
     it 'can increase or decrease items in cart' do
 
-      visit cart_path 
+      visit cart_path
 
       within(".item-#{@item_1.id}") do
         expect(page).to have_content("Qty 2")
         click_on "+"
+      end
+      within(".item-#{@item_1.id}") do
         expect(page).to have_content("Qty 3")
         click_on "-"
-        expect(page).to have_content("Qty 2")
       end
+      within(".item-#{@item_1.id}") do
+        expect(page).to have_content("Qty 2")
+      end 
     end
 
     xit 'can remove item from cart' do

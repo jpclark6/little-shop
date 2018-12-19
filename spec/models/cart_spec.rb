@@ -22,6 +22,22 @@ RSpec.describe Cart do
         expect(cart.contents).to eq({"1" => 3, "2" => 4})
     end
   end
+  describe "#remove_item" do
+    it "removes an item to its contents" do
+      cart = Cart.new({
+        "1" => 2,
+        "2" => 3
+        })
+        cart.remove_item(1)
+        cart.remove_item(2)
+
+        expect(cart.contents).to eq({"1" => 1, "2" => 2})
+
+        cart.remove_item(1)
+
+        expect(cart.contents).to eq({"2" => 2})
+    end
+  end
   describe "#count_of" do
     it "can count" do
 
