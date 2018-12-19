@@ -15,6 +15,15 @@ describe 'merchant index page' do
         expect(page).to have_content(merchant_1.state)
         expect(page).to have_content(merchant_1.created_at.to_date)
       end
+
+      within "#merchant-#{merchant_2.id}" do
+        expect(page).to have_content(merchant_2.name)
+        expect(page).to have_content(merchant_2.city)
+        expect(page).to have_content(merchant_2.state)
+        expect(page).to have_content(merchant_2.created_at.to_date)
+      end
+
+      expect(page).to_not have_css("#merchant-#{merchant_3.id}")
     end
   end
 end
