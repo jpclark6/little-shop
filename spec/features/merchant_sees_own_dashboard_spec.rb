@@ -4,6 +4,8 @@ describe 'as a Merchant' do
   it 'displays the merchants own profile data on the dashboard, but cannot edit' do
     user = FactoryBot.create(:merchant)
 
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     visit "/dashboard/#{user.id}"
 
     expect(page).to have_content(user.name)
@@ -17,5 +19,3 @@ describe 'as a Merchant' do
   end
 
 end
-
-# I see my profile data, but cannot edit it --- TEST FOR THIS?????
