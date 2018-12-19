@@ -24,8 +24,15 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/dashboard', to: 'users#show'
-  get '/dashboard/items', to: 'items#index', as: 'dashboard_merchant_items'
+
+  namespace :dashboard do
+    get "", to: 'users#show'
+    get "/items", to: 'items#index'
+    get "/items/edit/:id", to: "item#edit", as: "item_edit"
+    get "/items/delete/:id", to: "item#destroy", as: "item"
+    get "/items/toggle/:id", to: "item#toggle", as: "item_toggle"
+  end
+
   get '/register', to: 'users#new'
   get '/merchants', to: 'users#index'
   get '/merchants/:id', to: 'users#show'
