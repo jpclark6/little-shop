@@ -32,9 +32,6 @@ Rails.application.routes.draw do
     get "/items/toggle/:id", to: "item#toggle", as: "item_toggle"
   end
 
-  #
-  # get '/dashboard', to: 'users#show'
-  # get '/dashboard/items', to: 'items#index', as: 'dashboard_merchant_items'
   get '/register', to: 'users#new'
   get '/merchants', to: 'users#index'
   get '/merchants/:id', to: 'users#show'
