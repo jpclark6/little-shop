@@ -12,16 +12,18 @@ Rails.application.routes.draw do
   resources :carts, only: [:create]
 
   resources :users, only: [:index, :create, :edit] do
-    resources :orders, only: [:index]
+    # resources :orders, only: [:index]
   end
 
 
-  get '/profile/:id', to: 'users#show', as: :profile
+  get '/profile', to: 'users#show'
   get '/profile/orders', to: 'orders#index'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/dashboard/:id', to: 'users#show'
+  get '/dashboard', to: 'users#show'
+  get '/dashboard/items', to: 'users#index'
+
   get '/register', to: 'users#new'
   get '/merchants', to: 'users#index'
 

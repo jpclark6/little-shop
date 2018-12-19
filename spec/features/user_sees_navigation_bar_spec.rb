@@ -33,8 +33,8 @@ describe 'as a registered user' do
         expect(page).to have_link("Browse", href: "/items" )
         expect(page).to have_link("Merchants", href: "/merchants")
         # expect(page).to have_css(".cart-button")
-        expect(page).to have_link("Profile", href: "/profile/#{user.id}")
-        expect(page).to have_link("Orders", href: user_orders_path(user.id))
+        expect(page).to have_link("Profile", href: "/profile")
+        expect(page).to have_link("Orders", href: profile_orders_path)
         expect(page).to have_link("Log Out", href: logout_path)
         expect(page).to have_content("Logged in as #{user.name}")
 
@@ -60,9 +60,9 @@ describe 'as a mercha t user' do
         expect(page).to have_link("Home", href: "/")
         expect(page).to have_link("Browse", href: "/items" )
         expect(page).to have_link("Merchants", href: "/merchants")
-        expect(page).to have_link("Profile", href: "/profile/#{merchant.id}")
-        expect(page).to have_link("Orders", href: user_orders_path(merchant.id))
-        expect(page).to have_link("Dashboard", href: "/dashboard/#{merchant.id}")
+        expect(page).to have_link("Profile", href: "/profile")
+        expect(page).to have_link("Orders", href: profile_orders_path)
+        expect(page).to have_link("Dashboard", href: "/dashboard")
         expect(page).to have_link("Log Out", href: logout_path)
         expect(page).to have_content("Logged in as #{merchant.name}")
 

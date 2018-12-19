@@ -8,13 +8,13 @@
       <li><h3><%= link_to "Merchants", "/merchants" %></h3></li>
 
       <% if current_user && current_user.merchant? %>
-        <li><h3><%= link_to "Dashboard", "/dashboard/#{current_user.id}" %></h3></li>
+        <li><h3><%= link_to "Dashboard", "/dashboard" %></h3></li>
       <% elsif current_user && current_user.admin? %>
         <li><h3><%= link_to "All Users", "/admin/users" %></h3></li>
       <% end %>
       <% if current_user %>
-        <li><h3><%= link_to "Profile", profile_path(current_user.id) %></h3></li>
-        <li><h3><%= link_to "Orders", user_orders_path(current_user.id) %></h3></li>
+        <li><h3><%= link_to "Profile", profile_path %></h3></li>
+        <li><h3><%= link_to "Orders", profile_orders_path %></h3></li>
         <li><h3><%= link_to "Log Out", logout_path, method: :delete %></h3></li>
         <li><h3>Logged in as <%= current_user.name %></h3></li>
       <% else %>
