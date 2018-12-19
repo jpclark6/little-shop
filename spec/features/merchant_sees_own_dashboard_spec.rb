@@ -27,7 +27,7 @@ describe 'As a Merchant' do
 
     click_on 'View Items'
 
-    expect(current_path).to eq(dashboard_merchant_items_path)
+    expect(current_path).to eq(dashboard_items_path)
   end
 
   it 'If any users have pending orders containing items I sell, then I see a list of these orders' do
@@ -61,7 +61,7 @@ describe 'As a Merchant' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    visit dashboard_merchant_items_path
+    visit dashboard_items_path
 
     expect(page).to have_link(order_2.id)
     expect(page).to have_content(order_2.created_at)
