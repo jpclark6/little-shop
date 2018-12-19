@@ -6,7 +6,16 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.where.not(role: ["admin", "merchant"])
+    @users = User.where(role: ["registered"])
+  end
+
+  def update
+    user = User.find(params[:id])
+    user.enabled = false
+    user.save
+
+    flash[:notice] = "#{user.name} (id:#{user.id}) is now disabled."
+    redirect_to admin_users_path
   end
 
   private

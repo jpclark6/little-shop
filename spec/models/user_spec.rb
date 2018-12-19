@@ -17,4 +17,13 @@ RSpec.describe User, type: :model do
     it {should have_many :items}
     it {should have_many :orders}
   end
+
+  describe 'instance methods' do
+    it '.status' do
+      user = FactoryBot.create(:user)
+      expect(user.status).to eq("Enabled")
+      user.enabled = false
+      expect(user.status).to eq("Disabled")
+    end
+  end
 end
