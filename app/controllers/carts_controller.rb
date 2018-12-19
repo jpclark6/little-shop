@@ -18,5 +18,6 @@ class CartsController < ApplicationController
     @cart.empty_cart
     redirect_to cart_path
   end
+  
 
 end

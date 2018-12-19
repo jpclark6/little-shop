@@ -51,7 +51,7 @@ describe 'as a visitor or registered user' do
     end
 
     it 'has to login or register to check out' do
-      
+
       visit cart_path
 
       expect(page).to have_content("You have to register or log in to checkout")
@@ -73,8 +73,11 @@ describe 'as a visitor or registered user' do
       expect(page).to have_content("Cart is empty")
       expect(page).to have_no_content("Empty cart")
     end
-    xit 'can increase or decrease items in cart' do
-      visit cart_path
+
+    it 'can increase or decrease items in cart' do
+
+      visit cart_path 
+
       within(".item-#{@item_1.id}") do
         expect(page).to have_content("Qty 2")
         click_on "+"
@@ -83,9 +86,11 @@ describe 'as a visitor or registered user' do
         expect(page).to have_content("Qty 2")
       end
     end
+
     xit 'can remove item from cart' do
 
     end
+
     xit 'can remove items once they decrement to 0' do
       visit cart_path
       within(".item-#{@item_1.id}") do
