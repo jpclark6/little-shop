@@ -43,7 +43,3 @@ describe 'user index page' do
     end
   end
 end
-
-
-# I see a "disable" button next to any users who are not yet disabled
-# I see an "enable" button next to any users whose accounts are disabled %>
