@@ -5,6 +5,10 @@ class Cart
     @contents = initial_contents || Hash.new(0)
   end
 
+  def current_items
+    @contents.map { |item_id, qty| Item.find(item_id) }
+  end
+
   def total_count
     @contents.values.sum
   end

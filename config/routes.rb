@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   end
   resources :items
   resources :carts, only: [:create]
-  
+  get '/cart', to: 'carts#show'
+
   resources :users, only: [:index, :create, :edit] do
     resources :orders, only: [:index]
   end

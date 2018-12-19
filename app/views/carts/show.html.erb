@@ -1,0 +1,4 @@
+<% @cart.current_items.each do |item| %>
+  <h3><%= item.name %></h3>
+  <%= image_tag item.image, alt: item.name %>
+<% end %>
