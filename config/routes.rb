@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get "/items", to: 'items#index'
     get "/items/edit/:id", to: "item#edit", as: "item_edit"
     get "/items/delete/:id", to: "item#destroy", as: "item"
+    get "/items/toggle/:id", to: "item#toggle", as: "item_toggle"
   end
 
   #

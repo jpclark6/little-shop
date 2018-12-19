@@ -8,7 +8,13 @@
       <li>In stock: <%= item.instock_qty %></li>
     </ul>
     <%= button_to("Edit Item", dashboard_item_edit_path(item)) %>
-  
+
+      <% if item.enabled? %>
+        <%= button_to("Disable Item", dashboard_item_toggle_path(item), method: :patch) %>
+      <% else %>
+        <%= button_to("Enable Item", dashboard_item_toggle_path(item), method: :patch) %>
+      <% end %>
+
     <% if item.never_ordered? %>
       <p>No user has ever orderd this item: <%= button_to("Delete Item", dashboard_item_path(item), method: :delete) %></p>
     <% end %>
