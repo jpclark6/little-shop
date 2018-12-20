@@ -13,4 +13,8 @@ class User < ApplicationRecord
  def status
    enabled? ? "Enabled" : "Disabled"
  end
+
+ def merchant_pending_orders
+   Order.joins(:items).select("orders.*").where("items.user_id=#{self.id}").where(orders: {status: :pending})
+ end
 end

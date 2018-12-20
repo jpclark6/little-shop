@@ -13,11 +13,12 @@ class Order < ApplicationRecord
     end
   end
 
-  def total_amount
-    order_items.sum { |oi| oi.price * oi.quantity }
+  def total_quantity
+    order_items.sum(:quantity)
   end
 
-  def total_item_count
-    order_items.sum { |oi| oi.quantity }
+  def total_price
+    order_items.sum("order_items.price * order_items.quantity")
+
   end
 end
