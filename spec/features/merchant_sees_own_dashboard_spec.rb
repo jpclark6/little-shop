@@ -67,12 +67,12 @@ describe 'As a Merchant' do
     expect(page).to have_link(order_2.id)
     expect(page).to have_content(order_2.created_at)
     expect(page).to have_content("Quantity: #{order_2.total_quantity}")
-    expect(page).to have_content(order_item.total_price)
+    expect(page).to have_content(order_2.total_price)
 
     expect(page).to have_link(order_5.id)
     expect(page).to have_content(order_5.created_at)
     expect(page).to have_content("Quantity: #{order_5.total_quantity}")
-    expect(page).to have_content(order_item_2.total_price)
+    expect(page).to have_content("Price: $#{order_5.total_price}")
 
     expect(page).to_not have_link(order_1.id)
     expect(page).to_not have_content(order_1.id)
@@ -83,7 +83,7 @@ describe 'As a Merchant' do
     expect(page).to_not have_link(order_4.id)
     expect(page).to_not have_content(order_4.id)
 
-    # click_on '#{order_2.id}'
+    # click_on "#{order_2.id}"
     #
     # expect(current_path).to eq("/dashboard/orders/#{order_2.id}")
   end
