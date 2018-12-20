@@ -215,10 +215,12 @@ label {
 }
 
 .cart-item {
-  margin: 0 20px;
+  margin: 10px 20px;
   display: flex;
   flex-direction: row;
-  // border: 3px solid green;
+  border: 1px solid darkgrey;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 // .cart-item img {
@@ -229,4 +231,24 @@ label {
 
 #cart-item-title {
   font-size: 150%;
+}
+
+.merchant-index {
+  width: 300px;
+  ul {
+    list-style-type: none;
+  }
+  margin: 15px 10px;
+  border: 1px solid darkgrey;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.merchant-name {
+  font-size: 25px;
+}
+
+#all-merchants {
+  display: flex;
+  flex-wrap: wrap;
 }
