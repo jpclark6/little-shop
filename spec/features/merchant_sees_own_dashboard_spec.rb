@@ -63,7 +63,6 @@ describe 'As a Merchant' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit dashboard_orders_path
-    save_and_open_page
     expect(page).to have_link(order_2.id)
     expect(page).to have_content(order_2.created_at)
     expect(page).to have_content("Quantity: #{order_2.total_quantity}")
@@ -75,13 +74,13 @@ describe 'As a Merchant' do
     expect(page).to have_content("Price: $#{order_5.total_price}")
 
     expect(page).to_not have_link(order_1.id)
-    expect(page).to_not have_content(order_1.id)
+    expect(page).to_not have_content("Id: #{order_1.id}")
 
     expect(page).to_not have_link(order_3.id)
-    expect(page).to_not have_content(order_3.id)
+    expect(page).to_not have_content("Id: #{order_3.id}")
 
     expect(page).to_not have_link(order_4.id)
-    expect(page).to_not have_content(order_4.id)
+    expect(page).to_not have_content("Id: #{order_4.id}")
 
     click_on "#{order_2.id}"
 
