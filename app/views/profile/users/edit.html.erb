@@ -1,0 +1,15 @@
+<%= form_for @user, url: profile_update_path, html: {class: "edit_user user-input-form shadow"} do |f|  %>
+  <%= f.label :user_name %>
+  <%= f.text_field :name %>
+  <%= f.label :user_address %>
+  <%= f.text_field :address %>
+  <%= f.label :user_city %>
+  <%= f.text_field :city %>
+  <%= f.label :user_state %>
+  <%= f.text_field :state %>
+  <%= f.label :user_zip_code%>
+  <%= f.number_field :zip_code %>
+  <%= f.label :user_email %>
+  <%= f.text_field :email, value: ""%>
+  <%= f.submit %>
+<% end  %>
