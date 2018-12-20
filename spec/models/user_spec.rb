@@ -25,5 +25,38 @@ RSpec.describe User, type: :model do
       user.enabled = false
       expect(user.status).to eq("Disabled")
     end
+
+    it '.merchant_pending_orders' do
+      # Current_user
+      user = FactoryBot.create(:merchant)
+
+      # Another merchant
+      user_2 = FactoryBot.create(:merchant)
+
+      # Item for other merchant
+      item_1 = FactoryBot.create(:item, user: user_2)
+
+      # Item for current_user
+      item_2 = FactoryBot.create(:item, user: user)
+
+      # Order - pending -for other merchant - should not show up
+      order_1 = FactoryBot.create(:pending, items: [item_1])
+
+      # Order - pending -for current_user - should show up
+      order_2 = FactoryBot.create(:pending)
+      order_item = FactoryBot.create(:order_item, order: order_2, item: item_2)
+
+      # Creates a second order to insure a list is populating to the page for the current_user.
+      order_5 = FactoryBot.create(:pending)
+      order_item_2 = FactoryBot.create(:order_item, order: order_5, item: item_2)
+
+      # Order - cancelled -for current_user - should not show up
+      order_3 = FactoryBot.create(:cancelled, items: [item_1, item_2])
+
+      # Order - fulfilled -for current_user - should not show up
+      order_4 = FactoryBot.create(:fulfilled, items: [item_1, item_2])
+
+      expect(user.merchant_pending_orders).to eq([order_2, order_5])
+    end
   end
 end

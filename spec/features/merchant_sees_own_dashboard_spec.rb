@@ -30,7 +30,7 @@ describe 'As a Merchant' do
     expect(current_path).to eq(dashboard_items_path)
   end
 
-  xit 'If any users have pending orders containing items I sell, then I see a list of these orders' do
+  it 'If any users have pending orders containing items I sell, then I see a list of these orders' do
     # Current_user
     user = FactoryBot.create(:merchant)
 
@@ -49,6 +49,7 @@ describe 'As a Merchant' do
     # Order - pending -for current_user - should show up
     order_2 = FactoryBot.create(:pending)
     order_item = FactoryBot.create(:order_item, order: order_2, item: item_2)
+
     # Creates a second order to insure a list is populating to the page for the current_user.
     order_5 = FactoryBot.create(:pending)
     order_item_2 = FactoryBot.create(:order_item, order: order_5, item: item_2)
@@ -61,38 +62,28 @@ describe 'As a Merchant' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    visit dashboard_items_path
-
+    visit dashboard_orders_path
     expect(page).to have_link(order_2.id)
     expect(page).to have_content(order_2.created_at)
-    expect(page).to have_content(order_item.quantity)
-    # Test for total price ->> expect(page).to have_content(order_item.total_price), this could also be a db query if we add it to the db
+    expect(page).to have_content("Quantity: #{order_2.total_quantity}")
+    expect(page).to have_content(order_2.total_price)
+
     expect(page).to have_link(order_5.id)
     expect(page).to have_content(order_5.created_at)
-    expect(page).to have_content(order_item_2.quantity)
-    # Test for total price ->> expect(page).to have_content(order_item_2.total_price), this could also be a db query if we add it to the db
-    expect(page).to have_link(order_5.id)
+    expect(page).to have_content("Quantity: #{order_5.total_quantity}")
+    expect(page).to have_content("Price: $#{order_5.total_price}")
 
     expect(page).to_not have_link(order_1.id)
-    expect(page).to_not have_content(order_1.id)
+    expect(page).to_not have_content("Id: #{order_1.id}")
 
     expect(page).to_not have_link(order_3.id)
-    expect(page).to_not have_content(order_3.id)
+    expect(page).to_not have_content("Id: #{order_3.id}")
 
     expect(page).to_not have_link(order_4.id)
-    expect(page).to_not have_content(order_4.id)
+    expect(page).to_not have_content("Id: #{order_4.id}")
+
+    click_on "#{order_2.id}"
+
+    expect(current_path).to eq("/dashboard/orders/#{order_2.id}")
   end
 end
-
-
-# User Story 39
-# Merchant Dashboard displays Orders
-#
-# As a merchant
-# When I visit my dashboard ("/dashboard")
-# If any users have pending orders containing items I sell Then I see a list of these orders.
-# Each order listed includes the following information:
-# - the ID of the order, which is a link to the order show page ("/dashboard/orders/15")
-# - the date the order was made
-# - the total quantity of my items in the order
-# - the total value of my items for that order
