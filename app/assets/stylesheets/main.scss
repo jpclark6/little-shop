@@ -1,42 +1,55 @@
-
 body {
   font-family: sans-serif;
 }
 
- nav {
+nav {
+  overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
   background-color: whitesmoke;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  top: 0;
- }
-
- nav i {
-   font-size: 20px;
-   margin-top: 10px;
- }
-
- a {
-   text-decoration: none;
-   color: black;
-   font-weight: lighter;
- }
-
- a:hover {
-  text-decoration: underline;
-  color: slategrey;
- }
-
+  border-bottom: 1px solid darkgrey;
+}
 
 .nav-link-container {
-  display: flex;
-  justify-content: center;
+  margin: 0 auto;
+  width: 1000px;
+  padding-top: 2px;
   background-color: whitesmoke;
-  margin: 0;
-  max-width: 960px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: lighter;
+}
+
+ a:hover {
+   text-decoration: underline;
+   color: slategrey;
+ }
+
+nav li {
+   display: inline-block;
+   style: none;
+   padding: 0 15px;
+   border-radius: 10px;
+ }
+
+nav li:hover {
+  background: #666;
+}
+
+nav li:hover a {
+  color: white;
+}
+
+nav li a:hover {
+  color: white;
+}
+
+nav ul {
+ list-style-type: none;
 }
 
 .alert {
@@ -51,12 +64,6 @@ body {
     left: 100px;
 }
 
-nav li {
-  display: inline-block;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
 .grid-container {
   display: grid;
   grid-column: 1fr 1200px 1fr;
@@ -65,9 +72,9 @@ nav li {
 main {
   overflow: scroll;
   margin-top: 100px;
-  height: 570px;
-  background: whitesmoke;
-  width: 960px;
+  height: 100%;
+  // background: whitesmoke;
+  width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,7 +92,6 @@ main {
 .user-input-form {
   margin:30px;
   width: 250px;
-  /* background: aliceblue; */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -109,25 +115,62 @@ label {
 }
 
 .flex-container {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  height: 100%;
 }
 
 .inner-flex {
-  width: 230px;
-  margin: 10px;
-  width: 230px;
+  width: 260px;
+  margin: 10px 10px;
+  height: 400px;
   padding: 3px;
+  overflow: scroll;
+  border-radius: 7px;
 }
 
 .inner-flex h4 {
   text-transform: capitalize;
-  margin-left: 30px
+  text-align: center;
+  font-size: 140%;
+  margin: 8px;
+}
+
+.inner-flex li {
+  style: none;
+  padding: 4px 8px;
+}
+
+.inner-flex ul {
+  margin: 0;
+  padding: 5px;
+  list-style-type: none;
+}
+
+.item-show-page {
+  width: 550px;
+}
+
+.item-show-page h1 {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.item-show-page li {
+  style: none;
+  padding: 8px 8px;
+  font-size: 24px;
+}
+
+.item-show-page ul {
+  margin: 0;
+  padding: 5px;
+  list-style-type: none;
 }
 
 .thumb {
-  width: 230px;
+  width: 260px;
   height: 200px;
 }
 
