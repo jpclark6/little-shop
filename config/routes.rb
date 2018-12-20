@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :items
   resources :carts, only: [:create]
   resources :users, only: [:index, :create, :edit]
-
+  resources :orders, only: [:show, :destroy, :index, :create] do
+    resources :order_items, only: [:update]
+  end
 
   get '/profile', to: 'users#show'
 

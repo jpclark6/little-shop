@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:message] = "You are registered and logged in"
+      session[:user_id] = @user.id
       redirect_to profile_path(@user)
     else
       flash[:message] = "Missing content"
@@ -15,14 +16,18 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def edit
   end
 
   def index
-    @merchants = User.where(enabled: true, role: "merchant")
+    if current_user && current_user.admin?
+      @merchants = User.where(role: "merchant")
+    else
+      @merchants = User.where(enabled: true, role: "merchant")
+    end
   end
 
   private

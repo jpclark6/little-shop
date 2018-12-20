@@ -13,4 +13,16 @@ RSpec.describe Item, type: :model do
     it {should have_many :order_items}
     it {should have_many(:orders).through(:order_items)}
   end
+  describe 'instance methods' do
+    it '.never_ordered?' do
+      merchant = FactoryBot.create(:merchant)
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      item_2.orders << FactoryBot.create(:fulfilled)
+
+      expect(item_1.never_ordered?).to eq(true)
+      expect(item_2.never_ordered?).to eq(false)
+    end
+
+  end
 end

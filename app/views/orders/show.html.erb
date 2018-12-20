@@ -7,12 +7,20 @@
       <div>
         <p><%= @user.name %></p>
         <p><%= @user.address %></p>
-        <p><%= "#{@user.city}, #{@user.state} #{@user.zip}" %></p>
+        <p><%= "#{@user.city}, #{@user.state} #{@user.zip_code}" %></p>
       </div>
     </div>
     <% @items.each do |item| %>
       <div class="item-img">
-        <%= image_tag(@item.image, class: "big-picture") %>
+        <%= image_tag(item.image, class: "big-picture") %>
+        <ul>
+          <li><%= item.name %></li>
+          <li>Price: <%= item.order_items.find_by(order_id: @order.id).price %></li>
+          <li>Quantity: <%= item.order_items.find_by(order_id: @order.id).quantity %></li>
+          <li>Status: <%= item.order_items.find_by(order_id: @order.id).fulfilled ?
+                                            "Fulfilled" :
+                                            "Pending" %></li>
+        </ul>
       </div>
     <% end %>
   </div>

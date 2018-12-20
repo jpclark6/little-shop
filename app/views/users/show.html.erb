@@ -1,8 +1,2 @@
-<h1><%= @user.name %></h1>
-<%= @user.email %>
-<%= @user.address %>
-<%= @user.city %>
-<%= @user.state %>
-<%= @user.zip_code %>
-
+<%= render partial: "/user_info"%>
 <%= link_to 'Edit Profile', edit_user_path(@user) %>

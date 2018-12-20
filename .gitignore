@@ -18,3 +18,5 @@
 
 coverage/
 .byebug_history
+public/assets/
+/db/saved_login_credentials.txt

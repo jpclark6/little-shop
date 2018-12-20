@@ -5,6 +5,26 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def index
+    @users = User.where(role: ["registered"])
+  end
+
+  def update
+    user = User.find(params[:id])
+    if user.enabled?
+      user.update(enabled: false)
+      flash[:notice] = "#{user.name} (id:#{user.id}) is now disabled."
+    else
+      user.update(enabled: true)
+      flash[:notice] = "#{user.name} (id:#{user.id}) is now enabled."
+    end
+    if user.merchant?
+      redirect_to merchants_path
+    else
+      redirect_to admin_users_path
+    end
+  end
+
   private
 
   def require_admin

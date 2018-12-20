@@ -1,5 +1,21 @@
 <h1> All Merchants </h1>
 <% @merchants.each do |merchant| %>
-  <%= link_to(merchant.name, admin_merchant_path(merchant)) %>
-
+  <div id="merchant-<%= merchant.id %>">
+    <%= link_to(merchant.name, admin_merchant_path(merchant)) %>
+    <ul>
+      <li><%= merchant.city %></li>
+      <li><%= merchant.state %></li>
+      <li><%= merchant.zip_code %></li>
+      <li><%= merchant.created_at.to_date %></li>
+    </ul>
+    <% if current_user && current_user.admin? %>
+      <p>Status: <%= merchant.status %>
+        <% if merchant.enabled? %>
+          <%= button_to("Disable", admin_disable_user_path(merchant), method: "patch") %>
+        <% else %>
+          <%= button_to("Enable", admin_enable_user_path(merchant), method: "patch") %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
 <% end %>
