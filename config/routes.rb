@@ -11,16 +11,23 @@ Rails.application.routes.draw do
   resources :items
   resources :carts, only: [:create]
   resources :users, only: [:index, :create, :edit]
+
+
   resources :orders, only: [:show, :destroy, :index, :create] do
     resources :order_items, only: [:update]
   end
 
-  get '/profile', to: 'users#show'
+  namespace :profile do
+    get '', to: 'users#show'
+    get '/orders', to: 'orders#index'
+    get '/edit', to: 'users#edit', as: "edit"
+    post '/update', to: 'users#update'
+    patch '/update', to: 'users#update'
+  end
 
   get '/cart', to: 'carts#show'
   patch '/cart', to: 'carts#update'
   delete '/cart', to: 'carts#delete'
-  get '/profile/orders', to: 'orders#index'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -28,6 +35,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     get "", to: 'users#show'
     get "/items", to: 'items#index'
+    get '/items/new', to: 'items#new'
     get "/items/edit/:id", to: "items#edit", as: "item_edit"
     get "/orders", to: 'orders#index'
     get "/orders/:id", to: "orders#show"

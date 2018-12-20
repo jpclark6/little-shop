@@ -1,5 +1,5 @@
 # Database Schema:
-![Alt text](./public/Database.png?raw=true "Title")
+![Alt text](./public/Database_1.png?raw=true "Title")
 
 # Schema:
 https://dbdiagram.io/d/5c1539dc97b0960014c337df
@@ -36,6 +36,19 @@ How to overcome obstacles:
 Clear, direct communication with high frequency.
 Communicating expectations of when we are not available on Slack. Being available on Slack.
 Problem solving process -> struggle for maximum of 30 minutes, reach out to each other, reach out to peers, reach out to Mod 3, reach out to mentors/instructors (Take poms)
+
+Communication Expectations (How and often will we communicate? How do we keep lines of communication open?): Erry day...
+
+Workload Expectations (What features do we each want to work on?):
+Consult Ian
+
+Strategies to Minimize Git Fires:
+Pull request surveys. Tom will share with group.
+Before merging to master.
+Fetch to local before merging and run rspec.
+Mackenzie will share bash prompt with Maddie so branch name is in prompt.
+Always checkout a branch is new changes are made.
+When a user story is closed, add the full user story to the PR via copy and paste.
 
 Schedule Expectations (When are we available to work together and individually?):
 Justin -> Unavailable from the 22nd-25th (including the 22nd and 25th)  Justin will be offline. Justin may check slack but will cap it at 15 minutes a day.
@@ -86,38 +99,82 @@ Sitting together in the classroom during lessons.
 General morning check-ins before class at 9 am.
 Sometimes Tom needs to leave early due to transit. Potentially lunch together to brainstorm and bond.
 
-Communication Expectations (How and often will we communicate? How do we keep lines of communication open?): Erry day...
+HOLIDAY SCHEDULING:
+
+Team Expectation -
+Morning Checkin- With their schedule, what working on. What stuck on.
+Always update Waffle. Assign Yourself.
+If Justin is needed, he can be reached by phone (number in slack channel).
+Mackenzie - is traveling Sunday 12/23 - 1/1 And will follow group morning checkin expectations and let group know
+if she will be offline. Mackenzie will be 1 hour behind. Mackenzie's phone number is posted in slack. Mackenzie will let group know when she will be offline and will have a fluid schedule.
+Tom - free everyday except for Christmas Day. Tom will check-in with the group for impromptu family trips (when they
+are occurring). Tom will let us know immediately in the morning.
+Maddie will check-in in morning and will be on an as needed basis per child-care.
+
+THURSDAY (today) -
+Tom - leaves at 3 pm.
+Maddie working on project until 4:30. Done working for day.
+Ben & Mackenzie & Justin - Brothers - 4:30 -5 work to.
+
+FRIDAY 21st-
+Tom is traveling. Leaves at 10 am. Can be on tomorrow night before/after dinner ( 2 hour time difference).
+Tom is usually up late. Tom is on slack while traveling and may be available.
+LOOK AT HEROKU.
+Maddie - leaves at 4pm. Can work potentially from home. Unsure of working ability.
+Mackenzie - okay until 7 pm pending energy. Mackenzie meeting with Dione - 2:30 -3:15
+Ben - available until 6/7 pm
+Justin - available until 6/7 pm
 
 
-Workload Expectations (What features do we each want to work on?):
-Consult Ian
+SATURDAY 22nd -
+Tomorrow (Friday we will evaluate pairing for Saturday)
+Maddie - available 8:30 - 2:30 from Turing/remote. Might be available in evening.
+Justin - Traveling (not online), can check slack, but not doing work. Capped at 10 minutes per day.
+Mackenzie - Friend in town 4 pm on.
+Ben - open for day.
+
+SUNDAY 23rd -
+Maddie - Solstice Celebration. Working in afternoon/evening.
+Mackenzie - Not available whole day.
+Justin - Traveling (not online), can check slack, but not doing work. Capped at 10 minutes per day.
 
 
-Strategies to Minimize Git Fires:
-Pull request surveys. Tom will share with group.
-Before merging to master.
-Fetch to local before merging and run rspec.
-Mackenzie will share bash prompt with Maddie so branch name is in prompt.
-Always checkout a branch is new changes are made.
-When a user story is closed, add the full user story to the PR via copy and paste.
+MONDAY 24th XMAS EVE- Not available in morning.
+Justin - Traveling (not online), can check slack, but not doing work. Capped at 10 minutes per day.
+Maddie - coding 10:30 - 2:30 (time-blocked), may be a mentor with Maddie.
+Mackenzie - not available until roughly 12 pm.
 
-Workflow Expectations (Git workflow/Tools/Code Review/Reviewing Pull Requests):
+TUESDAY 25th XMAS-
+Justin - Traveling (not online), can check slack, but not doing work. Capped at 10 minutes per day.
 
+WEDNESDAY 26th -
+Heroku reminder
+Justin & Maddie pair?????
+Justin - okay to work
+Maddie - coding 11 - 2:00 (time-blocked), may be a mentor with Maddie.
 
-Expectations for giving and receiving feedback:
+THURSDAY 27th -
+Justin - okay to work
 
+FRIDAY 28th -
+Heroku reminder
+Justin - okay to work
 
+SATURDAY 29th -
+Justin - okay to work
 
+SUNDAY 30th -
+EXPECTATION PROJECT IS COMPLETE
+Justin - okay to work
 
-Agenda to discuss project launch:
+MONDAY (NYE) 31st -
+EXPECTATION PROJECT IS COMPLETE
+Morning - 10:30 @ Turing. A handful of hours expected.
+Meet to go over all of project. Do a walk through together (on Heroku). Each person does an epic or two to go through
+to insure all is done (on Heroku). People have not coded that epic, review that epic to review the code
+and get acquainted with it. Cleanup code day (aka delete white space, comments, unnecessary variables, etc.)
+Tom is in town.
+Mackenzie will video call into meeting.
 
-
-Ideas:
-
-
-Tools:
-
-
-
-
-Additional Notes:
+TUESDAY(NEW YEARS) 1st - No work is expected
+EXPECTATION PROJECT IS COMPLETE

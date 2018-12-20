@@ -3,6 +3,19 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def errors
+    {
+      email: 'Your email',
+      name: 'Your name',
+      address: 'Your address',
+      city: 'Your city',
+      state: 'Your state',
+      zip_code: 'Your zip code',
+      password: 'Your password',
+      password_confirmation: 'Your Password'
+    }
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -10,7 +23,9 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to profile_path(@user)
     else
-      flash[:message] = "Missing content"
+      @user.errors.each do |attribute, message|
+        flash[attribute] = "#{errors[attribute]} #{message}."  # add which items - stretch goal - show error from active record
+      end
       render :new
     end
   end

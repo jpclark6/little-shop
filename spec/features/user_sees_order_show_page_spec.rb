@@ -27,7 +27,6 @@ describe 'As a user' do
       expect(page).to have_content("Ordered on: #{@order_1.created_at.to_date}")
       expect(page).to have_content("Order updated on: #{@order_1.updated_at.to_date}")
       expect(page).to have_content("Status: #{@order_1.status}")
-      save_and_open_page
       within "#item-#{@item_1.id}" do
         expect(page).to have_content(@item_1.name)
         expect(page).to have_content(@item_1.description)

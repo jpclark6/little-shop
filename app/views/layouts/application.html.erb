@@ -3,7 +3,6 @@
   <head>
     <title>LittleShop</title>
     <%= csrf_meta_tags %>
-    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <%= stylesheet_link_tag    'normalize', media: 'all' %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -12,17 +11,20 @@
 
   <body>
     <header>
-    <%= render partial: "/navbar" %>
+      <%= render partial: "/navbar" %>
     </header>
+    <div class='empty-div'></div>
+    <% unless flash.count == 0 %>
+      <div class='flash-flex flash'>
+        <% flash.each do |type, message| %>
+          <%= content_tag :div, message, class: "#{type}" %>
+        <% end %>
+      </div>
+    <% end %>
     <div class="main-flex">
       <main>
         <%= yield %>
       </main>
-    </div>
-    <div class='flash-flex'>
-      <% flash.each do |type, message| %>
-        <%= content_tag :div, message, class: "flash #{type}" %>
-      <% end %>
     </div>
   </body>
 </html>
