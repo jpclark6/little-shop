@@ -1,5 +1,5 @@
 class Dashboard::OrdersController < ApplicationController
   def index
-    @orders = Order.joins(:items).select("orders.*").where("items.user_id=#{current_user.id}").where(orders: {status: :pending})
+    @orders = current_user.merchant_pending_orders
   end
 end
