@@ -3,13 +3,16 @@ require 'rails_helper'
 
 describe 'As a Merchant' do
   it 'Can see a form to add a new item' do
+    user = FactoryBot.create(:merchant)
+    item = FactoryBot.create(:item)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit dashboard_items_path
 
-    click_on 'Add Item'
+    click_button "Add Item"
 
-    expect(current_path).to eq(dashboard_item_add_path)
-    ·
+    expect(current_path).to eq(dashboard_items_new_path)
 
   end
 end
