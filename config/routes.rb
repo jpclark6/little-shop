@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   namespace :profile do
     get '', to: 'users#show'
     get '/orders', to: 'orders#index'
-    get '/edit', to: 'users#edit'
+    get '/edit', to: 'users#edit', as: "edit"
     post '/update', to: 'users#update'
     patch '/update', to: 'users#update'
   end
@@ -24,11 +24,6 @@ Rails.application.routes.draw do
   get '/cart', to: 'carts#show'
   patch '/cart', to: 'carts#update'
   delete '/cart', to: 'carts#delete'
-<<<<<<< HEAD
-
-=======
-  get '/profile/orders', to: 'orders#index'
->>>>>>> origin/master
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

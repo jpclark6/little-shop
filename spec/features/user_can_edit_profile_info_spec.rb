@@ -30,6 +30,7 @@ describe 'as a registerd user' do
       fill_in :user_state, with: "CO"
       fill_in :user_zip_code, with: 80026
       fill_in :user_email, with: "john@gmail.com"
+      fill_in :user_password, with: "15"
 
       click_on "Update User"
 

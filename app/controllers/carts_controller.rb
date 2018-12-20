@@ -32,6 +32,7 @@ class CartsController < ApplicationController
     elsif params[:change_quantity] == "0"
       @cart.delete_item(item.id)
     end
+    redirect_to cart_path
   end
 
 
