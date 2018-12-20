@@ -17,6 +17,7 @@ class Profile::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :address, :city, :state, :email, :password, :zip_code, :password_confirmation)
+    result = params.require(:user).permit(:name, :address, :city, :state, :email, :password, :zip_code, :password_confirmation)
+    result.reject{|key, value| value.empty?}
   end
 end
