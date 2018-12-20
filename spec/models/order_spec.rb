@@ -31,11 +31,11 @@ RSpec.describe Order, type: :model do
 
       order = FactoryBot.create(:pending, items: [item_1,item_2,item_3])
 
-      item_1.order_items.first.update(quantity: 1, price: 5)
-      item_2.order_items.first.update(quantity: 2, price: 12)
-      item_3.order_items.first.update(quantity: 3, price: 8)
+      item_1.order_items.first.update(quantity: 1, price: 1)
+      item_2.order_items.first.update(quantity: 2, price: 2)
+      item_3.order_items.first.update(quantity: 3, price: 3)
 
-      expect(order.total_price).to eq(25)
+      expect(order.total_price).to eq(14)
     end
   end
 end

@@ -63,7 +63,7 @@ describe 'As a Merchant' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit dashboard_orders_path
-
+    save_and_open_page
     expect(page).to have_link(order_2.id)
     expect(page).to have_content(order_2.created_at)
     expect(page).to have_content("Quantity: #{order_2.total_quantity}")
