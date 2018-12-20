@@ -80,7 +80,7 @@ describe 'registered user visits their own profile page' do
       expect(page).to have_content(order_1.total_item_count)
       expect(page).to have_content(order_1.total_amount)
     end
-    save_and_open_page
+
     within(".order-#{order_2.id}") do
       expect(page).to have_link(order_2.id)
       expect(page).to have_content(order_2.created_at)

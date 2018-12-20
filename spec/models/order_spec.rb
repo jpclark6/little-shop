@@ -51,7 +51,6 @@ RSpec.describe Order, type: :model do
       item_3.order_items.first.update(quantity: 3, price: 3)
 
       expect(order.total_price).to eq(14)
-
     end
   end
 end

@@ -138,7 +138,7 @@ describe 'as a visitor or registered user' do
       expect(page).to have_content('Order created successfully')
       expect(Order.last.status).to eq('pending')
       expect(Order.last.items).to eq([@item_1, @item_2, @item_3])
-      expect(Order.last.total_amount).to eq(@item_1.price * 2 + @item_2.price + @item_3.price)
+      expect(Order.last.total_price).to eq(@item_1.price * 2 + @item_2.price + @item_3.price)
     end
   end
 end
