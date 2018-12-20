@@ -36,4 +36,29 @@ describe 'as a merchant' do
       expect(page).to have_content("Status: Enabled")
     end
   end
+  it 'I can delete items that have no orders' do
+    merchant = FactoryBot.create(:merchant)
+    item = FactoryBot.create(:item, enabled: false)
+    merchant.items << item
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+    visit dashboard_items_path
+
+    within "#item-#{item.id}" do
+      click_on "Delete Item"
+    end
+
+    expect(current_path).to eq dashboard_items_path
+    expect(page).to have_content("Item #{item.id} with name '#{item.name}' has been deleted.")
+
+    expect(page).to_not have_css("#item-#{item.id}")
+  end
 end
+
+
+
+# As a merchant
+# When I visit my items page
+# And I click on a "delete" button or link for an item
+# I am returned to my items page
+# I see a flash message indicating this item is now deleted
+# I no longer see this item on the page

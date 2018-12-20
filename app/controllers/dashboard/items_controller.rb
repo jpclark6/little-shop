@@ -13,7 +13,13 @@ class Dashboard::ItemsController < ApplicationController
     end
     flash[:alert] = "Item #{item.id} with name '#{item.name}' is now disabled."
     redirect_to dashboard_items_path
+  end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    flash[:alert] = "Item #{item.id} with name '#{item.name}' has been deleted."
+    redirect_to dashboard_items_path
   end
 
 end
