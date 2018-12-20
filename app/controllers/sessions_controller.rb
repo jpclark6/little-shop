@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
       end
     else
       flash[:failure] = "Invalid credentials."
-      flash[:failure] = "Account Disabled." unless user.enabled?
+      flash[:failure] = "Account Disabled." unless current_user && current_user.enabled?
       render :new
     end
   end

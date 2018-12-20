@@ -13,11 +13,14 @@
     <header>
       <%= render partial: "/navbar" %>
     </header>
-    <div class='flash-flex'>
-      <% flash.each do |type, message| %>
-      <%= content_tag :div, message, class: "flash #{type}" %>
-      <% end %>
-    </div>
+    <div class='empty-div'></div>
+    <% unless flash.count == 0 %>
+      <div class='flash-flex flash'>
+        <% flash.each do |type, message| %>
+          <%= content_tag :div, message, class: "#{type}" %>
+        <% end %>
+      </div>
+    <% end %>
     <div class="main-flex">
       <main>
         <%= yield %>
