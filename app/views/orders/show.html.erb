@@ -1,0 +1,19 @@
+<main>
+  <h1>Order <%= @order.id %></h1>
+  <h4>Status: <%= @order.status %></h4>
+  <div class="show-order">
+    <div class="customer">
+      <div class="customer-title"><h3>Customer Info</h3></div>
+      <div>
+        <p><%= @user.name %></p>
+        <p><%= @user.address %></p>
+        <p><%= "#{@user.city}, #{@user.state} #{@user.zip}" %></p>
+      </div>
+    </div>
+    <% @items.each do |item| %>
+      <div class="item-img">
+        <%= image_tag(@item.image, class: "big-picture") %>
+      </div>
+    <% end %>
+  </div>
+</main>
