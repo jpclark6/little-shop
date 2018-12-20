@@ -49,6 +49,7 @@ describe 'As a Merchant' do
     # Order - pending -for current_user - should show up
     order_2 = FactoryBot.create(:pending)
     order_item = FactoryBot.create(:order_item, order: order_2, item: item_2)
+
     # Creates a second order to insure a list is populating to the page for the current_user.
     order_5 = FactoryBot.create(:pending)
     order_item_2 = FactoryBot.create(:order_item, order: order_5, item: item_2)
@@ -63,13 +64,15 @@ describe 'As a Merchant' do
 
     visit dashboard_orders_path
 
+    save_and_open_page
+
     expect(page).to have_link(order_2.id)
     expect(page).to have_content(order_2.created_at)
     expect(page).to have_content(order_item.quantity)
     # Test for total price ->> expect(page).to have_content(order_item.total_price), this could also be a db query if we add it to the db
     expect(page).to have_link(order_5.id)
     expect(page).to have_content(order_5.created_at)
-    expect(page).to have_content(order_item_2.quantity)
+    expect(page).to have_content("Quantity: #{order_item_2.quantity}")
     # Test for total price ->> expect(page).to have_content(order_item_2.total_price), this could also be a db query if we add it to the db
     expect(page).to have_link(order_5.id)
 
@@ -81,6 +84,10 @@ describe 'As a Merchant' do
 
     expect(page).to_not have_link(order_4.id)
     expect(page).to_not have_content(order_4.id)
+
+    # click_on '#{order_2.id}'
+    #
+    # expect(current_path).to eq("/dashboard/orders/#{order_2.id}")
   end
 end
 
