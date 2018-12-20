@@ -21,4 +21,7 @@ class Dashboard::ItemsController < ApplicationController
     redirect_to dashboard_items_path
   end
 
+  def new
+  end
+
 end
