@@ -91,7 +91,7 @@ describe 'as a visitor or registered user' do
       end
     end
 
-    xit 'can remove item from cart' do
+    it 'can remove item from cart' do
       visit cart_path
       within(".item-#{@item_1.id}") do
         click_on "remove"
@@ -125,6 +125,17 @@ describe 'as a visitor or registered user' do
       within(".item-#{@item_1.id}") do
         expect(page).to have_content("Qty 10")
       end
+    end
+
+    it 'can click "check out" and the order is processed properly' do
+      visit cart_path
+      click_on 'Check out'
+
+      expect(Order.last.status).to eq('pending')
+      expect(Order.last.items).to eq([@item_1, @item_1, @item_2, @item_3])
+      expect(current_path).to eq(profile_path)
+      expect(page).to have_content("Order created successfully")
+      expect(page).to have_content("Order #{Order.last.id}")
     end
   end
 end

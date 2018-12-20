@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :items
   resources :carts, only: [:create]
   resources :users, only: [:index, :create, :edit]
+  resources :orders, only: [:create]
 
 
   get '/profile', to: 'users#show'

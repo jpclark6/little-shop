@@ -15,6 +15,7 @@
     </div>
   <% end %>
   <h2>Total: $<%= @cart.total_cost %></h2>
+  <h2><%= link_to "Check out", orders_path, method: :post %></h2>
   <h4><%= link_to "Empty cart", cart_path, method: :delete %></h4>
 <% else %>
   <h2>Cart is empty</h2>
