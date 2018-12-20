@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     get "/items", to: 'items#index'
     get "/items/edit/:id", to: "item#edit", as: "item_edit"
     get "/orders", to: 'orders#index'
-    get "/orders/:id", to: "order#show"
+    get "/orders/:id", to: "orders#show"
   end
 
   # get '/dashboard', to: 'users#show'
