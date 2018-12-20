@@ -1,5 +1,14 @@
-<% if current_user && current_user.merchant? && request.env['PATH_INFO'] %>
-  <%= render partial: "/items/merchant_index" %>
-<% else %>
-  <%= render partial: "/items/user_index" %>
-<% end %>
+<div class="flex-container">
+  <% @items.each do |item| %>
+    <div id="item-<%= item.id %>" class="inner-flex shadow">
+      <%= link_to image_tag(item.image, class: :thumb), item_path(item) %>
+      <h4><%= link_to(item.name, item_path(item)) %></h4>
+      <ul>
+        <li>Sold by: <%= item.user.name %> </li>
+        <li>In Stock: <%= item.instock_qty %> items</li>
+        <li>Price: $<%= item.price %></li>
+        <li><%= item.description %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>

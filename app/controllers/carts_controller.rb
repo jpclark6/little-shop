@@ -19,4 +19,23 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
+  def update
+    item = Item.find(params[:item_id])
+    if params[:change_quantity] == "+"
+      unless @cart.qty(item) == item.instock_qty
+        @cart.add_item(item.id)
+      else
+        flash[:notice] = "Max quantity reached on item due to inventory availability"
+      end
+    elsif params[:change_quantity] == "-"
+      @cart.remove_item(item.id)
+    elsif params[:change_quantity] == "0"
+      @cart.delete_item(item.id)
+    end
+      session[:cart] = @cart.contents
+      quantity = @cart.count_of(item.id)
+      redirect_to cart_path
+  end
+
+
 end

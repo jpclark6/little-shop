@@ -21,6 +21,19 @@ class Cart
     end
   end
 
+  def remove_item(id)
+    if @contents[id.to_s]
+      @contents[id.to_s] = @contents[id.to_s] - 1
+    end
+    if @contents[id.to_s] == 0
+      @contents.delete(id.to_s)
+    end
+  end
+
+  def delete_item(id)
+    @contents.delete(id.to_s)
+  end
+
   def count_of(id)
    @contents[id.to_s].to_i
   end

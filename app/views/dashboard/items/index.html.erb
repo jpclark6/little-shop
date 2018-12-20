@@ -1,12 +1,23 @@
 <% @items.each do |item| %>
+  <div id="item-<%= item.id %>">
+    <h5>Item id: <%= item.id %></h5>
+    <ul>
+      <li><%= item.name %></li>
+      <li>Price: $<%= item.price %></li>
+      <li><%= image_tag(item.image, class: :thumb) %></li>
+      <li>In stock: <%= item.instock_qty %></li>
+    </ul>
+    <%= button_to("Edit Item", dashboard_item_edit_path(item)) %>
 
-  <h5>Item id: <%= item.id %></h5>
-  <ul>
-    <li><%= item.name %></li>
-    <li>Price: $<%= item.price %></li>
-    <li><%= image_tag(item.image, class: :thumb) %></li>
-    <li>In stock: <%= item.instock_qty %></li>
-  </ul>
+      <% if item.enabled? %>
+        <%= button_to("Disable Item", dashboard_item_toggle_path(item), method: :patch) %>
+      <% else %>
+        <%= button_to("Enable Item", dashboard_item_toggle_path(item), method: :patch) %>
+      <% end %>
 
-  <%= button_to("Edit Item", dashboard_item_edit_path(item)) %>
+    <% if item.never_ordered? %>
+      <p>No user has ever orderd this item: <%= button_to("Delete Item", dashboard_item_path(item), method: :delete) %></p>
+    <% end %>
+
+  </div>
 <% end %>
