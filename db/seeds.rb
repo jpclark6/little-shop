@@ -17,15 +17,15 @@ User.destroy_all
 
 
 merchants = []
-20.times do
+20.times do |merch|
   name = Faker::Name.name
   address = Faker::Address.street_address
   city = Faker::Address.city
   state = Faker::Address.state_abbr
   zip_code = Faker::Address.zip_code
-  email = Faker::Internet.unique.email
+  email = "merchant#{merch}"
   role = 1
-  password = rand(0..100).to_s
+  password = 'password'
   saved_names += "Merchant: Email #{email} password '#{password}'\n"
   user = User.create(name: name, address: address, city: city, state: state, zip_code: zip_code, email: email, role: role, password: password, enabled: true)
   merchants << user
@@ -39,15 +39,15 @@ merchants = []
   end
 end
 
-20.times do
+20.times do |reg|
   name = Faker::Name.name
   address = Faker::Address.street_address
   city = Faker::Address.city
   state = Faker::Address.state_abbr
   zip_code = Faker::Address.zip_code
-  email = Faker::Internet.unique.email
+  email = "regular#{reg}"
   role = 0
-  password = Faker::Name.name
+  password = 'password'
   user = User.create(name: name, address: address, city: city, state: state, zip_code: zip_code, email: email, role: role, password: password, enabled: true)
   saved_names += "Normal user: Email #{email} password '#{password}'\n"
   4.times do
@@ -59,15 +59,15 @@ end
   end
 end
 
-3.times do
+3.times do |adm|
   name = Faker::Name.name
   address = Faker::Address.street_address
   city = Faker::Address.city
   state = Faker::Address.state_abbr
   zip_code = Faker::Address.zip_code
-  email = Faker::Internet.unique.email
+  email = "admin#{adm}"
   role = 2
-  password = Faker::Name.name
+  password = 'password'
   saved_names += "Admin: Email #{email} password '#{password}'\n"
   user = User.create(name: name, address: address, city: city, state: state, zip_code: zip_code, email: email, role: role, password: password, enabled: true)
 end

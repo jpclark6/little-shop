@@ -4,9 +4,9 @@
       <%= link_to image_tag(item.image, class: :thumb), item_path(item) %>
       <h4><%= link_to(item.name, item_path(item)) %></h4>
       <ul>
-        <li>Sold by: <%= item.user.name %> </li>
-        <li>In Stock: <%= item.instock_qty %> items</li>
-        <li>Price: $<%= item.price %></li>
+        <li><b>Sold by:</b> <%= item.user.name %> </li>
+        <li><b>In Stock:</b> <%= item.instock_qty %> items</li>
+        <li><b>Price:</b> $<%= item.price %></li>
         <li><%= item.description %></li>
       </ul>
     </div>

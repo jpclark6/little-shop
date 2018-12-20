@@ -43,7 +43,7 @@ describe 'as a visitor' do
       click_on "Create User"
 
       within ".flash-flex" do
-        expect(page).to have_content("Missing content")
+        expect(page).to have_content("Your state can't be blank.")
       end
       expect(page).to have_css(".new_user")
     end
@@ -72,7 +72,7 @@ describe 'as a visitor' do
       expect(page).to have_css(".new_user")
 
       within ".flash-flex" do
-        expect(page).to have_content("Missing content")
+        expect(page).to have_content("Your state can't be blank.")
       end
     end
     it 'after registering it should check that you are logged in' do
