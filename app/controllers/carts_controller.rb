@@ -32,9 +32,6 @@ class CartsController < ApplicationController
     elsif params[:change_quantity] == "0"
       @cart.delete_item(item.id)
     end
-      session[:cart] = @cart.contents
-      quantity = @cart.count_of(item.id)
-      redirect_to cart_path
   end
 
 

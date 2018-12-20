@@ -91,7 +91,7 @@ describe 'as a visitor or registered user' do
       end
     end
 
-    xit 'can remove item from cart' do
+    it 'can remove item from cart' do
       visit cart_path
       within(".item-#{@item_1.id}") do
         click_on "remove"
@@ -125,6 +125,20 @@ describe 'as a visitor or registered user' do
       within(".item-#{@item_1.id}") do
         expect(page).to have_content("Qty 10")
       end
+    end
+
+    it 'can click "check out" and the order is processed properly' do
+      user = FactoryBot.create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit cart_path
+      click_on 'Check out'
+
+      expect(current_path).to eq(profile_path)
+      expect(page).to have_content('Order created successfully')
+      expect(Order.last.status).to eq('pending')
+      expect(Order.last.items).to eq([@item_1, @item_2, @item_3])
+      expect(Order.last.total_price).to eq(@item_1.price * 2 + @item_2.price + @item_3.price)
     end
   end
 end
