@@ -23,6 +23,10 @@ describe 'user index page' do
       end
     end
 
+    xit 'should make sure disabled users cant log in' do
+
+    end
+
     it "enables a user when I click enable" do
       user = FactoryBot.create(:user, :disabled)
       admin = FactoryBot.create(:admin)

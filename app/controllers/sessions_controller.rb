@@ -25,9 +25,11 @@ class SessionsController < ApplicationController
       elsif user.admin?
         redirect_to root_path
       end
+    elsif user && !user.enabled? && user.authenticate(params[:password])
+      flash[:failure] = "Account Disabled."
+      render :new
     else
       flash[:failure] = "Invalid credentials."
-      flash[:failure] = "Account Disabled." unless user.enabled?
       render :new
     end
   end
