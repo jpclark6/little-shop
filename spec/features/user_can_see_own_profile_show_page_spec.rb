@@ -26,11 +26,11 @@ describe 'registered user visits their own profile page' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    visit profile_path(user)
+    visit profile_path
 
     click_on 'Edit Profile'
 
-    expect(current_path).to eq(edit_user_path(user))
+    expect(current_path).to eq(profile_edit_path)
   end
 
   it 'can see order details' do

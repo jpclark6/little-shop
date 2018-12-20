@@ -13,13 +13,17 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :create, :edit]
   resources :orders, only: [:create, :show]
 
-
-  get '/profile', to: 'users#show'
+  namespace :profile do
+    get '', to: 'users#show'
+    get '/orders', to: 'orders#index'
+    get '/edit', to: 'users#edit', as: "edit"
+    post '/update', to: 'users#update'
+    patch '/update', to: 'users#update'
+  end
 
   get '/cart', to: 'carts#show'
   patch '/cart', to: 'carts#update'
   delete '/cart', to: 'carts#delete'
-  get '/profile/orders', to: 'orders#index'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
