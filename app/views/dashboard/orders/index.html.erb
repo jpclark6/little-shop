@@ -1,5 +1,4 @@
 <% @orders.each do |order| %>
-<!-- if order pending -->
   <h5>Order Id: <%= link_to order.id, dashboard_orders_path %></h5>
   Date Created: <%= order.created_at %>
   Quantity: <%= order.total_quantity %>
