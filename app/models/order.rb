@@ -16,4 +16,8 @@ class Order < ApplicationRecord
   def total_amount
     order_items.sum { |oi| oi.price * oi.quantity }
   end
+
+  def total_item_count
+    order_items.sum { |oi| oi.quantity }
+  end
 end

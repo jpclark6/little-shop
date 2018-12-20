@@ -1,0 +1,10 @@
+<% current_user.orders.each do |order| %>
+  <div class="order-<%= order.id %>">
+    <h3>Order: <%= link_to "#{order.id}", order_path(order.id) %></h3>
+    <h4>Created at: <%= order.created_at %> </h4>
+    <h4>Updated at: <%= order.updated_at %> </h4>
+    <h4>Status: <%= order.status %> </h4>
+    <h4>Total item count: <%= order.total_item_count %> </h4>
+    <h4>Total: <%= order.total_amount %> </h4>
+  </div>
+<% end %>
