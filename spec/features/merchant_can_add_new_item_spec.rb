@@ -2,7 +2,7 @@ require 'rails_helper'
 
 
 describe 'As a Merchant' do
-  it 'Can see a form to add a new item' do
+  xit 'Can see a form to add a new item' do
     user = FactoryBot.create(:merchant)
     item = FactoryBot.create(:item)
 
