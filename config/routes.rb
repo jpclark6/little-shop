@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get '/orders', to: 'orders#index'
     get '/edit', to: 'users#edit'
     post '/update', to: 'users#update'
+    patch '/update', to: 'users#update'
   end
 
   get '/cart', to: 'carts#show'

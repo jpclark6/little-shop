@@ -16,15 +16,13 @@ describe 'as a registerd user' do
 
       expect(current_path).to eq("/profile/edit")
 
-      within("form.edit_user") do
-        expect(page).to have_content(user.name)
-        expect(page).to have_content(user.address)
-        expect(page).to have_content(user.city)
-        expect(page).to have_content(user.state)
-        expect(page).to have_content(user.zip_code)
-        expect(page).to have_content(user.email)
-        expect(page).to_not have_content(user.password)
-      end
+      expect(find_field(:user_name).value).to eq(user.name)
+      expect(find_field(:user_address).value).to eq(user.address)
+      expect(find_field(:user_city).value).to eq(user.city)
+      expect(find_field(:user_state).value).to eq(user.state)
+      expect(find_field(:user_zip_code).value.to_i).to eq(user.zip_code)
+      expect(find_field(:user_email).value).to eq(user.email)
+
 
       fill_in :user_name, with: "John Doe"
       fill_in :user_address, with: "433 Larimer"
@@ -33,7 +31,7 @@ describe 'as a registerd user' do
       fill_in :user_zip_code, with: 80026
       fill_in :user_email, with: "john@gmail.com"
 
-      click_on "submit"
+      click_on "Update User"
 
       expect(current_path).to eq(profile_path)
       expect(page).to have_content("Your data is updated")
