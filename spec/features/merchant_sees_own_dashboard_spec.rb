@@ -64,15 +64,13 @@ describe 'As a Merchant' do
 
     visit dashboard_orders_path
 
-    save_and_open_page
-
     expect(page).to have_link(order_2.id)
     expect(page).to have_content(order_2.created_at)
     expect(page).to have_content(order_item.quantity)
     # Test for total price ->> expect(page).to have_content(order_item.total_price), this could also be a db query if we add it to the db
     expect(page).to have_link(order_5.id)
     expect(page).to have_content(order_5.created_at)
-    expect(page).to have_content("Quantity: #{order_item_2.quantity}")
+    expect(page).to have_content("Quantity: #{order_5.total_quantity}")
     # Test for total price ->> expect(page).to have_content(order_item_2.total_price), this could also be a db query if we add it to the db
     expect(page).to have_link(order_5.id)
 
