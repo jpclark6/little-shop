@@ -128,6 +128,9 @@ describe 'as a visitor or registered user' do
     end
 
     it 'can click "check out" and the order is processed properly' do
+      user = FactoryBot.create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
       visit cart_path
       click_on 'Check out'
 
