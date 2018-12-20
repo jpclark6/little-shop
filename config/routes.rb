@@ -29,8 +29,9 @@ Rails.application.routes.draw do
     get "/items", to: 'items#index'
     get "/items/edit/:id", to: "item#edit", as: "item_edit"
     get "/orders", to: 'orders#index'
+    get "/orders/:id", to: "order#show"
   end
-  
+
   # get '/dashboard', to: 'users#show'
   # get '/dashboard/items', to: 'items#index', as: 'dashboard_merchant_items'
   get '/register', to: 'users#new'
