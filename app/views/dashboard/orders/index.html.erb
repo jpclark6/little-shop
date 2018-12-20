@@ -1,5 +1,6 @@
 <% @orders.each do |order| %>
   <h5>Order Id: <%= link_to order.id, dashboard_orders_path %></h5>
   Date Created: <%= order.created_at %>
-  Quantity: <%= order.total_quantity %>
+  Quantity: <%= order.total_quantity %> items
+  Price: $<%= order.total_price %>
 <% end %>
