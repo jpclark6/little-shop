@@ -21,8 +21,23 @@ RSpec.describe Order, type: :model do
       user = FactoryBot.create(:user)
       order = Order.create(user: user, status: 'pending')
       order.add_cart(cart)
-      binding.pry
-      expect(order.items).to eq([item_1, item_2, item_2, item_3])
+      expect(order.items).to eq([item_1, item_2, item_3])
+    end
+    it 'should calculate total amount of order' do
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      item_3 = FactoryBot.create(:item)
+      cart = Cart.new({})
+      cart.add_item(item_1.id.to_s)
+      cart.add_item(item_2.id.to_s)
+      cart.add_item(item_2.id.to_s)
+      cart.add_item(item_3.id.to_s)
+      user = FactoryBot.create(:user)
+      order = Order.create(user: user, status: 'pending')
+      order.add_cart(cart)
+
+      expected = item_1.price + item_2.price * 2 + item_3.price
+      expect(order.total_amount).to eq(expected)
     end
   end
 end

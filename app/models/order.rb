@@ -12,4 +12,8 @@ class Order < ApplicationRecord
       order_items.create(item: item, price: item.price, quantity: qty)
     end
   end
+
+  def total_amount
+    order_items.sum { |oi| oi.price * oi.quantity }
+  end
 end
