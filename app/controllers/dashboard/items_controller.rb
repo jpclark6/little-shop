@@ -23,5 +23,4 @@ class Dashboard::ItemsController < ApplicationController
 
   def new
   end
-
 end

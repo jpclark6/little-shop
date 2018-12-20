@@ -14,6 +14,8 @@ describe 'As a Merchant' do
 
     expect(current_path).to eq(dashboard_items_new_path)
 
+    fill_in item
+    # do I need to give the item an order???? DOn't think so.
   end
 end
 
@@ -24,9 +26,11 @@ end
 # >>>>>>
 # And I click on the link to add a new item
 #>>>>
-
 # My URI route should be "/dashboard/items/new"
+# >>>>>>>>>>>
+
 # I see a form where I can add new information about an item, including:
+
 # - the name of the item, which cannot be blank
 # - a description for the item, which cannot be blank
 # - a thumbnail image URL string, which CAN be left blank
