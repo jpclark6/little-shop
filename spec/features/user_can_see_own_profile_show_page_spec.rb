@@ -33,13 +33,18 @@ describe 'registered user visits their own profile page' do
     expect(current_path).to eq(edit_user_path(user))
   end
 
-  xit 'can see order details' do
-    user = FactoryBot.create(:user)
+  it 'can see order details' do
     item_1 = FactoryBot.create(:item)
     item_2 = FactoryBot.create(:item)
     item_3 = FactoryBot.create(:item)
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    user = FactoryBot.create(:user)
+
+    visit login_path
+
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+    click_on 'Log In'
 
     visit item_path(item_1)
     click_button "Add Item"
@@ -64,8 +69,6 @@ describe 'registered user visits their own profile page' do
 
     visit cart_path
     click_on 'Check out'
-
-    binding.pry
 
     order_1 = Order.all[-2]
     order_2 = Order.all[-1]
@@ -77,8 +80,8 @@ describe 'registered user visits their own profile page' do
       expect(page).to have_content(order_1.created_at)
       expect(page).to have_content(order_1.updated_at)
       expect(page).to have_content(order_1.status)
-      expect(page).to have_content(order_1.total_item_count)
-      expect(page).to have_content(order_1.total_amount)
+      expect(page).to have_content(order_1.total_quantity)
+      expect(page).to have_content(order_1.total_price)
     end
 
     within(".order-#{order_2.id}") do
@@ -86,8 +89,8 @@ describe 'registered user visits their own profile page' do
       expect(page).to have_content(order_2.created_at)
       expect(page).to have_content(order_2.updated_at)
       expect(page).to have_content(order_2.status)
-      expect(page).to have_content(order_2.total_item_count)
-      expect(page).to have_content(order_2.total_amount)
+      expect(page).to have_content(order_2.total_quantity)
+      expect(page).to have_content(order_2.total_price)
     end
 
   end

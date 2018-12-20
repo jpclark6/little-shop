@@ -1,4 +1,4 @@
-<% current_user.orders.each do |order| %>
+<% @user.orders.each do |order| %>
   <div class="order-<%= order.id %>">
     <h3>Order: <%= link_to "#{order.id}", order_path(order.id) %></h3>
     <h4>Created at: <%= order.created_at %> </h4>
