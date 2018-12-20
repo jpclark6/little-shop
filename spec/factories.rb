@@ -32,6 +32,7 @@ FactoryBot.define do
 
   factory :order do
     association :user
+    status { 0 }
     factory :pending do
       status { 0 }
     end

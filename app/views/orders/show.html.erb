@@ -1,0 +1,21 @@
+<main>
+  <h1>Order <%= @order.id %></h1>
+  <h4>Status: <%= @order.status %></h4>
+  <h4>Ordered on: <%= @order.created_at.to_date %></h4>
+  <h4>Order updated on: <%= @order.updated_at.to_date %></h4>
+  <div class="show-order">
+    <% @order_items.each do |order_item| %>
+      <div id="item-<%=order_item.item_id  %>">
+        <%= image_tag(order_item.item.image, class: "big-picture") %>
+        <ul>
+          <li><%= order_item.item.name %></li>
+          <li><%= order_item.item.description %></li>
+          <li>Quantity: <%= order_item.quantity %></li>
+          <li>Price: $<%= order_item.price %></li>
+          <li>Subtotal: $<%= order_item.subtotal %></li>
+        </ul>
+        <p>Grand total: $<%= @order.total_price %> </p>
+      </div>
+    <% end %>
+  </div>
+</main>

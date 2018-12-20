@@ -111,7 +111,6 @@ describe 'as a visitor or registered user' do
 
     it 'can not increase items in cart past merchant qty' do
       visit cart_path
-      save_and_open_page
       @item_1.update(instock_qty: 10)
       10.times do
         within(".item-#{@item_1.id}") do
