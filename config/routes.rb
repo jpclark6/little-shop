@@ -29,8 +29,8 @@ Rails.application.routes.draw do
     get "", to: 'users#show'
     get "/items", to: 'items#index'
     get "/items/edit/:id", to: "items#edit", as: "item_edit"
-    get "/items/delete/:id", to: "items#destroy", as: "item"
-    get "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
+    delete "/items/delete/:id", to: "items#destroy", as: "item"
+    patch "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
   end
 
   get '/register', to: 'users#new'
