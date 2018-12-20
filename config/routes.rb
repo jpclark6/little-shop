@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     get "/orders/:id", to: "orders#show"
     delete "/items/delete/:id", to: "item#destroy", as: "item"
     patch "/items/toggle/:id", to: "item#toggle", as: "item_toggle"
+
   end
 
   get '/register', to: 'users#new'
