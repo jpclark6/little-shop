@@ -15,6 +15,6 @@ class User < ApplicationRecord
   end
 
   def merchant_pending_orders
-   Order.joins(:items).select("orders.*").where("items.user_id=#{self.id}").where(orders: {status: :pending})
+    Order.joins(:items).select("orders.*").where("items.user_id=#{self.id}").where(orders: {status: :pending}).group(:id)
   end
 end
