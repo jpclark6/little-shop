@@ -40,7 +40,7 @@ a {
 nav li {
    display: inline-block;
    style: none;
-   padding: 0 15px;
+   padding: 15px 15px 0 15px;
    border-radius: 10px;
  }
 
@@ -49,6 +49,10 @@ nav li:hover {
 }
 
 nav li:hover a {
+  color: white;
+}
+
+nav li:hover h3 {
   color: white;
 }
 
@@ -192,7 +196,7 @@ label {
 }
 
 .empty-div {
-  height: 100px;
+  height: 72px;
 }
 
 .shopping-cart {
