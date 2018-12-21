@@ -15,7 +15,7 @@ Item.destroy_all
 Order.destroy_all
 User.destroy_all
 
-
+n = 0
 merchants = []
 20.times do |merch|
   name = Faker::Name.name
@@ -30,10 +30,11 @@ merchants = []
   user = User.create(name: name, address: address, city: city, state: state, zip_code: zip_code, email: email, role: role, password: password, enabled: true)
   merchants << user
   20.times do
+    n += 1
     name = Faker::Hipster.word
     instock_qty = rand(0..50)
     price = Faker::Commerce.price
-    image = "/no_image_available.jpg"
+    image = "https://picsum.photos/200/300?image=#{n}"
     description = Faker::Hipster.sentence
     user.items.create(name: name, instock_qty: instock_qty, price: price, image: image, description: description)
   end
