@@ -15,15 +15,15 @@
             <h4>Sold by: <%= link_to "#{item.user.name}", merchants_path(item.user) %></h4>
             <h4><%= link_to "+", cart_path(change_quantity: "+", item_id: item.id), method: :patch %>Qty <%= @cart.qty(item) %>
               <%= link_to "-", cart_path(change_quantity: "-", item_id: item.id), method: :patch%></h4>
-            <h4>$<%= item.price %> ea. Subtotal: $<%= item.price * @cart.qty(item) %></h4>
+            <h4><%= number_to_currency(item.price) %> ea. Subtotal: <%= number_to_currency(item.price * @cart.qty(item)) %></h4>
             <%= link_to "remove", cart_path(change_quantity: "0", item_id: item.id), method: :patch %>
           </div>
         </div>
       <% end %>
     </div>
-    <h2>Total: $<%= @cart.total_cost %></h2>
+    <h2>Total: <%= number_to_currency(@cart.total_cost) %></h2>
     <% if current_user %>
-      <h2><%= link_to "Check out", orders_path, method: :post %></h2>
+      <h2><%= link_to "Check out", profile_orders_path, method: :post %></h2>
     <% else %>
       <h2>Log in to check out.</h2>
     <% end %>

@@ -6,7 +6,7 @@
       <ul>
         <li><b>Sold by:</b> <%= item.user.name %> </li>
         <li><b>In Stock:</b> <%= item.instock_qty %> items</li>
-        <li><b>Price:</b> $<%= item.price %></li>
+        <li><b>Price:</b> <%= number_to_currency(item.price) %></li>
         <li><%= item.description %></li>
       </ul>
     </div>
