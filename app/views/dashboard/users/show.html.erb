@@ -1,2 +1,6 @@
 <%= render partial: "/user_info" %>
 <%= link_to 'View Items', "/dashboard/items"%>
+<h3>Pending Orders</h3>
+<% @orders.each do |order| %>
+  <%= render partial: "/dashboard/orders/order_info", locals: {order: order} %>
+<% end %>
