@@ -2,12 +2,14 @@
 <div id='all-merchants'>
   <% @merchants.each do |merchant| %>
     <div id="merchant-<%= merchant.id %>" class='merchant-index'>
-      <span class='merchant-name'><%= link_to(merchant.name, admin_merchant_path(merchant)) %></span>
+      <% if current_user && current_user.admin? %><span class='merchant-name'><%= link_to(merchant.name, admin_merchant_path(merchant)) %></span>
+      <% else %><span class='merchant-name'><%= merchant.name.titleize %></span>
+      <% end %>
       <ul>
         <li><b>City:</b> <%= merchant.city %></li>
         <li><b>State: </b><%= merchant.state %></li>
-        <li><b>Zip code:</b> <%= merchant.zip_code %></li>
-        <li><b>Join date:</b> <%= merchant.created_at.to_date %></li>
+        <li><b>Zip code: </b><%= merchant.zip_code %></li>
+        <li><b>Join date: </b><%= merchant.created_at.to_date %></li>
       </ul>
       <% if current_user && current_user.admin? %>
         <p>Status: <%= merchant.status %>

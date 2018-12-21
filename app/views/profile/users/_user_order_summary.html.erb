@@ -5,6 +5,6 @@
     <h4><b>Updated at:</b> <%= order.updated_at %> </h4>
     <h4><b>Status:</b> <%= order.status %> </h4>
     <h4><b>Total item count:</b> <%= order.total_quantity %> </h4>
-    <h4><b>Total:</b> <%= order.total_price %> </h4>
+    <h4><b>Total:</b> <%= number_to_currency(order.total_price) %> </h4>
   </div>
 <% end %>
