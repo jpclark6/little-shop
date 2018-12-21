@@ -27,6 +27,7 @@ describe 'order show page' do
       merchant = FactoryBot.create(:merchant)
       item_1 = FactoryBot.create(:item)
       item_2 = FactoryBot.create(:item)
+      item_3 = FactoryBot.create(:item)
       merchant.items << item_1
 
       customer = FactoryBot.create(:user)
@@ -36,8 +37,10 @@ describe 'order show page' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 
       visit dashboard_order_path(order)
-      expect(page).to have_css("item-#{item_1.id}")
-      expect(page).to_not have_css("item-#{item_2.id}")
+      save_and_open_page
+      expect(page).to have_css("#item-#{item_1.id}")
+      expect(page).to_not have_css("#item-#{item_2.id}")
+      expect(page).to_not have_css("#item-#{item_3.id}")
     end
   end
 

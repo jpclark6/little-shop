@@ -1,4 +1,7 @@
 <h1>Order <%= @order.id %></h1>
 
 <h2>Customer info:</h2>
-<%= render partial: "/user_info", locals: {}%>
+<%= render partial: "/user_info"%>
+<% @order_items.each do |order_item| %>
+  <div id="item-<%= order_item.item_id %>"></div>
+<% end %>
