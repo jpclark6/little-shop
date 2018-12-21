@@ -12,13 +12,11 @@ Rails.application.routes.draw do
   resources :carts, only: [:create]
   resources :users, only: [:index, :create, :edit]
 
-  resources :orders, only: [:show, :destroy, :index, :create] do
-    resources :order_items, only: [:update]
-  end
-
   namespace :profile do
     get '', to: 'users#show'
-    get '/orders', to: 'orders#index'
+    resources :orders, only: [:show, :destroy, :index, :create] do
+      resources :order_items, only: [:update]
+    end
     get '/edit', to: 'users#edit', as: "edit"
     post '/update', to: 'users#update'
     patch '/update', to: 'users#update'

@@ -21,12 +21,12 @@ describe 'As a user' do
   describe 'when I visit and orders show page' do
     it 'should show the order info and all of the order items' do
 
-      visit order_path(@order_1)
+      visit profile_order_path(@order_1)
 
       expect(page).to have_content("Order #{@order_1.id}")
       expect(page).to have_content("Ordered on: #{@order_1.created_at.to_date}")
       expect(page).to have_content("Order updated on: #{@order_1.updated_at.to_date}")
-      expect(page).to have_content("Status: #{@order_1.status}")
+      expect(page).to have_content("Status: #{@order_1.status.titleize}")
       within "#item-#{@item_1.id}" do
         expect(page).to have_content(@item_1.name)
         expect(page).to have_content(@item_1.description)
@@ -50,7 +50,24 @@ describe 'As a user' do
       end
 
       expect(page).to have_content("Grand total: $#{@order_1.total_price}")
+    end
 
+    xit 'can cancel order if it is still pending' do
+      #Justin is doing
+      visit profile_order_path(@order_1)
+      #cancel order
+      expect(false).to eq(true)
+
+      #       As a registered user
+      # When I visit an order's show page
+      # If the order is still "pending", I see a button or link to cancel the order
+      # When I click the cancel button for an order, the following happens:
+      # - Each row in the "order items" table is given a status of "unfulfilled"
+      # - The order itself is given a status of "cancelled"
+      # - Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant's inventory for that item.
+      # - I am returned to my profile page
+      # - I see a flash message telling me the order is now cancelled
+      # - And I see that this order now has an updated status of "cancelled"
     end
 
   end
