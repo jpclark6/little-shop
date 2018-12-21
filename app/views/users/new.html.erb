@@ -8,7 +8,7 @@
   <%= f.label :user_state %>
   <%= f.text_field :state %>
   <%= f.label :user_zip_code%>
-  <%= f.number_field :zip_code %>
+  <%= f.number_field :zip_code, min: 0, max: 99999 %>
   <%= f.label :user_email %>
   <%= f.text_field :email, value: ""%>
   <%= f.label :user_password %>
