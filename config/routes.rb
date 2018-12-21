@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     get '/items/new', to: 'items#new'
     get "/items/edit/:id", to: "items#edit", as: "item_edit"
     get "/orders", to: 'orders#index'
-    get "/orders/:id", to: "orders#show"
+    get "/orders/:id", to: "orders#show", as: "order"
     delete "/items/delete/:id", to: "items#destroy", as: "item"
     patch "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
   end
