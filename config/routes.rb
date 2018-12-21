@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :carts, only: [:create]
   resources :users, only: [:index, :create, :edit]
 
-
   resources :orders, only: [:show, :destroy, :index, :create] do
     resources :order_items, only: [:update]
   end
@@ -38,7 +37,7 @@ Rails.application.routes.draw do
     get '/items/new', to: 'items#new'
     get "/items/edit/:id", to: "items#edit", as: "item_edit"
     get "/orders", to: 'orders#index'
-    get "/orders/:id", to: "orders#show"
+    get "/orders/:id", to: "orders#show", as: "order"
     delete "/items/delete/:id", to: "items#destroy", as: "item"
     patch "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
   end
