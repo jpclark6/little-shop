@@ -1,6 +1,3 @@
 <% @orders.each do |order| %>
-  <h5>Order Id: <%= link_to order.id, dashboard_order_path(order) %></h5>
-  Date Created: <%= order.created_at %>
-  Quantity: <%= order.total_quantity %> items
-  Price: $<%= order.total_price %>
+  <%= render partial: "/dashboard/orders/order_info", locals: {order: order} %>
 <% end %>
