@@ -42,7 +42,7 @@ describe 'order show page' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 
       visit dashboard_order_path(order)
-      save_and_open_page
+      
       expect(page).to have_css('.show-order-item', count: 2)
       expect(page).to have_css("#item-#{item_1.id}")
       expect(page).to_not have_css("#item-#{item_2.id}")

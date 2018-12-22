@@ -5,6 +5,12 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def merchant_show
+    @user = User.find(params[:id])
+    @orders = @user.merchant_pending_orders
+    render template: 'dashboard/users/show'
+  end
+
   def index
     @users = User.where(role: ["registered"])
   end
