@@ -14,6 +14,8 @@ class Profile::OrdersController < ApplicationController
     order = Order.new(user: current_user, status: 'pending')
     if order.save
       order.add_cart(@cart)
+      session[:cart] = {}
+      @cart.empty_cart
       flash[:notice] = "Order created successfully"
       redirect_to profile_path
     else
