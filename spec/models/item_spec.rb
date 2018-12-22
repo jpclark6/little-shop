@@ -22,6 +22,5 @@ RSpec.describe Item, type: :model do
       expect(item_1.never_ordered?).to eq(true)
       expect(item_2.never_ordered?).to eq(false)
     end
-
   end
 end
