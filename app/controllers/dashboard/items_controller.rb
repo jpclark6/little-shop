@@ -24,4 +24,22 @@ class Dashboard::ItemsController < ApplicationController
   def new
     @item = Item.new
   end
+
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to dashboard_items_path
+    else
+      add_errors_on_flash(@item)
+      render :new
+    end
+  end
+
+  private
+
+  def item_params
+    ip = params.require(:item).permit(:name, :description, :image, :price, :instock_qty)
+    ip[:user] = current_user
+    ip.reject{|key,value| value.is_a?(String) && value.empty?}
+  end
 end
