@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     get "/orders/:id", to: "orders#show", as: "order"
     delete "/items/delete/:id", to: "items#destroy", as: "item"
     patch "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
+    post "/items", to: "items#create", as: "create_item"
   end
 
   get '/register', to: 'users#new'
