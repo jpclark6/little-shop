@@ -25,7 +25,7 @@ FactoryBot.define do
     sequence(:name) { |n| "Thing #{n}" }
     sequence(:instock_qty) { |n| 27 + n }
     sequence(:price) { |n| 44 + n }
-    sequence(:image) { "/public/no_image_available.jpg" }
+    sequence(:image) { |n| "https://picsum.photos/260/200?image=#{n}" }
     sequence(:description) { |n| "this thing is....#{n}" }
     enabled { true }
   end

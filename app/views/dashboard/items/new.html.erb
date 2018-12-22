@@ -1,0 +1,13 @@
+<%= form_for @item do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :image %>
+  <%= f.url_field :image %>
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+  <%= f.label :instock_qty %>
+  <%= f.number_field :instock_qty%>
+  <%= f.submit %>
+<% end %>
