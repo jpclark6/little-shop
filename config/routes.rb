@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'items#index'
   namespace :admin do
-    get 'merchants/:id', to: "users#show", as: "merchant"
+    get 'merchants/:id', to: "users#merchant_show", as: "merchant"
     get 'users/:id', to: "users#show", as: "user"
     get 'users', to: "users#index", as: "users"
     patch 'disable_user/:id', to: "users#update", as: "disable_user"
