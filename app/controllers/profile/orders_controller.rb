@@ -1,9 +1,13 @@
-class OrdersController < ApplicationController
+class Profile::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
     @user = current_user
     @order_items = @order.order_items
+  end
+
+  def index
+    @user = current_user
   end
 
   def create

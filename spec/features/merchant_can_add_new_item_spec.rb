@@ -12,7 +12,7 @@ describe 'As a Merchant' do
     click_button 'Add Item'
 
     expect(current_path).to eq(dashboard_items_new_path)
-save_and_open_page
+
     fill_in :name, with: 'New Item Name'
     fill_in :description, with: 'Here is a description of the item.'
     fill_in :image, with: 'https://vignette.wikia.nocookie.net/herewestandrp/images/1/1f/New_item.png/revision/latest?cb=20171010214012'

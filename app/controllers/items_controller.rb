@@ -10,4 +10,19 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
   end
+
+  # def create
+  #   @item = Item.create(item_params)
+  #   redirect_to dashboard_items_path
+  # end
+  #
+  #   # def show
+  #   #   @new_item = Item.last
+  #   # end
+  # 
+  #   private
+  #
+  #   def item_params
+  #   params.require(:item).permit(:name)
+  #   end
 end

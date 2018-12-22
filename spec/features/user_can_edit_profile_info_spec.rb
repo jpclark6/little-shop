@@ -43,5 +43,26 @@ describe 'as a registerd user' do
       expect(page).to have_content(80026)
       expect(page).to have_content("john@gmail.com")
     end
+    it 'It shows flash when same email is entered' do
+      user_1 = FactoryBot.create(:user, email: "andrew@gmail.com")
+      user_2 = FactoryBot.create(:user)
+
+      visit login_path
+
+      fill_in :email, with: user_2.email
+      fill_in :password, with: user_2.password
+      click_on 'Log In'
+
+      visit profile_path
+
+      click_on "Edit Profile"
+
+      fill_in :user_email, with: "andrew@gmail.com"
+
+      click_on "Update User"
+
+      expect(current_path).to eq(profile_update_path)
+      expect(page).to have_content("the email you entered is already taken")
+    end
   end
 end
