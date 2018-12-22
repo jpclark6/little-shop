@@ -2,6 +2,4 @@
 
 <h2>Customer info:</h2>
 <%= render partial: "/user_info"%>
-<% @order_items.each do |order_item| %>
-  <div id="item-<%= order_item.item_id %>"></div>
-<% end %>
+<%= render partial: "/order_items" %>
