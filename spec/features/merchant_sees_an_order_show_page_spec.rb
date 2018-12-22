@@ -23,23 +23,28 @@ describe 'order show page' do
       expect(page).to have_content(customer.state)
       expect(page).to have_content(customer.zip_code)
     end
-    it 'shows my items and no others from the order' do
+    it 'shows my items and no others from the ordero my other items' do
       merchant = FactoryBot.create(:merchant)
       item_1 = FactoryBot.create(:item)
       item_2 = FactoryBot.create(:item)
       item_3 = FactoryBot.create(:item)
-      merchant.items << item_1
+      item_4 = FactoryBot.create(:item)
+
+      merchant.items += [item_1, item_4]
 
       customer = FactoryBot.create(:user)
       order = FactoryBot.create(:order, items: [item_1, item_2], user: customer)
+      FactoryBot.create(:order, items: [item_4], user: customer)
 
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 
       visit dashboard_order_path(order)
+      save_and_open_page
       expect(page).to have_css("#item-#{item_1.id}")
       expect(page).to_not have_css("#item-#{item_2.id}")
       expect(page).to_not have_css("#item-#{item_3.id}")
+      expect(page).to_not have_css("#item-#{item_4.id}")
     end
     it "shows each item's information" do
       merchant = FactoryBot.create(:merchant)

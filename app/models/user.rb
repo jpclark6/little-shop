@@ -15,7 +15,7 @@ class User < ApplicationRecord
   end
 
   def my_order_items(order)
-    OrderItem.joins(:item).where(items: {user_id: self.id})
+    OrderItem.joins(:item).where(order: order, items: {user_id: self.id})
   end
 
   def merchant_pending_orders
