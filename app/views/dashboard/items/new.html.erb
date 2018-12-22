@@ -6,8 +6,8 @@
   <%= f.label :image %>
   <%= f.url_field :image, value: "" %>
   <%= f.label :price %>
-  <%= f.number_field :price, min: 0.01 %>
+  <%= f.number_field :price, in: 0.01..2000000.0, step: 0.01 %>
   <%= f.label :instock_qty %>
-  <%= f.number_field :instock_qty, min: 1 %>
+  <%= f.number_field :instock_qty, in: 0..2000000, step: 1%>
   <%= f.submit %>
 <% end %>

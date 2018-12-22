@@ -28,6 +28,7 @@ class Dashboard::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      flash[:message] = "Your new item is saved."
       redirect_to dashboard_items_path
     else
       add_errors_on_flash(@item)

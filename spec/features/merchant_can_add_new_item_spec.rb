@@ -25,11 +25,18 @@ describe 'As a Merchant' do
 
     expect(current_path).to eq(dashboard_items_path)
 
-    expect(page).to have_content(Item.last.name)
-    expect(page).to have_content(Item.last.description)
-    expect(page).to have_css("img[src='#{Item.last.image}']")
-    expect(page).to have_content("Price: $#{Item.last.price}")
-    expect(page).to have_content("In stock: #{Item.last.instock_qty}")
+    expect(page).to have_content("Your new item is saved.")
+
+    item = Item.last
+    within "#item-#{item.id}" do
+      expect(page).to have_content(item.name)
+      expect(page).to have_content(item.description)
+      expect(page).to have_css("img[src='#{item.image}']")
+      expect(page).to have_content("Price: $#{item.price}")
+      expect(page).to have_content("In stock: #{item.instock_qty}")
+
+      expect(page).to have_content("Status: Enabled")
+    end
   end
 
   it 'Form gives errors when name & description field blank' do
@@ -51,7 +58,13 @@ describe 'As a Merchant' do
     expect(page).to have_content("Item price can't be blank")
     expect(page).to have_content("Item instock_qty can't be blank")
   end
+  it 'default image displayed if no image is given' do
+    fill_in :item_image, with: ''
 
+    click_button 'Create Item'
+
+    expect(page).to have_css("img[src='/no_image_available.jpg']")
+  end
 end
 
 
@@ -75,6 +88,8 @@ end
 
 # When I submit valid information and save the form
 # I am taken back to my items page
+# >>>>>>>
+
 # I see a flash message indicating my new item is saved
 # I see the new item on the page, and it is enabled and available for sale
 # If I left the image field blank, I see a placeholder image for the thumbnail
