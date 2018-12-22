@@ -10,6 +10,8 @@ describe 'as an admin' do
     visit "/admin/users/#{merchant.id}"
 
     expect(current_path).to eq(admin_merchant_path(merchant))
+    expect(page).to have_content("Pending Orders")
+    
   end
   it 'I am redirected from merchant dashboard to user show' do
 
