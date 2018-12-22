@@ -1,6 +1,6 @@
 require "rails_helper"
 describe 'as an admin' do
-  xit 'I am redirected from user show to merchant show if user is a merchant' do
+  it 'I am redirected from user show to merchant dashboard' do
     admin = FactoryBot.create(:admin)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 

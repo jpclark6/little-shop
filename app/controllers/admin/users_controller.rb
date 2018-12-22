@@ -3,6 +3,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    redirect_to admin_merchant_path(@user) if @user.role == "merchant" 
   end
 
   def merchant_show
