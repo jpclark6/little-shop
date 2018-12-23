@@ -23,11 +23,14 @@ class Dashboard::ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    if item.update(item_params)
-      flash[:success] = "Item #{item.id} '#{item.name}' has been updated."
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:success] = "Item #{@item.id} '#{@item.name}' has been updated."
 
       redirect_to dashboard_items_path
+    else
+      add_errors_on_flash(@item)
+      render :edit
     end
   end
 
@@ -54,6 +57,7 @@ class Dashboard::ItemsController < ApplicationController
   def item_params
     ip = params.require(:item).permit(:name, :description, :image, :price, :instock_qty)
     ip[:user] = current_user
-    ip.reject{|key,value| value.is_a?(String) && value.empty?}
+    ip.delete(:image) if ip[:image].empty?
+    ip
   end
 end
