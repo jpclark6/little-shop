@@ -13,7 +13,7 @@ RSpec.describe OrderItem, type: :model do
       expect(order_item_1.subtotal).to eq(6)
     end
   end
-  describe 'helper methods' do
+  describe 'before_validations' do
     it ".ensures_price is equal to item price" do
       user = FactoryBot.create(:user)
       item_1 = FactoryBot.create(:item, price: 3.50)

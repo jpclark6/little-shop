@@ -1,6 +1,6 @@
 <% @user.orders.each do |order| %>
   <div class="order-<%= order.id %> profile-order">
-    <h3><b>Order:</b> <%= link_to "#{order.id}", profile_order_path(order.id) %></h3>
+    <h3><b><%= link_to "Order: #{order.id}", profile_order_path(order.id) %></b></h3>
     <h4><b>Created at:</b> <%= order.created_at %> </h4>
     <h4><b>Updated at:</b> <%= order.updated_at %> </h4>
     <h4><b>Status:</b> <%= order.status %> </h4>

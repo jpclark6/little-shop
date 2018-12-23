@@ -30,7 +30,6 @@ describe 'as an admin' do
     expect(page).to_not have_content(user_2.email)
 
     expect(page).to have_link('Edit Profile')
-    save_and_open_page
 
     within(".order-#{order_1.id}") do
       expect(page).to have_link(order_1.id)
