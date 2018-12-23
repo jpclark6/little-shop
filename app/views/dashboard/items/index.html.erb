@@ -9,7 +9,7 @@
       <li><%= image_tag(item.image, class: :thumb) %></li>
       <li>In stock: <%= item.instock_qty %></li>
     </ul>
-    <%= button_to("Edit Item", dashboard_item_edit_path(item)) %>
+    <%= button_to("Edit Item", dashboard_item_edit_path(item), method: :get) %>
 
       <% if item.enabled? %>
         <p> Status: Enabled

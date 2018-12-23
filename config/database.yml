@@ -16,6 +16,7 @@
 #
 default: &default
   adapter: postgresql
+  host: localhost
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -23,6 +24,7 @@ default: &default
 
 development:
   <<: *default
+  host: localhost
   database: little_shop_development
 
   # The specified database role being used to connect to postgres.
@@ -57,6 +59,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  host: localhost
   database: little_shop_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
@@ -80,6 +83,7 @@ test:
 #
 production:
   <<: *default
+  host: localhost
   database: little_shop_production
   username: little_shop
   password: <%= ENV['LITTLE_SHOP_DATABASE_PASSWORD'] %>
