@@ -6,6 +6,12 @@
       <li><%= merchant.name %></li>
     <% end %>
   </ul>
+  <ul class="top_price">
+    <h3> Top 3 merchants by price </h3>
+    <% @merchants.top_merch_price.each do |merchant| %>
+      <li><%= merchant.name %></li>
+    <% end %>
+  </ul>
 </div>
 <h1> All Merchants </h1>
 <div id='all-merchants'>

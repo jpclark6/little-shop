@@ -31,6 +31,17 @@ class User < ApplicationRecord
 
   end
 
+  def self.top_merch_price
+    User.where(role: "merchant")
+        .joins(:items)
+        .joins("inner join order_items on items.id = order_items.item_id")
+        .where(order_items:{fulfilled: true})
+        .group(:id)
+        .order(" sum_order_items_price desc")
+        .select("users.*, sum(order_items.price) as sum_order_items_price")
+        .limit(3)
+  end
+
   def status
    enabled? ? "Enabled" : "Disabled"
   end

@@ -35,6 +35,23 @@ RSpec.describe User, type: :model do
 
       expect(User.top_merch_quantity).to eq([merchant_2, merchant_1, merchant_4])
     end
+    it ".top_merch_price" do
+      order_item_1= FactoryBot.create(:order_item, price: 5.0, fulfilled: true)
+      merchant_1 = order_item_1.item.user
+
+      order_item_2= FactoryBot.create(:order_item, price: 10.0, fulfilled: true)
+      merchant_2 = order_item_2.item.user
+
+      order_item_3= FactoryBot.create(:order_item, price: 2.5, fulfilled: true)
+      merchant_3 = order_item_3.item.user
+
+      order_item_4= FactoryBot.create(:order_item, price: 1.8, fulfilled: true)
+      merchant_4 = order_item_4.item.user
+      item_4 = FactoryBot.create(:item, user: merchant_4)
+      order_item_5= FactoryBot.create(:order_item, price: 3.5, item: item_4, fulfilled: true)
+
+      expect(User.top_merch_price).to eq([merchant_2, merchant_4, merchant_1])
+    end
   end
 
   describe 'instance methods' do

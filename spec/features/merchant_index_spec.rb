@@ -27,7 +27,7 @@ describe 'merchant index page' do
       expect(page).to_not have_button("Disable")
       expect(page).to_not have_button("Enable")
     end
-    it "I see the 3 merchants that have sold the most" do
+    it "I see the 3 merchants that have sold the most by quantity" do
       order_item_1= FactoryBot.create(:order_item, quantity: 5, fulfilled: true)
       merchant_1 = order_item_1.item.user
 
@@ -49,6 +49,31 @@ describe 'merchant index page' do
         expect(page).to have_content(merchant_2.name)
         expect(page).to have_content(merchant_1.name)
         expect(page).to have_content(merchant_4.name)
+        expect(page).to_not have_content(merchant_3.name)
+      end
+    end
+    it "I see the 3 merchants that have sold the most by price" do
+      order_item_1= FactoryBot.create(:order_item, price: 5.0, fulfilled: true)
+      merchant_1 = order_item_1.item.user
+
+      order_item_2= FactoryBot.create(:order_item, price: 10.0, fulfilled: true)
+      merchant_2 = order_item_2.item.user
+
+      order_item_3= FactoryBot.create(:order_item, price: 2.5, fulfilled: true)
+      merchant_3 = order_item_3.item.user
+
+      order_item_4= FactoryBot.create(:order_item, price: 1.8, fulfilled: true)
+      merchant_4 = order_item_4.item.user
+      item_4 = FactoryBot.create(:item, user: merchant_4)
+      order_item_5= FactoryBot.create(:order_item, price: 3.5, item: item_4, fulfilled: true)
+
+      visit merchants_path
+
+      within (".top_price") do
+        expect(page).to have_content("Top 3 merchants by price")
+        expect(page).to have_content(merchant_2.name)
+        expect(page).to have_content(merchant_4.name)
+        expect(page).to have_content(merchant_1.name)
         expect(page).to_not have_content(merchant_3.name)
       end
     end
