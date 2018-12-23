@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
+
   def self.fastest_fulfillment
    User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
        .joins(items: :order_items)
@@ -17,6 +18,17 @@ class User < ApplicationRecord
        .group('users.id')
        .order('fulfillment_time asc')
        .limit(3)
+
+  def self.top_merch_quantity
+    User.where(role: "merchant")
+        .joins(:items)
+        .joins("inner join order_items on items.id = order_items.item_id")
+        .where(order_items:{fulfilled: true})
+        .group(:id)
+        .order(" sum_order_items_quantity desc")
+        .select("users.*, sum(order_items.quantity) as sum_order_items_quantity")
+        .limit(3)
+
   end
 
   def status

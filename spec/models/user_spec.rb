@@ -17,16 +17,35 @@ RSpec.describe User, type: :model do
     it {should have_many :items}
     it {should have_many :orders}
   end
+  describe 'class methods' do
+    it ".top_merch_quantity" do
+      order_item_1= FactoryBot.create(:order_item, quantity: 5, fulfilled: true)
+      merchant_1 = order_item_1.item.user
+
+      order_item_2= FactoryBot.create(:order_item, quantity: 10, fulfilled: true)
+      merchant_2 = order_item_2.item.user
+
+      order_item_3= FactoryBot.create(:order_item, quantity: 2, fulfilled: true)
+      merchant_3 = order_item_3.item.user
+
+      order_item_4= FactoryBot.create(:order_item, quantity: 1, fulfilled: true)
+      merchant_4 = order_item_4.item.user
+      item_4 = FactoryBot.create(:item, user: merchant_4)
+      order_item_5= FactoryBot.create(:order_item, quantity: 3, item: item_4, fulfilled: true)
+
+      expect(User.top_merch_quantity).to eq([merchant_2, merchant_1, merchant_4])
+    end
+  end
 
   describe 'instance methods' do
-    it '.status' do
+    it '#status' do
       user = FactoryBot.create(:user)
       expect(user.status).to eq("Enabled")
       user.enabled = false
       expect(user.status).to eq("Disabled")
     end
 
-    it '.merchant_pending_orders' do
+    it '#merchant_pending_orders' do
       # Current_user
       user = FactoryBot.create(:merchant)
 

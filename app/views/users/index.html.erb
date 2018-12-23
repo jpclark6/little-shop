@@ -1,3 +1,12 @@
+<div class="statistics">
+  <!-- to do make this a sidebar -->
+  <ul class="top_quantity">
+    <h3> Top 3 merchants by quantity </h3>
+    <% @merchants.top_merch_quantity.each do |merchant| %>
+      <li><%= merchant.name %></li>
+    <% end %>
+  </ul>
+</div>
 <h1> All Merchants </h1>
 <div id='all-merchants'>
   <% @merchants.each do |merchant| %>
