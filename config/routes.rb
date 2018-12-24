@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     patch 'users/toggle/:id', to: "users#toggle", as: "toggle_user"
   end
 
-  resources :items
+  resources :items, only: [:show, :index]
   resources :carts, only: [:create]
   resources :users, only: [:index, :create, :edit]
 
