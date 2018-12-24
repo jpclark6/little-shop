@@ -37,10 +37,9 @@ Rails.application.routes.draw do
     get "", to: 'users#show'
 
     resources :items, except: [:show]
+    resources :orders, only: [:show, :index]
     patch "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
 
-    get "/orders", to: 'orders#index'
-    get "/orders/:id", to: "orders#show", as: "order"
   end
 
   get '/register', to: 'users#new'
