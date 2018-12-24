@@ -30,7 +30,7 @@ describe 'as a merchant' do
     end
 
     expect(current_path).to eq dashboard_items_path
-    expect(page).to have_content("Item #{item.id} with name '#{item.name}' is now disabled.")
+    expect(page).to have_content("Item #{item.id} with name '#{item.name}' is now enabled.")
 
     within "#item-#{item.id}" do
       expect(page).to have_content("Status: Enabled")

@@ -34,5 +34,15 @@ class ApplicationController < ActionController::Base
     }
   end
 
+  def toggle_enabled(object)
+    object = Item.find(params[:id])
+    if object.enabled?
+      object.update(enabled: false)
+      flash[:alert] = "#{object.class} #{object.id} with name '#{object.name}' is now disabled."
+    else
+      object.update(enabled: true)
+      flash[:alert] = "#{object.class} #{object.id} with name '#{object.name}' is now enabled."
+    end
+  end
 
 end

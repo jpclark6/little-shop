@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root 'items#index'
   namespace :admin do
-    resources :merchants, only: [:none] do
-      resources :items, only: [:index]
+    resources :merchants, only: [:none], shallow: true do
+      resources :items, only: [:index, :edit, :destroy]
     end
+    patch 'items/toggle/:id', to: "items#toggle", as: "item_toggle", as: "item_toggle"
     get 'merchants/:id', to: "users#merchant_show", as: "merchant"
     get 'users/:id', to: "users#show", as: "user"
     get 'users', to: "users#index", as: "users"

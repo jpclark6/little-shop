@@ -37,12 +37,7 @@ class Dashboard::ItemsController < ApplicationController
 
   def toggle
     item = Item.find(params[:id])
-    if item.enabled?
-      item.update(enabled: false)
-    else
-      item.update(enabled: true)
-    end
-    flash[:alert] = "Item #{item.id} with name '#{item.name}' is now disabled."
+    toggle_enabled(item)
     redirect_to dashboard_items_path
   end
 
