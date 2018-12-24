@@ -47,7 +47,7 @@ describe "as an admin" do
     end
   end
 
-  it "I can enable and disable a merchant's items" do
+  it "I can enable, disable, and delete a merchant's items" do
     within "#item-#{@item_1.id}" do
       click_on "Disable Item"
     end
@@ -71,6 +71,13 @@ describe "as an admin" do
       expect(page).to have_content("Status: Enabled")
     end
 
+    within "#item-#{@item_1.id}" do
+      click_on "Delete Item"
+    end
 
+    expect(current_path).to eq admin_merchant_items_path(@merchant)
+    expect(page).to have_content("Item #{@item_1.id} with name '#{@item_1.name}' has been deleted.")
+
+    expect(page).to_not have_css("#item-#{@item_1.id}")
   end
 end
