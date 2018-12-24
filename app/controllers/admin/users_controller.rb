@@ -20,15 +20,9 @@ class Admin::UsersController < ApplicationController
     @users = User.where(role: ["registered"])
   end
 
-  def update
+  def toggle
     user = User.find(params[:id])
-    if user.enabled?
-      user.update(enabled: false)
-      flash[:notice] = "#{user.name} (id:#{user.id}) is now disabled."
-    else
-      user.update(enabled: true)
-      flash[:notice] = "#{user.name} (id:#{user.id}) is now enabled."
-    end
+    toggle_enabled(user)
     if user.merchant?
       redirect_to merchants_path
     else

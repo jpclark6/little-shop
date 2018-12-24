@@ -15,16 +15,12 @@ describe 'user index page' do
 
       expect(current_path).to eq(admin_users_path)
 
-      expect(page).to have_content("#{user.name} (id:#{user.id}) is now disabled.")
+      expect(page).to have_content("User #{user.id} with name '#{user.name}' is now disabled.")
 
 
       within "#user-#{user.id}" do
         expect(page).to have_content("Status: Disabled")
       end
-    end
-
-    xit 'should make sure disabled users cant log in' do
-
     end
 
     it "enables a user when I click enable" do
@@ -40,7 +36,7 @@ describe 'user index page' do
 
       expect(current_path).to eq(admin_users_path)
 
-      expect(page).to have_content("#{user.name} (id:#{user.id}) is now enabled.")
+      expect(page).to have_content("User #{user.id} with name '#{user.name}' is now enabled.")
 
 
       within "#user-#{user.id}" do
@@ -61,7 +57,7 @@ describe 'user index page' do
 
       expect(current_path).to eq(merchants_path)
 
-      expect(page).to have_content("#{merchant.name} (id:#{merchant.id}) is now disabled.")
+      expect(page).to have_content("User #{merchant.id} with name '#{merchant.name}' is now disabled.")
 
       within "#merchant-#{merchant.id}" do
         expect(page).to have_content("Status: Disabled")
@@ -81,7 +77,7 @@ describe 'user index page' do
 
       expect(current_path).to eq(merchants_path)
 
-      expect(page).to have_content("#{merchant.name} (id:#{merchant.id}) is now enabled.")
+      expect(page).to have_content("User #{merchant.id} with name '#{merchant.name}' is now enabled.")
 
       within "#merchant-#{merchant.id}" do
         expect(page).to have_content("Status: Enabled")

@@ -8,8 +8,7 @@ Rails.application.routes.draw do
     get 'merchants/:id', to: "users#merchant_show", as: "merchant"
     get 'users/:id', to: "users#show", as: "user"
     get 'users', to: "users#index", as: "users"
-    patch 'disable_user/:id', to: "users#update", as: "disable_user"
-    patch 'enable_user/:id', to: "users#update", as: "enable_user"
+    patch 'users/toggle/:id', to: "users#toggle", as: "toggle_user"
   end
 
   resources :items
@@ -34,11 +33,9 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     get "", to: 'users#show'
-
     resources :items, except: [:show]
     resources :orders, only: [:show, :index]
     patch "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
-
   end
 
   get '/register', to: 'users#new'
