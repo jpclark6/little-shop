@@ -31,6 +31,13 @@ class User < ApplicationRecord
 
   end
 
+  def self.fastest_fulfillment
+    User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time').joins(items: :order_items).where('order_items.fulfilled = true')
+        .group('users.id')
+        .order('fulfillment_time')
+        .limit(3)
+  end
+
   def self.top_merch_price
     User.where(role: "merchant")
         .joins(:items)
