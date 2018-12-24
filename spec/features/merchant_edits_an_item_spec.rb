@@ -8,12 +8,16 @@ describe 'as a merchant' do
     @new_instock_qty = 35
 
     merchant = FactoryBot.create(:merchant)
-    @item = FactoryBot.create(:item, enabled: false)
+    @item = FactoryBot.create(:item, enabled: false, image: "https://some.image")
     merchant.items << @item
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 
     visit dashboard_items_path
+
+
+  end
+  it 'I can edit all attributes of an item' do
 
     within "#item-#{@item.id}" do
       click_on "Edit Item"
@@ -22,6 +26,7 @@ describe 'as a merchant' do
     expect(current_path).to eq(dashboard_item_edit_path(@item))
 
     expect(find_field(:item_name).value).to eq(@item.name)
+    expect(find_field(:item_image).value).to eq(@item.image)
     expect(find_field(:item_description).value).to eq(@item.description)
     expect(find_field(:item_price).value).to eq(@item.price.to_s)
     expect(find_field(:item_instock_qty).value).to eq(@item.instock_qty.to_s)
@@ -31,9 +36,6 @@ describe 'as a merchant' do
     fill_in :item_image, with: @new_image
     fill_in :item_price, with: @new_price
     fill_in :item_instock_qty, with: @new_instock_qty
-
-  end
-  it 'I can edit all attributes of an item' do
 
     click_on "Update Item"
 
@@ -52,6 +54,11 @@ describe 'as a merchant' do
 
   end
   it 'if I edit an item incorrectly, it gives me errors' do
+
+    within "#item-#{@item.id}" do
+      click_on "Edit Item"
+    end
+
     fill_in :item_name, with: ""
     fill_in :item_description, with: ""
     fill_in :item_price, with: -10.99
@@ -69,8 +76,15 @@ describe 'as a merchant' do
 
     expect(page).to have_content("Item instock_qty must be greater than or equal to 0.")
   end
+  it "when editing an item, the image field is blank I haven't added an image" do
+    @item.update(image: "/no_image_available.jpg")
 
+    within "#item-#{@item.id}" do
+      click_on "Edit Item"
+    end
 
+    expect(find_field(:item_image).value).to eq("")
+  end
 end
 
 #
