@@ -80,4 +80,40 @@ describe "as an admin" do
 
     expect(page).to_not have_css("#item-#{@item_1.id}")
   end
+  describe "I can add an item" do
+    before(:each) do
+      click_on 'Add Item'
+      expect(current_path).to eq(new_admin_merchant_item_path(@merchant))
+
+
+      @new_name = 'New Item Name'
+      @new_description = 'Here is a description of the item.'
+      @new_image ='https://vignette.wikia.nocookie.net/herewestandrp/images/1/1f/New_item.png/revision/latest?cb=20171010214012'
+      @new_price =24
+      @new_instock_qty =35
+
+      fill_in :item_name, with: @new_name
+      fill_in :item_description, with: @new_description
+      fill_in :item_image, with: @new_image
+      fill_in :item_price, with: @new_price
+      fill_in :item_instock_qty, with: @new_instock_qty
+    end
+    it 'with proper data' do
+
+      click_button 'Create Item'
+
+      expect(current_path).to eq admin_merchant_items_path(@merchant)
+
+
+      within "#item-#{Item.last.id}" do
+        expect(page).to have_content(@new_name)
+        expect(page).to have_content(@new_description)
+        expect(page).to have_css("img[src='#{@new_image}']")
+        expect(page).to have_content("$#{@new_price}")
+        expect(page).to have_content("In stock: #{@new_instock_qty}")
+        expect(page).to have_content("Status: Enabled")
+      end
+    end
+  end
+
 end

@@ -1,4 +1,11 @@
-<%= button_to('Add Item', dashboard_items_new_path, method: :get) %>
+<% if merchant_user? %>
+  <%= button_to('Add Item', dashboard_items_new_path, method: :get) %>
+<% elsif current_admin? %>
+  <%= button_to('Add Item', new_admin_merchant_item_path(@merchant), method: :get) %>
+<% end %>
+
+
+
 <% @items.each do |item| %>
   <div id="item-<%= item.id %>">
     <h5>Item id: <%= item.id %></h5>
