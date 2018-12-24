@@ -1,4 +1,4 @@
-<%= button_to("Edit Item", dashboard_item_edit_path(item), method: :get) %>
+<%= button_to("Edit Item", edit_dashboard_item_path(item), method: :get) %>
 
 <% if item.enabled? %>
   <p> Status: Enabled

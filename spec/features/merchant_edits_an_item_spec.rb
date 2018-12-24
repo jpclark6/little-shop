@@ -23,7 +23,7 @@ describe 'as a merchant' do
       click_on "Edit Item"
     end
 
-    expect(current_path).to eq(dashboard_item_edit_path(@item))
+    expect(current_path).to eq(edit_dashboard_item_path(@item))
 
     expect(find_field(:item_name).value).to eq(@item.name)
     expect(find_field(:item_image).value).to eq(@item.image)
