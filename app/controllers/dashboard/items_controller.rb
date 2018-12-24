@@ -1,4 +1,6 @@
 class Dashboard::ItemsController < ApplicationController
+  before_action :require_current_user
+
   def index
     @items = Item.where(user: current_user)
   end

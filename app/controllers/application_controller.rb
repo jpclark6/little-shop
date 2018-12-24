@@ -17,5 +17,9 @@ class ApplicationController < ActionController::Base
 
   def merchant_user?
    current_user && current_user.merchant?
- end
+  end
+
+  def require_current_user
+    render file: "/public/404", status: :not_found unless current_user
+  end
 end
