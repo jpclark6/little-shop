@@ -114,6 +114,24 @@ describe "as an admin" do
         expect(page).to have_content("Status: Enabled")
       end
     end
+    it 'with bad data' do
+      fill_in :item_name, with: ""
+      fill_in :item_description, with: ""
+      fill_in :item_price, with: -10.99
+      fill_in :item_instock_qty, with: 0.1
+
+      click_on "Create Item"
+      expect(page).to have_content("Item price must be greater than 0.")
+      expect(page).to have_content("Item instock_qty must be an integer.")
+      expect(page).to have_content("Item name can't be blank.")
+      expect(page).to have_content("Item description can't be blank.")
+
+      fill_in :item_instock_qty, with: -3
+
+      click_on "Create Item"
+
+      expect(page).to have_content("Item instock_qty must be greater than or equal to 0.")
+    end
   end
 
 end
