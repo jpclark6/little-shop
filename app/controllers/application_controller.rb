@@ -34,4 +34,12 @@ class ApplicationController < ActionController::Base
       render file: "/public/404", status: :not_found
     end
   end
+
+  def no_admins_allowed
+    if current_admin?
+      render file: "/public/404", status: :not_found
+    end
+  end
+
+
 end
