@@ -1,6 +1,6 @@
 <% if merchant_user? %>
   <%= button_to('Add Item', new_dashboard_item_path, method: :get) %>
-<% elsif current_admin? %>
+<% elsif admin_user? %>
   <%= button_to('Add Item', new_admin_merchant_item_path(@merchant), method: :get) %>
 <% end %>
 
@@ -18,7 +18,7 @@
     </ul>
     <% if merchant_user? %>
       <%= render partial: "/dashboard/items/buttons", locals: {item: item}%>
-    <% elsif current_admin? %>
+    <% elsif admin_user? %>
       <%= render partial: "/admin/items/buttons", locals: {item: item}%>
     <% end %>
 
