@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'items#index'
   namespace :admin do
+    resources :merchants, only: [:none] do
+      resources :items, only: [:index]
+    end
     get 'merchants/:id', to: "users#merchant_show", as: "merchant"
     get 'users/:id', to: "users#show", as: "user"
     get 'users', to: "users#index", as: "users"
@@ -31,7 +34,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     get "", to: 'users#show'
-    get "/items", to: 'items#index'
+    get "/items", to: 'items#index', as: 'items'
     get '/items/new', to: 'items#new'
     get "/items/edit/:id", to: "items#edit", as: "item_edit"
     get "/orders", to: 'orders#index'

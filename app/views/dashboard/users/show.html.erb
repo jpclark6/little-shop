@@ -1,5 +1,10 @@
 <%= render partial: "/user_info" %>
-<%= link_to 'View Items', "/dashboard/items"%>
+<% if merchant_user? %>
+  <%= link_to 'View Items', dashboard_items_path %>
+<% elsif current_admin? %>
+  <%= link_to 'View Items', admin_merchant_items_path(@user) %>
+<% end %>
+
 <h3>Pending Orders</h3>
 <% @orders.each do |order| %>
   <%= render partial: "/dashboard/orders/order_info", locals: {order: order} %>

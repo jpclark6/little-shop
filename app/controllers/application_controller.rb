@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :add_errors_on_flash
+  helper_method :current_user, :merchant_user?, :current_admin?
   before_action :set_cart
 
   def set_cart
