@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
+  before_action :no_merchants_allowed
 
   def create
     item = Item.find(params[:item_id])

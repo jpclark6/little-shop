@@ -1,5 +1,5 @@
 class Dashboard::UsersController < ApplicationController
-  before_action :require_current_user
+  before_action :require_merchant
 
   def show
     @user = current_user

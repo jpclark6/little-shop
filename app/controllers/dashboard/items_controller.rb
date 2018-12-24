@@ -1,6 +1,5 @@
 class Dashboard::ItemsController < ApplicationController
-  before_action :require_current_user
-
+  before_action :require_merchant
   def index
     @items = Item.where(user: current_user)
   end

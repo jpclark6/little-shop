@@ -20,6 +20,18 @@ class ApplicationController < ActionController::Base
   end
 
   def require_current_user
-    render file: "/public/404", status: :not_found unless current_user
+    unless current_user && current_user.registered?
+      render file: "/public/404", status: :not_found
+    end
+  end
+
+  def require_merchant
+    render file: "/public/404", status: :not_found unless merchant_user?
+  end
+
+  def no_merchants_allowed
+    if merchant_user?
+      render file: "/public/404", status: :not_found
+    end
   end
 end
