@@ -52,6 +52,8 @@ describe "as an admin" do
       expect(page).to_not have_button("Delete Item")
       expect(page).to have_button("Enable Item")
     end
+
+    save_and_open_page
   end
 
   it "I can enable, disable, and delete a merchant's items" do
