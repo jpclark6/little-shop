@@ -1,0 +1,3 @@
+<%= form_for @item, url: admin_item_path(@item), method: :put do |f| %>
+  <%= render partial: "/dashboard/items/item_form", locals: { f: f } %>
+<% end %>

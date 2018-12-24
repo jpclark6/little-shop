@@ -4,6 +4,8 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new
   end
 
+
+
   def create
     @merchant = User.find(params[:merchant_id])
     @item = Item.new(item_params)
@@ -20,6 +22,21 @@ class Admin::ItemsController < ApplicationController
     @merchant = User.find(params[:merchant_id])
     @items = @merchant.items
     render template: "/dashboard/items/index"
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:success] = "Item #{@item.id} '#{@item.name}' has been updated."
+      redirect_to admin_merchant_items_path(@item.user)
+    else
+      add_errors_on_flash(@item)
+      render :edit
+    end
   end
 
   def toggle
@@ -39,7 +56,7 @@ class Admin::ItemsController < ApplicationController
 
   def item_params
     ip = params.require(:item).permit(:name, :description, :image, :price, :instock_qty)
-    ip[:user] = @merchant
+    ip[:user] = @merchant || @item.user
     ip.delete(:image) if ip[:image].empty?
     ip
   end
