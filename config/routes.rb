@@ -22,7 +22,6 @@ Rails.application.routes.draw do
       resources :order_items, only: [:update]
     end
     get '/edit', to: 'users#edit', as: "edit"
-    post '/update', to: 'users#update'
     patch '/update', to: 'users#update'
   end
 
