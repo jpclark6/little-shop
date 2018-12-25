@@ -18,10 +18,20 @@ class Order < ApplicationRecord
   end
 
   def total_price
-    order_items.sum("order_items.price * order_items.quantity")
+    order_items. sum("order_items.price * order_items.quantity")
   end
 
   def pending?
     status == 'pending'
+  end
+
+  def cancel_order
+    order_items.each do |oi|
+      if oi.fulfilled == true
+        oi.item.update(instock_qty: (oi.quantity + oi.item.instock_qty))
+        oi.update(fulfilled: false)
+      end
+    end
+    update(status: 'cancelled')
   end
 end
