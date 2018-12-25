@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
   root 'items#index'
   namespace :admin do
+    resources :merchants, only: [:none], shallow: true do
+      resources :items, expect: [:show]
+    end
+    patch 'items/toggle/:id', to: "items#toggle", as: "item_toggle", as: "item_toggle"
     get 'merchants/:id', to: "users#merchant_show", as: "merchant"
     get 'users/:id', to: "users#show", as: "user"
     get 'users', to: "users#index", as: "users"
-    patch 'disable_user/:id', to: "users#update", as: "disable_user"
-    patch 'enable_user/:id', to: "users#update", as: "enable_user"
+    patch 'users/toggle/:id', to: "users#toggle", as: "toggle_user"
   end
 
-  resources :items
+  resources :items, only: [:show, :index]
   resources :carts, only: [:create]
   resources :users, only: [:index, :create, :edit]
 
@@ -18,7 +21,6 @@ Rails.application.routes.draw do
       resources :order_items, only: [:update]
     end
     get '/edit', to: 'users#edit', as: "edit"
-    post '/update', to: 'users#update'
     patch '/update', to: 'users#update'
   end
 
@@ -31,14 +33,9 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     get "", to: 'users#show'
-    get "/items", to: 'items#index'
-    get '/items/new', to: 'items#new'
-    get "/items/edit/:id", to: "items#edit", as: "item_edit"
-    get "/orders", to: 'orders#index'
-    get "/orders/:id", to: "orders#show", as: "order"
-    delete "/items/delete/:id", to: "items#destroy", as: "item"
+    resources :items, except: [:show]
+    resources :orders, only: [:show, :index]
     patch "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
-    post "/items", to: "items#create", as: "create_item"
   end
 
   get '/register', to: 'users#new'

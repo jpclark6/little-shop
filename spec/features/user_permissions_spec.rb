@@ -6,7 +6,7 @@ describe 'as a visitor' do
               profile_edit_path,
               dashboard_path,
               dashboard_items_path,
-              dashboard_items_new_path,
+              new_dashboard_item_path,
               dashboard_orders_path,
               dashboard_order_path(1),
               admin_merchant_path(1),
@@ -29,7 +29,7 @@ describe 'as a registered user' do
 
     paths = [ dashboard_path,
               dashboard_items_path,
-              dashboard_items_new_path,
+              new_dashboard_item_path,
               dashboard_orders_path,
               dashboard_order_path(1),
               admin_merchant_path(1),
@@ -75,7 +75,7 @@ describe 'as a visitor' do
               profile_edit_path,
               dashboard_path,
               dashboard_items_path,
-              dashboard_items_new_path,
+              new_dashboard_item_path,
               dashboard_orders_path,
               dashboard_order_path(1),
               cart_path]

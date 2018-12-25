@@ -23,21 +23,15 @@ describe "as a visitor" do
   it "does not take me to the admin merchant show page" do
     merchant = FactoryBot.create(:merchant)
     visit admin_merchant_path(merchant)
-
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
 end
 describe "as a registered user" do
   it "does not take me to the admin merchant show page" do
     user = FactoryBot.create(:user)
-
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-
-
     merchant = FactoryBot.create(:merchant)
     visit admin_merchant_path(merchant)
-
-
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
 end
