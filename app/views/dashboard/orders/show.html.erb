@@ -1,5 +1,12 @@
 <h1>Order <%= @order.id %></h1>
-
 <h2>Customer info:</h2>
 <%= render partial: "/user_info"%>
+<!-- save_and_open_page -->
+<!-- [28] pry(#<#<Class:0x00007fa648affc30>>)> @order.order_items.each do |order_item|
+  [28] pry(#<#<Class:0x00007fa648affc30>>)*   order_item.item.instock_qty
+  [28] pry(#<#<Class:0x00007fa648affc30>>)* end  -->
+
+  <% if :status :pending && @order.order_items[0].item.instock_qty >= @order.order_item.quantity %>
+    <%= button_to 'Fulfill', dashboard_order_path(@order) %>
+  <% end %>
 <%= render partial: "/order_items" %>
