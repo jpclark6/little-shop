@@ -70,17 +70,24 @@ describe 'order show page' do
         expect(page).to have_content("Subtotal: $#{order_item_1.subtotal}")
       end
     end
-  end
 
+    it 'Shows fulfill button, if quantity matches my in-stock quantity' do
+
+    end
+  end
 end
 
-
-
+# As a merchant
 # When I visit an order show page from my dashboard
-# I only see the items in the order that are being purchased from my inventory
-# I do not see any items in the order being purchased from other merchants
-# For each item, I see the following information:
-# - the name of the item, which is a link to my item's show page
-# - a small thumbnail of the item
-# - my price for the item
-# - the quantity the user wants to purchase
+# For each item of mine in the order
+
+# If the user's desired quantity is equal to or less than my current inventory quantity for that item
+# And I have not already "fulfilled" that item:
+
+# - Then I see a button or link to "fulfill" that item
+# - When I click on that link or button I am returned to the order show page
+# - I see the item is now fulfilled
+# - I also see a flash message indicating that I have fulfilled that item
+# - My inventory quantity is permanently reduced by the user's desired quantity
+#
+# If I have already fulfilled this item, I see text indicating such.
