@@ -65,5 +65,4 @@ class ApplicationController < ActionController::Base
       flash[:alert] = "#{object.class} #{object.id} with name '#{object.name}' is now enabled."
     end
   end
-
 end

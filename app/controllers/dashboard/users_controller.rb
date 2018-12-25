@@ -6,5 +6,4 @@ class Dashboard::UsersController < ApplicationController
     @orders = @user.merchant_pending_orders
     render template: 'dashboard/users/show'
   end
-
 end
