@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :add_errors_on_flash
+  helper_method :current_user, :merchant_user?, :admin_user?
   before_action :set_cart
 
   def set_cart
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def current_admin?
+  def admin_user?
     current_user && current_user.admin?
   end
 
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def no_admins_allowed
-    if current_admin?
+    if admin_user?
       render file: "/public/404", status: :not_found
     end
   end
@@ -54,5 +54,15 @@ class ApplicationController < ActionController::Base
       "User" => "Your",
       "Item" => "Item"
     }
+  end
+
+  def toggle_enabled(object)
+    if object.enabled?
+      object.update(enabled: false)
+      flash[:alert] = "#{object.class} #{object.id} with name '#{object.name}' is now disabled."
+    else
+      object.update(enabled: true)
+      flash[:alert] = "#{object.class} #{object.id} with name '#{object.name}' is now enabled."
+    end
   end
 end

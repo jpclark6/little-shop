@@ -53,7 +53,6 @@ describe 'as a merchant user' do
         expect(page).to have_link("Home", href: "/")
         expect(page).to have_link("Browse", href: "/items" )
         expect(page).to have_link("Merchants", href: "/merchants")
-        expect(page).to have_link("Orders", href: dashboard_orders_path)
         expect(page).to have_link("Dashboard", href: "/dashboard")
         expect(page).to have_link("Log Out", href: logout_path)
         expect(page).to have_content("Logged in as #{merchant.name}")

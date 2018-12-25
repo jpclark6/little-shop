@@ -11,7 +11,7 @@ describe 'As a Merchant' do
 
     click_button 'Add Item'
 
-    expect(current_path).to eq(dashboard_items_new_path)
+    expect(current_path).to eq(new_dashboard_item_path)
 
     fill_in :item_name, with: 'New Item Name'
     fill_in :item_description, with: 'Here is a description of the item.'

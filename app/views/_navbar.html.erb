@@ -14,8 +14,6 @@
         <% if current_user.registered? %>
           <li><h3><%= link_to "Profile", profile_path %></h3></li>
           <li><h3><%= link_to "Orders", profile_orders_path %></h3></li>
-        <% elsif current_user.merchant? %>
-          <li><h3><%= link_to "Orders", dashboard_orders_path %></h3></li>
         <% end %>
         <li><h3><%= link_to "Log Out", logout_path, method: :delete %></h3></li>
         <li><h3>Logged in as <%= current_user.name %></h3></li>
