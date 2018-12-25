@@ -75,6 +75,29 @@ RSpec.describe User, type: :model do
 
       expect(User.fastest_fulfillment).to eq([merchant_2, merchant_3, merchant_4])
     end
+    it '.slowest_fulfillment' do
+      order_item_1 = FactoryBot.create(:order_item, updated_at: 1.days.ago, created_at: 10.days.ago, fulfilled: true)
+      merchant_1 = order_item_1.item.user
+      item_1 = FactoryBot.create(:item, user: merchant_1)
+      order_item_2 = FactoryBot.create(:order_item, updated_at: Date.current, created_at: 7.days.ago, fulfilled: true, item: item_1)
+
+      order_item_3 = FactoryBot.create(:order_item, updated_at: Date.current, created_at: 1.days.ago, fulfilled: true)
+      merchant_2 = order_item_3.item.user
+      item_2 = FactoryBot.create(:item, user: merchant_2)
+      order_item_4 = FactoryBot.create(:order_item, updated_at: 3.days.ago, created_at: 5.days.ago, fulfilled: true, item: item_2)
+
+      order_item_5 = FactoryBot.create(:order_item, updated_at: 4.days.ago, created_at: 7.days.ago, fulfilled: true)
+      merchant_3 = order_item_5.item.user
+      item_3 = FactoryBot.create(:item, user: merchant_3)
+      order_item_6 = FactoryBot.create(:order_item, updated_at: 13.days.ago, created_at: 15.days.ago, fulfilled: true, item: item_3)
+
+      order_item_7 = FactoryBot.create(:order_item, updated_at: 20.days.ago, created_at: 25.days.ago, fulfilled: true)
+      merchant_4 = order_item_7.item.user
+      item_4 = FactoryBot.create(:item, user: merchant_4)
+      order_item_8 = FactoryBot.create(:order_item, updated_at: 3.days.ago, created_at: 6.days.ago, fulfilled: true, item: item_4)
+
+      expect(User.slowest_fulfillment).to eq([merchant_1, merchant_4, merchant_3])
+    end
   end
 
   describe 'instance methods' do

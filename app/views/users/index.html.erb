@@ -18,6 +18,12 @@
       <li><%= merchant.name %></li>
     <% end %>
   </ul>
+  <ul class="slowest_fulfillment">
+    <h3>Slowest merchants </h3>
+    <% @merchants.slowest_fulfillment.each do |merchant| %>
+      <li><%= merchant.name %></li>
+    <% end %>
+  </ul>
 </div>
 <h1> All Merchants </h1>
 <div id='all-merchants'>
