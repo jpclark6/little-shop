@@ -66,9 +66,9 @@ RSpec.describe User, type: :model do
       order_item_5 = FactoryBot.create(:order_item, updated_at: 4.days.ago, created_at: 7.days.ago, fulfilled: true)
       merchant_3 = order_item_5.item.user
       item_3 = FactoryBot.create(:item, user: merchant_3)
-      order_item_6 = FactoryBot.create(:order_item, updated_at: 15.days.ago, created_at: 13.days.ago, fulfilled: true, item: item_3)
+      order_item_6 = FactoryBot.create(:order_item, updated_at: 13.days.ago, created_at: 15.days.ago, fulfilled: true, item: item_3)
 
-      order_item_7 = FactoryBot.create(:order_item, updated_at: 25.days.ago, created_at: 20.days.ago, fulfilled: true)
+      order_item_7 = FactoryBot.create(:order_item, updated_at: 20.days.ago, created_at: 25.days.ago, fulfilled: true)
       merchant_4 = order_item_7.item.user
       item_4 = FactoryBot.create(:item, user: merchant_4)
       order_item_8 = FactoryBot.create(:order_item, updated_at: 3.days.ago, created_at: 6.days.ago, fulfilled: true, item: item_4)
