@@ -33,6 +33,11 @@ class Admin::UsersController < ApplicationController
   private
 
   def require_admin
+<<<<<<< HEAD
     render file: "/public/404" unless admin_user?
+=======
+    render file: "/public/404", status: :not_found unless current_admin?
+>>>>>>> 39d518ef00025321d2ae1e885e24e383373bca87
   end
+
 end

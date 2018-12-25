@@ -1,5 +1,6 @@
 class Profile::OrdersController < ApplicationController
-
+  before_action :require_current_user
+  
   def show
     @order = Order.find(params[:id])
     @user = current_user
