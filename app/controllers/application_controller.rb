@@ -19,6 +19,28 @@ class ApplicationController < ActionController::Base
    current_user && current_user.merchant?
   end
 
+  def require_current_user
+    unless current_user && current_user.registered?
+      render file: "/public/404", status: :not_found
+    end
+  end
+
+  def require_merchant
+    render file: "/public/404", status: :not_found unless merchant_user?
+  end
+
+  def no_merchants_allowed
+    if merchant_user?
+      render file: "/public/404", status: :not_found
+    end
+  end
+
+  def no_admins_allowed
+    if admin_user?
+      render file: "/public/404", status: :not_found
+    end
+  end
+
   def add_errors_on_flash(object_with_errors)
     object_with_errors.errors.each do |attribute, message|
       flash[attribute] = "#{error_prefix[object_with_errors.class.to_s]} #{attribute} #{message}."
