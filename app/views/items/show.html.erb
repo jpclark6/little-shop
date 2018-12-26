@@ -10,7 +10,7 @@
     <li><strong>Price: </strong><%= number_to_currency(@item.price) %></li>
     <li><strong>Average Time to Fulfill Item: </strong>
     <% if avg_time = @item.avg_fulfillment_time %>
-      <%= avg_time[0..-8] %>
+      <%= avg_time.sub(/\.\d*$/, '') %>
     <% end %>
     </li>
     <% unless current_user && (current_user.admin? || current_user.merchant?) %>

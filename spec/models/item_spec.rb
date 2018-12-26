@@ -32,7 +32,7 @@ RSpec.describe Item, type: :model do
       order_1.order_items.first.update(fulfilled: true, created_at: 0.4.hours.ago)
       order_2.order_items.first.update(fulfilled: true, created_at: 3.days.ago)
       unfulfilled_order.order_items.first.update(fulfilled: false, created_at: 21.days.ago)
-      expect(item_1.avg_fulfillment_time[0..-8]).to eq("1 day 12:12:00")
+      expect(item_1.avg_fulfillment_time.sub(/\.\d*$/, '')).to eq("1 day 12:12:00")
     end
   end
 end
