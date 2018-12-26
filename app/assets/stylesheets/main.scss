@@ -15,6 +15,33 @@ nav {
   width: 100%;
   background-color: whitesmoke;
   border-bottom: 1px solid darkgrey;
+
+  li:hover {
+    background: #666;
+  }
+
+  li:hover a {
+    color: white;
+  }
+
+  li:hover h3 {
+    color: white;
+  }
+
+  li a:hover {
+    color: white;
+  }
+
+  ul {
+   list-style-type: none;
+  }
+
+  li {
+     display: inline-block;
+     style: none;
+     padding: 15px 15px 0 15px;
+     border-radius: 10px;
+   }
 }
 
 .nav-link-container {
@@ -37,32 +64,28 @@ a {
    color: slategrey;
  }
 
-nav li {
-   display: inline-block;
-   style: none;
-   padding: 15px 15px 0 15px;
-   border-radius: 10px;
- }
 
-nav li:hover {
-  background: #666;
+ .dropdown {
+  position: relative;
+  display: inline-block;
+
 }
 
-nav li:hover a {
-  color: white;
+.dropdown:hover .dropdown-content {
+display: block;
 }
 
-nav li:hover h3 {
-  color: white;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
 }
 
-nav li a:hover {
-  color: white;
-}
 
-nav ul {
- list-style-type: none;
-}
 
 .flash {
     background: snow;
@@ -140,46 +163,48 @@ label {
   padding: 3px;
   overflow: scroll;
   border-radius: 7px;
+
+  h4 {
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 140%;
+    margin: 8px;
+  }
+
+  li {
+    style: none;
+    padding: 4px 8px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 5px;
+    list-style-type: none;
+  }
 }
 
-.inner-flex h4 {
-  text-transform: capitalize;
-  text-align: center;
-  font-size: 140%;
-  margin: 8px;
-}
-
-.inner-flex li {
-  style: none;
-  padding: 4px 8px;
-}
-
-.inner-flex ul {
-  margin: 0;
-  padding: 5px;
-  list-style-type: none;
-}
 
 .item-show-page {
   width: 550px;
+
+  h1 {
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  li {
+    style: none;
+    padding: 8px 8px;
+    font-size: 24px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 5px;
+    list-style-type: none;
+  }
 }
 
-.item-show-page h1 {
-  text-align: center;
-  text-transform: capitalize;
-}
-
-.item-show-page li {
-  style: none;
-  padding: 8px 8px;
-  font-size: 24px;
-}
-
-.item-show-page ul {
-  margin: 0;
-  padding: 5px;
-  list-style-type: none;
-}
 
 .thumb {
   width: 260px;
