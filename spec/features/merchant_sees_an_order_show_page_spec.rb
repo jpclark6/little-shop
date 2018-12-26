@@ -79,7 +79,6 @@ describe 'order show page' do
       item_1 = FactoryBot.create(:item)
       item_2 = FactoryBot.create(:item)
       merchant.items += [item_1, item_2]
-
       order = FactoryBot.create(:order)
 
       order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 1.50)

@@ -94,5 +94,19 @@ RSpec.describe Order, type: :model do
       expect(item_2.instock_qty).to eq(item_2_pre_inv + 1)
       expect(item_3.instock_qty).to eq(item_3_pre_inv)
     end
+
+    it '.fulfillable?' do
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      item_3 = FactoryBot.create(:item)
+
+      order_1 = FactoryBot.create(:pending, items: [item_1,item_2,item_3])
+      order_2 = FactoryBot.create(:fulfilled, items: [item_1,item_2,item_3])
+      order_3 = FactoryBot.create(:cancelled, items: [item_1,item_2,item_3])
+
+      expect(order_1.fulfillable?).to eq(true)
+      expect(order_2.fulfillable?).to eq(false)
+      expect(order_3.fulfillable?).to eq(false)
+    end
   end
 end
