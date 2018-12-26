@@ -9,6 +9,14 @@ class Item < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
 
+  def self.top_5
+    select("items.name, items.id, sum(order_items.quantity) as units_sold")
+          .joins(:order_items)
+          .where(order_items: {fulfilled: true})
+          .group(:id)
+          .order("units_sold desc")
+          .limit(5)
+  end
 
   def never_ordered?
     order_items.empty?

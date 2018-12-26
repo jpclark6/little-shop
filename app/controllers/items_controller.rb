@@ -5,6 +5,8 @@ class ItemsController < ApplicationController
     else
       @items = Item.where(enabled: true)
     end
+    @top_5_items = Item.top_5
+    # @bottom_5_items = Item.bottom_5
   end
 
   def show

@@ -23,4 +23,34 @@ RSpec.describe Item, type: :model do
       expect(item_2.never_ordered?).to eq(false)
     end
   end
+  describe 'class methods' do
+    before(:each) do
+      @item_1 = FactoryBot.create(:item)
+      @item_2 = FactoryBot.create(:item)
+      @item_3 = FactoryBot.create(:item)
+      @item_4 = FactoryBot.create(:item)
+      @item_5 = FactoryBot.create(:item)
+      @item_6 = FactoryBot.create(:item)
+
+      FactoryBot.create_list(:order_item, 3, item: @item_6, quantity: 10, fulfilled: true)
+      FactoryBot.create_list(:order_item, 2, item: @item_4, quantity: 12, fulfilled: true)
+      FactoryBot.create_list(:order_item, 1, item: @item_2, quantity: 13, fulfilled: true)
+      FactoryBot.create_list(:order_item, 2, item: @item_1, quantity: 6, fulfilled: true)
+      FactoryBot.create_list(:order_item, 1, item: @item_3, quantity: 1, fulfilled: true)
+    end
+    it '.top_5' do
+      expected = [@item_6, @item_4, @item_2, @item_1, @item_3]
+      result = Item.top_5
+      expect(result[0].id).to eq(expected[0].id)
+      expect(result[1].id).to eq(expected[1].id)
+      expect(result[2].id).to eq(expected[2].id)
+      expect(result[3].id).to eq(expected[3].id)
+      expect(result[4].id).to eq(expected[4].id)
+
+      expect(result[0].units_sold).to eq(30)
+
+      expect(result.size).to eq(5)
+    end
+
+  end
 end

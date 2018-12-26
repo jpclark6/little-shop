@@ -1,3 +1,16 @@
+<div id="item-index-statistics">
+
+  <div id="most-popular-items">
+    <h5>5 Most Popular Items</h5>
+    <ol>
+      <% @top_5_items.each do |item| %>
+        <li><%= item.name %> (<%= item.units_sold %> units sold)</li>
+      <% end %>
+    </ol>
+  </div>
+</div>
+
+
 <div class="flex-container">
   <% @items.each do |item| %>
     <div id="item-<%= item.id %>" class="inner-flex shadow">
