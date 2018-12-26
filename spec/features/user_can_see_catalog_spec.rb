@@ -51,6 +51,49 @@ describe 'As any type of user' do
 
     visit items_path
 
-    expect(page).to_not have_css("#item-#{item_2.id}")  
+    expect(page).to_not have_css("#item-#{item_2.id}")
+  end
+
+  it 'shows most popular and least popular items' do
+    item_1 = FactoryBot.create(:item)
+    item_2 = FactoryBot.create(:item)
+    item_3 = FactoryBot.create(:item)
+    item_4 = FactoryBot.create(:item)
+    item_5 = FactoryBot.create(:item)
+    item_6 = FactoryBot.create(:item)
+
+
+    FactoryBot.create_list(:order_item, 3, item: item_6, quantity: 10, fulfilled: true)
+    FactoryBot.create_list(:order_item, 2, item: item_4, quantity: 12, fulfilled: true)
+    FactoryBot.create_list(:order_item, 1, item: item_2, quantity: 13, fulfilled: true)
+    FactoryBot.create_list(:order_item, 2, item: item_1, quantity: 6, fulfilled: true)
+    FactoryBot.create_list(:order_item, 1, item: item_3, quantity: 1, fulfilled: true)
+
+    visit items_path
+
+    within "#item-index-statistics" do
+
+      within "#most-popular-items" do
+        expect(all("li")[0]).to have_content("#{item_6.name} (30 units sold)")
+        expect(all("li")[1]).to have_content(item_4.name)
+        expect(all("li")[2]).to have_content(item_2.name)
+        expect(all("li")[3]).to have_content(item_1.name)
+        expect(all("li")[4]).to have_content(item_3.name)
+
+        expect(page).to_not have_content(item_5.name)
+
+      end
+
+      within "#least-popular-items" do
+        expect(all("li")[0]).to have_content(item_5.name)
+        expect(all("li")[1]).to have_content(item_3.name)
+        expect(all("li")[2]).to have_content(item_1.name)
+        expect(all("li")[3]).to have_content(item_2.name)
+        expect(all("li")[4]).to have_content(item_4.name)
+        expect(page).to_not have_content(item_6.name)
+
+      end
+
+    end
   end
 end

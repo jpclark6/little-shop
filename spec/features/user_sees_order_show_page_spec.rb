@@ -69,10 +69,10 @@ describe 'As a user' do
         expect(oi.fulfilled).to eq(false)
       end
       expect(@order_1.status).to eq('cancelled')
-      item_1_stock_qty_after = Item.find(@order_1.order_items.last.item.id).instock_qty
+      item_1_stock_qty_after = Item.find(@order_1.order_items.first.item.id).instock_qty
       expect(item_1_stock_qty_after).to eq(item_1_expected_qty)
 
-      item_2_stock_qty_after =Item.find(@order_1.order_items.first.item.id).instock_qty
+      item_2_stock_qty_after =Item.find(@order_1.order_items.last.item.id).instock_qty
       expect(item_2_stock_qty_after).to eq(item_2_expected_qty)
 
       expect(current_path).to eq(profile_path)
