@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :items, except: [:show]
     resources :orders, only: [:show, :index]
     patch "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
+    patch "/order/fulfill/:id", to: "orders#fulfill", as: "order_fulfill"
   end
 
   get '/register', to: 'users#new'

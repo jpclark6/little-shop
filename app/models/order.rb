@@ -34,10 +34,7 @@ class Order < ApplicationRecord
     end
     update(status: 'cancelled')
   end
-# @order.order_items.each do |order_item|
-#   order_item.item.instock_qty
-# end
-
+  
   def fulfillable?
     if pending? &&
       order_items.any? do |order_item|
