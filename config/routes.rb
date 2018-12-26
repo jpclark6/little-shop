@@ -6,8 +6,7 @@ Rails.application.routes.draw do
     end
     patch 'items/toggle/:id', to: "items#toggle", as: "item_toggle", as: "item_toggle"
     get 'merchants/:id', to: "users#merchant_show", as: "merchant"
-    get 'users/:id', to: "users#show", as: "user"
-    get 'users', to: "users#index", as: "users"
+    resources :users, only: [:show, :index, :edit, :update]
     patch 'users/toggle/:id', to: "users#toggle", as: "toggle_user"
   end
 

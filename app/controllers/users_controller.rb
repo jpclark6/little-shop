@@ -19,9 +19,6 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def edit
-  end
-
   def index
     if current_user && current_user.admin?
       @merchants = User.where(role: "merchant")

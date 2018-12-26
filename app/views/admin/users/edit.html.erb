@@ -1,0 +1,3 @@
+<%= form_for @user, url: admin_user_path(@user), html: {class: "edit_user user-input-form shadow"} do |f|  %>
+ <%= render partial: "/profile/users/user_fields", locals:{f: f}%>
+<% end  %>

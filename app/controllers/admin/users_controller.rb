@@ -20,6 +20,21 @@ class Admin::UsersController < ApplicationController
     @users = User.where(role: ["registered"])
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "Your data is updated"
+      redirect_to admin_user_path(@user)
+    else
+      flash[:error] = "the email you entered is already taken"
+      render :edit
+    end
+  end
+
   def toggle
     user = User.find(params[:id])
     toggle_enabled(user)
@@ -34,6 +49,10 @@ class Admin::UsersController < ApplicationController
 
   def require_admin
     render file: "/public/404", status: :not_found unless admin_user?
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :address, :city, :state, :email, :password, :zip_code, :password_confirmation)
   end
 
 end
