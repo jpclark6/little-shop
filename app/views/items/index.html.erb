@@ -1,13 +1,21 @@
 <div id="item-index-statistics">
 
-  <div id="most-popular-items">
+  <span id="most-popular-items">
     <h5>5 Most Popular Items</h5>
     <ol>
       <% @top_5_items.each do |item| %>
         <li><%= item.name %> (<%= item.units_sold %> units sold)</li>
       <% end %>
     </ol>
-  </div>
+  </span>
+  <span id="least-popular-items">
+    <h5>5 Least Popular Items</h5>
+    <ol>
+      <% @bottom_5_items.each do |item| %>
+        <li><%= item.name %> (<%= item.units_sold %> units sold)</li>
+      <% end %>
+    </ol>
+  </span>
 </div>
 
 

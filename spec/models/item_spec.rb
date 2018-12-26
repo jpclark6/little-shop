@@ -51,6 +51,20 @@ RSpec.describe Item, type: :model do
 
       expect(result.size).to eq(5)
     end
+    it '.bottom_5' do
+      expected = [@item_5, @item_3, @item_1, @item_2, @item_4]
+      result = Item.bottom_5
+      require 'pry'; binding.pry
+      expect(result.size).to eq(5)
+
+      expect(result[0].id).to eq(expected[0].id)
+      expect(result[1].id).to eq(expected[1].id)
+      expect(result[2].id).to eq(expected[2].id)
+      expect(result[3].id).to eq(expected[3].id)
+      expect(result[4].id).to eq(expected[4].id)
+
+      expect(result[0].units_sold).to eq(0)
+    end
 
   end
 end

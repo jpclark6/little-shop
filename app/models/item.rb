@@ -18,6 +18,14 @@ class Item < ApplicationRecord
           .limit(5)
   end
 
+  def self.bottom_5
+    select("items.name, items.id, sum(order_items.quantity) as units_sold")
+          .left_outer_joins(:order_items)
+          .group(:id)
+          .order("units_sold asc")
+          .limit(5)
+  end
+
   def never_ordered?
     order_items.empty?
   end
