@@ -30,8 +30,9 @@ describe 'As any type of user' do
     item_1 = FactoryBot.create(:item)
 
     visit items_path
-
-    click_on(item_1.name)
+    within("#item-#{item_1.id}") do
+      click_on(item_1.name)
+    end
     expect(current_path).to eq(item_path(item_1))
   end
 
