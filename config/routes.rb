@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get 'users/:id', to: "users#show", as: "user"
     get 'users', to: "users#index", as: "users"
     patch 'users/toggle/:id', to: "users#toggle", as: "toggle_user"
+    get 'users/edit/:id', to: "users#edit", as: "edit_user"
+    patch 'users/:id', to: "users#update", as: "update_user"
   end
 
   resources :items, only: [:show, :index]
