@@ -13,4 +13,13 @@ class Item < ApplicationRecord
   def never_ordered?
     order_items.empty?
   end
+
+  def avg_fulfillment_time
+    results = OrderItem.select("avg(updated_at - created_at) as avg_f_time").where(item: self, fulfilled: true)
+    if results.present?
+      return results.first['avg_f_time']
+    else
+      return nil
+    end
+  end
 end
