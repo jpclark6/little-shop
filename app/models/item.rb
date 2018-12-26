@@ -19,10 +19,10 @@ class Item < ApplicationRecord
   end
 
   def self.bottom_5
-    select("items.name, items.id, sum(order_items.quantity) as units_sold")
+    select("items.name, items.id, coalesce(sum(order_items.quantity), 0) as units_sold")
           .left_outer_joins(:order_items)
           .group(:id)
-          .order("units_sold asc")
+          .order("coalesce(sum(order_items.quantity), 0)")
           .limit(5)
   end
 

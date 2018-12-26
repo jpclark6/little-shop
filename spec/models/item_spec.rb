@@ -54,8 +54,9 @@ RSpec.describe Item, type: :model do
     it '.bottom_5' do
       expected = [@item_5, @item_3, @item_1, @item_2, @item_4]
       result = Item.bottom_5
-      require 'pry'; binding.pry
-      expect(result.size).to eq(5)
+
+      expect(result.length).to eq(5)
+      # when I called .size instead of .length it tried to integrate that into the ActiveRecord query
 
       expect(result[0].id).to eq(expected[0].id)
       expect(result[1].id).to eq(expected[1].id)
