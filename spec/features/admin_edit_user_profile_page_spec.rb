@@ -12,7 +12,7 @@ describe 'as an admin' do
 
       click_link "Edit Profile"
 
-      expect(current_path).to eq(admin_edit_user_path(user))
+      expect(current_path).to eq(edit_admin_user_path(user))
 
       fill_in :user_name, with: "John Doe"
       fill_in :user_address, with: "433 Larimer"
