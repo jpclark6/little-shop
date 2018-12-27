@@ -5,22 +5,23 @@
 <% end %>
 
 
+<div class="flex-container">
+  <% @items.each do |item| %>
+    <div id="item-<%= item.id %>" class="inner-flex shadow tall-container">
+      <h5>Item id: <%= item.id %></h5>
+      <ul>
+        <li><%= item.name %></li>
+        <li><%= item.description %></li>
+        <li>Price: <%= number_to_currency(item.price) %></li>
+        <li><%= image_tag(item.image, class: :thumb, onerror: 'this.src="/no_image_available.jpg"') %></li>
+        <li>In stock: <%= item.instock_qty %></li>
+      </ul>
+      <% if merchant_user? %>
+        <%= render partial: "/dashboard/items/buttons", locals: {item: item}%>
+      <% elsif admin_user? %>
+        <%= render partial: "/admin/items/buttons", locals: {item: item}%>
+      <% end %>
 
-<% @items.each do |item| %>
-  <div id="item-<%= item.id %>">
-    <h5>Item id: <%= item.id %></h5>
-    <ul>
-      <li><%= item.name %></li>
-      <li><%= item.description %></li>
-      <li>Price: <%= number_to_currency(item.price) %></li>
-      <li><%= image_tag(item.image, class: :thumb, onerror: 'this.src="/no_image_available.jpg"') %></li>
-      <li>In stock: <%= item.instock_qty %></li>
-    </ul>
-    <% if merchant_user? %>
-      <%= render partial: "/dashboard/items/buttons", locals: {item: item}%>
-    <% elsif admin_user? %>
-      <%= render partial: "/admin/items/buttons", locals: {item: item}%>
-    <% end %>
-
-  </div>
-<% end %>
+    </div>
+  <% end %>
+</div>

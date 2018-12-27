@@ -5,7 +5,7 @@ class Profile::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @user = current_user
     @order_items = @order.order_items
-    @cancel_order_path = :profile_order_path
+    @order_path = :profile_order_path
   end
 
   def index
