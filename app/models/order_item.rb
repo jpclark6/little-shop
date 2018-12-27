@@ -18,13 +18,10 @@ class OrderItem < ApplicationRecord
   end
 
   def fulfillable?
-    if not_fulfilled && order.order_items.each do |order_item|
-                          order_item.item.instock_qty >= order_item.quantity
-                          return true
-                        end
-      return true
+    if not_fulfilled && item.instock_qty >= quantity
+      true
     else
-      return false
+      false
     end
   end
 
