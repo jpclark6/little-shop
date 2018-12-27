@@ -92,6 +92,10 @@ describe 'order show page' do
 
       expect(order_item_1.fulfilled?).to eq(false)
 
+      within "#item-#{order_item_1.item_id}" do
+        expect(page).to have_content("Status: Not Fulfilled")
+      end
+
       within "#order_item-#{order_item_1.id}" do
         click_on 'Fulfill'
       end
@@ -100,6 +104,10 @@ describe 'order show page' do
       order_item_1 = OrderItem.find(order_item_1.id)
       expect(order_item_1.fulfilled?).to eq(true)
       expect(order_item_2.fulfilled?).to eq(false)
+
+      within "#item-#{order_item_1.item_id}" do
+        expect(page).to have_content("Status: Fulfilled")
+      end
 
       within "#order_item-#{order_item_1.id}" do
         expect(page).to_not have_button('Fulfill')

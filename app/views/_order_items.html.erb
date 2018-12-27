@@ -1,5 +1,5 @@
 <% @order_items.each_with_index do |order_item, i| %>
-  <div id="item-<%=order_item.item_id  %>" class='show-order-item'>
+  <div id="item-<%= order_item.item_id %>" class='show-order-item'>
     <h2><span id='item-number'>Item <%= i + 1 %>:</span></h2>
       <%= image_tag(order_item.item.image, class: "thumb", onerror: 'this.src="/no_image_available.jpg"') %>
       <ul>
@@ -8,6 +8,12 @@
         <li><b>Quantity: </b><%= order_item.quantity %></li>
         <li><b>Price: </b><%= number_to_currency(order_item.price) %></li>
         <li><b>Subtotal: </b><%= number_to_currency(order_item.subtotal) %></li>
+        <li><b>Status: </b>
+          <% if order_item.fulfilled? %>
+              <%= "Fulfilled" %>
+            <% else %>
+              <%= "Not Fulfilled" %>
+          <% end %></li>
       </ul>
   </div>
 <% end %>
