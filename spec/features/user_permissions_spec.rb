@@ -11,6 +11,7 @@ describe 'as a visitor' do
               dashboard_order_path(1),
               admin_merchant_path(1),
               admin_user_path(1),
+              admin_order_path(1),
               admin_users_path ]
 
     paths.each do |path|
@@ -34,6 +35,7 @@ describe 'as a registered user' do
               dashboard_order_path(1),
               admin_merchant_path(1),
               admin_user_path(1),
+              admin_order_path(1),
               admin_users_path ]
 
     paths.each do |path|
@@ -55,6 +57,7 @@ describe 'as a merchant' do
               cart_path,
               admin_merchant_path(1),
               admin_user_path(1),
+              admin_order_path(1),
               admin_users_path ]
 
     paths.each do |path|
@@ -65,8 +68,8 @@ describe 'as a merchant' do
     end
   end
 end
-describe 'as a visitor' do
-  it 'should not be allowed to see admin, registered and merchant paths' do
+describe 'as a admin' do
+  it 'should not be allowed to see cart, registered and merchant paths' do
     admin = FactoryBot.create(:admin)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)

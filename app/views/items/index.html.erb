@@ -1,3 +1,28 @@
+<div id="item-index-statistics">
+  <span class="dropdown"><h2>Statistics</h2>
+  <div class="dropdown-content">
+    <div class="flex-container">
+      <span id="most-popular-items">
+        <h5>5 Most Popular Items</h5>
+        <ol>
+          <% @top_5_items.each do |item| %>
+            <li><%= link_to(item.name, item_path(item)) %> (<%= item.units_sold %> units sold)</li>
+          <% end %>
+        </ol>
+      </span>
+      <span id="least-popular-items">
+        <h5>5 Least Popular Items</h5>
+        <ol>
+          <% @bottom_5_items.each do |item| %>
+            <li><%= link_to(item.name, item_path(item)) %> (<%= item.units_sold %> units sold)</li>
+          <% end %>
+        </ol>
+      </span>
+    </div>
+  </div>
+</div>
+
+
 <div class="flex-container">
   <% @items.each do |item| %>
     <div id="item-<%= item.id %>" class="inner-flex shadow">

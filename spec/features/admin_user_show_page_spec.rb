@@ -48,8 +48,5 @@ describe 'as an admin' do
       expect(page).to have_content(order_2.total_quantity)
       expect(page).to have_content(order_2.total_price)
     end
-
-
   end
-
 end

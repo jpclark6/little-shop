@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-describe 'As a user' do
+describe 'As an admin' do
   before(:each) do
-    @user_1, @user_2 = FactoryBot.create_list(:user, 2)
+    @user_1 = FactoryBot.create(:user)
+    @admin_1 = FactoryBot.create(:admin)
     @merchant = FactoryBot.create(:merchant)
     @order_1 = @user_1.orders.create(status: 'pending')
 
@@ -15,13 +16,14 @@ describe 'As a user' do
     @order_item_1 = @item_1.order_items.first
     @order_1.order_items.last.update(price: 1, quantity: 2)
     @order_item_2 = @item_2.order_items.first
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin_1)
 
   end
-  describe "when I visit an order's show page" do
+  describe 'when I visit and orders show page' do
     it 'should show the order info and all of the order items' do
 
-      visit profile_order_path(@order_1)
+      visit admin_order_path(@order_1)
 
       expect(page).to have_content("Order #{@order_1.id}")
       expect(page).to have_content("Ordered on: #{@order_1.created_at.to_date}")
@@ -61,8 +63,7 @@ describe 'As a user' do
       item_2_stock_qty_before = @order_1.order_items.last.item.instock_qty
       item_2_expected_qty = item_2_stock_qty_before
 
-      visit profile_order_path(@order_1)
-
+      visit admin_order_path(@order_1)
       click_on "| Cancel Order?"
 
       @order_1 = Order.find(@order_1.id)
@@ -71,13 +72,14 @@ describe 'As a user' do
         expect(oi.fulfilled).to eq(false)
       end
       expect(@order_1.status).to eq('cancelled')
+
       item_1_stock_qty_after = Item.find(@item_1.id).instock_qty
       expect(item_1_stock_qty_after).to eq(item_1_expected_qty)
 
       item_2_stock_qty_after =Item.find(@item_2.id).instock_qty
       expect(item_2_stock_qty_after).to eq(item_2_expected_qty)
 
-      expect(current_path).to eq(profile_path)
+      expect(current_path).to eq(admin_user_path(@user_1))
       expect(page).to have_content("Order cancelled")
 
       within(".order-#{@order_1.id}") do
