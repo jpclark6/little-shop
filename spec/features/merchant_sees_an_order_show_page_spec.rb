@@ -96,9 +96,9 @@ describe 'order show page' do
         click_on 'Fulfill'
         expect(current_path).to eq(dashboard_order_item_fulfill_path(order_item_1))
         expect(order_item_1.fulfilled?).to eq(true)
-        expect(order_item_2.fulfilled?).to eq(false)
         expect(page).to_not have_button('Fulfill')
       end
+      expect(order_item_2.fulfilled?).to eq(false)
     end
   end
 end

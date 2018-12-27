@@ -13,9 +13,24 @@ RSpec.describe OrderItem, type: :model do
       expect(order_item_1.subtotal).to eq(6)
     end
 
-    it '.fulfillable?' do
+    it '.not_fulfilled' do
       order_item_1 = FactoryBot.create(:order_item, fulfilled: true)
-      order_item_1 = FactoryBot.create(:order_item, fulfilled: false)
+      order_item_2 = FactoryBot.create(:order_item, fulfilled: false)
+
+      expect(order_item_1.not_fulfilled).to eq(false)
+      expect(order_item_2.not_fulfilled).to eq(true)
+    end
+
+    it '.fulfillable?' do
+      merchant = FactoryBot.create(:merchant)
+      item_1 = FactoryBot.create(:item, instock_qty: 1)
+      item_2 = FactoryBot.create(:item, instock_qty: 2)
+      merchant.items += [item_1, item_2]
+      order = FactoryBot.create(:order)
+
+      order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, quantity: 2)
+      order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, quantity: 3)
+      order_item_3 = FactoryBot.create(:order_item, item: item_2, order: order, quantity: 1)
 
       expect(order_item_1.fulfillable?).to eq(false)
       expect(order_item_2.fulfillable?).to eq(true)

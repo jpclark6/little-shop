@@ -5,8 +5,7 @@ class Dashboard::OrderItemsController < ApplicationController
     order_item = OrderItem.find(params[:id])
     if order_item.fulfilled?
       order_item.update(fulfilled: true)
-      binding.pry
-      redirect_to dashboard_order_path(order)
+      redirect_to dashboard_order_path(order_item.order)
     end
   end
 end
