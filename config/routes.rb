@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :items, expect: [:show]
     end
     resources :users, only: [:show, :index, :edit, :update]
-    resources :orders, only: [:show]
+    resources :orders, only: [:show, :destroy]
     patch 'items/toggle/:id', to: "items#toggle", as: "item_toggle", as: "item_toggle"
     patch 'users/toggle/:id', to: "users#toggle", as: "toggle_user"
     get 'merchants/:id', to: "users#merchant_show", as: "merchant"

@@ -1,10 +1,11 @@
 class Profile::OrdersController < ApplicationController
   before_action :require_current_user
-  
+
   def show
     @order = Order.find(params[:id])
     @user = current_user
     @order_items = @order.order_items
+    @cancel_order_path = :profile_order_path
   end
 
   def index

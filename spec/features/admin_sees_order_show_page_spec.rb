@@ -17,7 +17,7 @@ describe 'As an admin' do
     @order_1.order_items.last.update(price: 1, quantity: 2)
     @order_item_2 = @item_2.order_items.first
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin_1)
 
   end
   describe 'when I visit and orders show page' do
@@ -63,21 +63,24 @@ describe 'As an admin' do
       item_2_stock_qty_before = @order_1.order_items.last.item.instock_qty
       item_2_expected_qty = item_2_stock_qty_before
 
-      visit profile_order_path(@order_1)
-
+      visit admin_order_path(@order_1)
       click_on "| Cancel Order?"
+
+      @order_1 = Order.find(@order_1.id)
 
       @order_1.order_items.each do |oi|
         expect(oi.fulfilled).to eq(false)
       end
       expect(@order_1.status).to eq('cancelled')
+
+      save_and_open_page
       item_1_stock_qty_after = Item.find(@item_1.id).instock_qty
       expect(item_1_stock_qty_after).to eq(item_1_expected_qty)
 
       item_2_stock_qty_after =Item.find(@item_2.id).instock_qty
       expect(item_2_stock_qty_after).to eq(item_2_expected_qty)
 
-      expect(current_path).to eq(profile_path)
+      expect(current_path).to eq(admin_user_path(@user_1))
       expect(page).to have_content("Order cancelled")
 
       within(".order-#{@order_1.id}") do
