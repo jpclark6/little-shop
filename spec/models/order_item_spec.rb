@@ -12,7 +12,16 @@ RSpec.describe OrderItem, type: :model do
       order_item_1 = FactoryBot.create(:order_item, price: 2, quantity: 3)
       expect(order_item_1.subtotal).to eq(6)
     end
+
+    it '.fulfillable?' do
+      order_item_1 = FactoryBot.create(:order_item, fulfilled: true)
+      order_item_1 = FactoryBot.create(:order_item, fulfilled: false)
+
+      expect(order_item_1.fulfillable?).to eq(false)
+      expect(order_item_2.fulfillable?).to eq(true)
+    end
   end
+
   describe 'before_validations' do
     it ".ensures_price is equal to item price" do
       user = FactoryBot.create(:user)

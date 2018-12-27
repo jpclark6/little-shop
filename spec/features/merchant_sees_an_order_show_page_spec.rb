@@ -74,7 +74,7 @@ describe 'order show page' do
       end
     end
 
-    it 'Shows fulfill button, if quantity matches my in-stock quantity' do
+    it 'Shows fulfill button, item as fulfilled, flash message, and inventory decrease, if quantity matches my in-stock quantity.' do
       merchant = FactoryBot.create(:merchant)
       item_1 = FactoryBot.create(:item)
       item_2 = FactoryBot.create(:item)
@@ -90,9 +90,14 @@ describe 'order show page' do
 
       expect(page).to have_button('Fulfill')
 
+      expect(order_item_1.fulfilled?).to eq(false)
+
       within "#order_item-#{order_item_1.id}" do
         click_on 'Fulfill'
         expect(current_path).to eq(dashboard_order_fulfill_path(order))
+        expect(order_item_1.fulfilled?).to eq(true)
+        expect(order_item_2.fulfilled?).to eq(false)
+        expect(page).to_not have_button('Fulfill')
       end
     end
   end
@@ -101,12 +106,12 @@ end
 # As a merchant
 # When I visit an order show page from my dashboard
 # For each item of mine in the order
-
 # If the user's desired quantity is equal to or less than my current inventory quantity for that item
 # And I have not already "fulfilled" that item:
-
 # - Then I see a button or link to "fulfill" that item
 # - When I click on that link or button I am returned to the order show page
+# >>>>>>
+
 # - I see the item is now fulfilled
 # - I also see a flash message indicating that I have fulfilled that item
 # - My inventory quantity is permanently reduced by the user's desired quantity

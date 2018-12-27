@@ -10,6 +10,21 @@ class OrderItem < ApplicationRecord
     quantity * price
   end
 
+  def not_fulfilled
+    fulfilled? == false
+    return true
+  end
+
+  def fulfillable?
+    if not_fulfilled &&
+      order_items.any? do |order_item|
+        order_item.item.instock_qty >= order_item.quantity
+      end
+      return true
+    else false
+    end
+  end
+
   private
 
   def ensure_quantity
