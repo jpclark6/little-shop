@@ -90,10 +90,10 @@ describe 'order show page' do
 
       expect(page).to have_button('Fulfill')
 
-      #within - change css for order item-id
-      click_on 'Fulfill'
-
-      expect(current_path).to eq(dashboard_order_fulfill_path(order))
+      within "#order_item-#{order_item_1.id}" do
+        click_on 'Fulfill'
+        expect(current_path).to eq(dashboard_order_fulfill_path(order))
+      end
     end
   end
 end
