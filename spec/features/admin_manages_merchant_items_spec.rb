@@ -42,7 +42,7 @@ describe "as an admin" do
     end
 
     within "#item-#{@item_2.id}" do
-      expect(page).to have_content("id: #{@item_2.id}")
+      expect(page).to have_content("ID: #{@item_2.id}")
       expect(page).to have_content(@item_2.name)
       expect(page).to have_css("img[src='#{@item_2.image}']")
       expect(page).to have_content("$#{@item_2.price}")
