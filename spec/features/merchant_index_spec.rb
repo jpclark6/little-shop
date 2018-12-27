@@ -139,6 +139,30 @@ describe 'merchant index page' do
         expect(page).to_not have_content(merchant_2.name)
       end
     end
+    it 'I see the 3 biggest orders by quantity' do
+      order_1 = FactoryBot.create(:order)
+      order_item_1 = FactoryBot.create(:order_item, order: order_1, quantity: 5)
+
+      order_2 = FactoryBot.create(:order)
+      order_item_2 = FactoryBot.create(:order_item, order: order_2, quantity: 15)
+
+      order_3 = FactoryBot.create(:order)
+      order_item_3 = FactoryBot.create(:order_item, order: order_3, quantity: 7)
+
+      order_4 = FactoryBot.create(:order)
+      order_item_4 = FactoryBot.create(:order_item, order: order_4, quantity: 2)
+
+
+      visit merchants_path
+
+      within ".biggest_orders" do
+        expect(page).to have_content("Biggest orders")
+        expect(all("li")[0]).to have_content("Order id: #{order_2.id}")
+        expect(all("li")[2]).to have_content("Order id: #{order_3.id}")
+        expect(all("li")[4]).to have_content("Order id: #{order_1.id}")
+        expect(page).to_not have_content("Order id: #{order_4.id}")
+      end
+    end
   end
   context "as an admin" do
     it 'I see merchant info, their names are links, and I see buttons to enable or disable them' do
@@ -166,16 +190,6 @@ describe 'merchant index page' do
         expect(page).to have_button("Enable")
 
       end
-
     end
   end
 end
-
-
-# As an admin user
-# When I visit the merchant's index page at "/merchants"
-# I see all merchants in the system
-# Next to each merchant's name I see their city and state
-# The merchant's name is a link to their Merchant Dashboard at routes such as "/admin/merchants/5"
-# I see a "disable" button next to any merchants who are not yet disabled
-# I see an "enable" button next to any merchants whose accounts are disabled

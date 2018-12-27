@@ -18,7 +18,8 @@ class User < ApplicationRecord
        .group('users.id')
        .order('fulfillment_time asc')
        .limit(3)
-
+  end
+  
   def self.top_merch_quantity
     User.where(role: "merchant")
         .joins(:items)
@@ -28,7 +29,6 @@ class User < ApplicationRecord
         .order(" sum_order_items_quantity desc")
         .select("users.*, sum(order_items.quantity) as sum_order_items_quantity")
         .limit(3)
-
   end
 
   def self.fastest_fulfillment
@@ -39,7 +39,7 @@ class User < ApplicationRecord
         .order('fulfillment_time')
         .limit(3)
   end
-  
+
   def self.slowest_fulfillment
     User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
         .joins(items: :order_items)

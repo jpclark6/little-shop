@@ -95,4 +95,19 @@ RSpec.describe Order, type: :model do
       expect(item_3.instock_qty).to eq(item_3_pre_inv)
     end
   end
+  it '.biggest_orders' do
+    order_1 = FactoryBot.create(:order)
+    order_item_1 = FactoryBot.create(:order_item, order: order_1, quantity: 5)
+
+    order_2 = FactoryBot.create(:order)
+    order_item_2 = FactoryBot.create(:order_item, order: order_2, quantity: 15)
+
+    order_3 = FactoryBot.create(:order)
+    order_item_3 = FactoryBot.create(:order_item, order: order_3, quantity: 7)
+
+    order_4 = FactoryBot.create(:order)
+    order_item_4 = FactoryBot.create(:order_item, order: order_4, quantity: 2)
+
+    expect(Order.biggest_orders).to eq([order_2, order_3, order_1])
+  end
 end

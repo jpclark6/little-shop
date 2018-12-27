@@ -24,6 +24,13 @@
       <li><%= merchant.name %></li>
     <% end %>
   </ul>
+  <ul class="biggest_orders">
+    <h3>Biggest orders </h3>
+    <% @orders.biggest_orders.each do |order| %>
+      <li>Order id: <%= order.id %></li>
+      <li>Order quantity: <%= order.order_total %></li>
+    <% end %>
+  </ul>
 </div>
 <h1> All Merchants </h1>
 <div id='all-merchants'>
