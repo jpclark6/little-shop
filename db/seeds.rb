@@ -49,7 +49,7 @@ end
   password = 'password'
   user = User.create(name: name, address: address, city: city, state: state, zip_code: zip_code, email: email, role: role, password: password, enabled: true)
   saved_names += "Normal user: Email #{email} password '#{password}'\n"
-  4.times do
+  rand(1..7).times do
     order = user.orders.create!(status: rand(0..2))
     order.items = merchants.sample(1)[0].items.sample(rand(2..8))
     order.order_items.each do |order_item|

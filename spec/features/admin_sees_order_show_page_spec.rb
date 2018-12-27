@@ -23,7 +23,11 @@ describe 'As an admin' do
   describe 'when I visit and orders show page' do
     it 'should show the order info and all of the order items' do
 
-      visit admin_order_path(@order_1)
+      visit admin_user_path(@user_1)
+
+      click_on(@order_1.id)
+
+      expect(current_path).to eq(admin_order_path(@order_1))
 
       expect(page).to have_content("Order #{@order_1.id}")
       expect(page).to have_content("Ordered on: #{@order_1.created_at.to_date}")
