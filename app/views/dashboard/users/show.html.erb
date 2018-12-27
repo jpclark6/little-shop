@@ -35,7 +35,7 @@
     <h4>
       <% top_3_customers_by_total_paid = current_user.top_3_customers_by_total_paid %>
       <b>Top 3 customers by total money spent:</b> <%= top_3_customers_by_total_paid[0].name if top_3_customers_by_total_paid[0] %>,
-      <%= top_3_customers_by_total_paid[1].name if top_3_customers_by_total_paid[1] %>, & <%= top_3_customers_by_total_paid[2].name if top_3_customers_by_total_paid[2] %>
+      <%= top_3_customers_by_total_paid[1].name if top_3_customers_by_total_paid[1] %> <%=", &" + top_3_customers_by_total_paid[2].name if top_3_customers_by_total_paid[2] %>
     </h4>
   </div>
 </div>
