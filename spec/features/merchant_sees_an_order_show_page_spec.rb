@@ -94,11 +94,17 @@ describe 'order show page' do
 
       within "#order_item-#{order_item_1.id}" do
         click_on 'Fulfill'
-        expect(current_path).to eq(dashboard_order_item_fulfill_path(order_item_1))
-        expect(order_item_1.fulfilled?).to eq(true)
+      end
+
+      expect(current_path).to eq(dashboard_order_path(order))
+      order_item_1 = OrderItem.find(order_item_1.id)
+      expect(order_item_1.fulfilled?).to eq(true)
+      expect(order_item_2.fulfilled?).to eq(false)
+
+      within "#order_item-#{order_item_1.id}" do
         expect(page).to_not have_button('Fulfill')
       end
-      expect(order_item_2.fulfilled?).to eq(false)
+      save_and_open_page
     end
   end
 end

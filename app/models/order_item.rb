@@ -9,16 +9,8 @@ class OrderItem < ApplicationRecord
     quantity * price
   end
 
-  def not_fulfilled
-    if fulfilled? == false
-      return true
-    else
-      return false
-    end
-  end
-
   def fulfillable?
-    if not_fulfilled && item.instock_qty >= quantity
+    if !fulfilled? && item.instock_qty >= quantity
       true
     else
       false
