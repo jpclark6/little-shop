@@ -100,7 +100,7 @@ describe 'as a merchant on my dashboard' do
   it 'can find top 3 users who have spent the most money on items' do
     visit dashboard_path
     within('.statistics') do
-      expect(page).to have_content("Top customers by total money spent: #{@user_5.name}, #{@user_3.name}, & #{@user_2.name}")
+      expect(page).to have_content("Top 3 customers by total money spent: #{@user_5.name}, #{@user_3.name}, & #{@user_2.name}")
     end
     # @user_5, @user_3, @user_2
   end
