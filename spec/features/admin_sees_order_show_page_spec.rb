@@ -73,7 +73,6 @@ describe 'As an admin' do
       end
       expect(@order_1.status).to eq('cancelled')
 
-      save_and_open_page
       item_1_stock_qty_after = Item.find(@item_1.id).instock_qty
       expect(item_1_stock_qty_after).to eq(item_1_expected_qty)
 
