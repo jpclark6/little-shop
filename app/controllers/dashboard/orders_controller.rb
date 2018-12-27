@@ -11,4 +11,7 @@ class Dashboard::OrdersController < ApplicationController
 
     @order_items = current_user.my_order_items(@order)
   end
+
+  def fulfill
+  end
 end
