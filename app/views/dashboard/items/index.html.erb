@@ -4,9 +4,9 @@
   <%= button_to('Add Item', new_admin_merchant_item_path(@merchant), method: :get) %>
 <% end %>
 
-<div class="flex-container">
+<div class="merchant-item-index">
   <% @items.each do |item| %>
-    <div id="item-<%= item.id %>" class="inner-flex shadow tall-container">
+    <div id="item-<%= item.id %>" class="merchant-item">
       <h5>Item ID: <%= item.id %></h5>
       <ul>
         <li><%= item.name %></li>
