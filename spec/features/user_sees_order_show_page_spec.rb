@@ -65,6 +65,8 @@ describe 'As a user' do
 
       click_on "| Cancel Order?"
 
+      @order_1 = Order.find(@order_1.id)
+
       @order_1.order_items.each do |oi|
         expect(oi.fulfilled).to eq(false)
       end
