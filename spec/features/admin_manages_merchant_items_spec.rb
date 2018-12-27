@@ -28,7 +28,7 @@ describe "as an admin" do
   it "I can view a merchant's items just like that merchant would" do
     expect(current_path).to eq(admin_merchant_items_path(@merchant))
     within "#item-#{@item_1.id}" do
-      expect(page).to have_content("id: #{@item_1.id}")
+      expect(page).to have_content("ID: #{@item_1.id}")
       expect(page).to have_content(@item_1.name)
       expect(page).to have_css("img[src='#{@item_1.image}']")
       expect(page).to have_content("$#{@item_1.price}")
