@@ -104,7 +104,6 @@ describe 'order show page' do
       within "#order_item-#{order_item_1.id}" do
         expect(page).to_not have_button('Fulfill')
       end
-      save_and_open_page
     end
   end
 end
