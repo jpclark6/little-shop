@@ -17,7 +17,7 @@ describe 'merchant item index page' do
       visit "/dashboard/items"
 
       within "#item-#{item_1.id}" do
-        expect(page).to have_content("id: #{item_1.id}")
+        expect(page).to have_content("ID: #{item_1.id}")
         expect(page).to have_content(item_1.name)
         expect(page).to have_css("img[src='#{item_1.image}']")
         expect(page).to have_content("$#{item_1.price}")
@@ -31,7 +31,7 @@ describe 'merchant item index page' do
       end
 
       within "#item-#{item_2.id}" do
-        expect(page).to have_content("id: #{item_2.id}")
+        expect(page).to have_content("ID: #{item_2.id}")
         expect(page).to have_content(item_2.name)
         expect(page).to have_css("img[src='#{item_2.image}']")
         expect(page).to have_content("$#{item_2.price}")

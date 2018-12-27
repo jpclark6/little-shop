@@ -86,13 +86,13 @@ display: block;
 
 
 .flash {
-    background: snow;
-    padding: 7px;
-    border: 2px solid darkgrey;
-    display: block;
-    margin: 0 auto;
-    max-width: 600px;
-    border-radius: 8px;
+  background: snow;
+  padding: 7px;
+  border: 2px solid darkgrey;
+  display: block;
+  margin: 0 auto;
+  max-width: 600px;
+  border-radius: 8px;
 }
 
 .grid-container {
@@ -289,6 +289,7 @@ label {
     list-style-type: none;
   }
   border: 1px solid darkgrey;
+  border-radius: 8px;
   margin: 10px;
   padding: 10px;
 }
@@ -362,5 +363,70 @@ label {
   li {
     padding-left: 30px;
     padding-bottom: 6px;
+  }
+}
+
+.statistics {
+  border: 1px solid darkgrey;
+  padding: 5px;
+  margin: 10px;
+  h4 {
+    font-weight: normal;
+    b {
+      font-weight: bold;
+    }
+  }
+}
+
+.dropdown-dashboard {
+  position: relative;
+  display: inline-block;
+
+}
+
+.dropdown-dashboard:hover .dropdown-content-dashboard {
+display: block;
+}
+
+.dropdown-content-dashboard {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.view-items {
+  margin: 7px;
+  font-size: 26px;
+}
+
+.merchant-item-index {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.merchant-item {
+  border: 1px solid darkgrey;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  width: 350px;
+  height: 500px;
+  background-color: snow;
+  overflow: scroll;
+  h5 {
+    font-size: 25px;
+    padding: 4px;
+    margin: 2px;
+  }
+  ul {
+    list-style-type: none;
+  }
+  li {
+    margin: 3px;
   }
 }
