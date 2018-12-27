@@ -5,9 +5,9 @@
 <% @order.order_items.each do |order_item| %>
   <div id="order_item-<%= order_item.id %>">
     <% if order_item.fulfillable? %>
-      <%= button_to 'Fulfill', dashboard_order_item_fulfill_path(@order), method: 'patch' %>
-  </div>
+      <%= button_to 'Fulfill', dashboard_order_item_fulfill_path(order_item), method: 'patch' %>
     <% end %>
+  </div>
 <% end %>
 
 <%= render partial: "/order_items" %>

@@ -33,5 +33,4 @@ class OrderItem < ApplicationRecord
   def ensure_price
     self.price ||= item.price
   end
-
 end
