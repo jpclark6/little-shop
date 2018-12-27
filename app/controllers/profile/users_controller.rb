@@ -3,6 +3,7 @@ class Profile::UsersController < ApplicationController
 
   def show
     @user = current_user
+    @order_path = :profile_order_path
   end
 
   def edit

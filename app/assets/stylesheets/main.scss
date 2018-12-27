@@ -66,9 +66,7 @@ a {
 
 
  .dropdown {
-  position: relative;
   display: inline-block;
-
 }
 
 .dropdown:hover .dropdown-content {
@@ -349,6 +347,10 @@ label {
 #item-number {
   text-align: left;
   padding: 4px 10px;
+}
+
+.tall-container {
+  height: 640px;
 }
 
 .order-item-description {

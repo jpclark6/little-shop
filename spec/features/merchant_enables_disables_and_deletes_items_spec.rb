@@ -24,7 +24,6 @@ describe 'as a merchant' do
     merchant.items << item
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
     visit dashboard_items_path
-
     within "#item-#{item.id}" do
       click_on "Enable Item"
     end

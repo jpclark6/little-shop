@@ -4,7 +4,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = @order.order_items
     @user = @order.user
-    @cancel_order_path = :admin_order_path
+    @order_path = :admin_order_path
     render template: "profile/orders/show"
   end
   def destroy
