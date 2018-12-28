@@ -21,6 +21,7 @@ class OrderItem < ApplicationRecord
     new_instock_qty = item.instock_qty - quantity
     item.update(instock_qty: new_instock_qty)
     update(fulfilled: true)
+    order.fulfill_if_complete  
   end
 
   private

@@ -34,5 +34,9 @@ class Order < ApplicationRecord
     end
     update(status: 'cancelled')
   end
-  
+
+  def fulfill_if_complete
+    update(status: "fulfilled") if order_items.all?(&:fulfilled)
+  end
+
 end
