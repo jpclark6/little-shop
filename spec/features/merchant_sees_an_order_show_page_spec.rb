@@ -95,10 +95,11 @@ describe 'order show page' do
       within "#item-#{order_item_1.item_id}" do
         expect(page).to have_content("Status: Not Fulfilled")
       end
-
+binding.pry
       within "#order_item-#{order_item_1.id}" do
         click_on 'Fulfill'
       end
+  binding.pry
       within ".flash-flex" do
         expect(page).to have_content("Item Fulfilled")
       end

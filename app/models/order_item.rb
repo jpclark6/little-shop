@@ -17,6 +17,10 @@ class OrderItem < ApplicationRecord
     end
   end
 
+  # def fulfill_order_item
+  #   item.instock_qty - 1
+  # end
+
   private
 
   def ensure_quantity
@@ -26,4 +30,5 @@ class OrderItem < ApplicationRecord
   def ensure_price
     self.price ||= item.price
   end
+
 end

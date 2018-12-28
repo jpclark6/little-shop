@@ -29,6 +29,26 @@ RSpec.describe OrderItem, type: :model do
       expect(order_item_2.fulfillable?).to eq(true)
       expect(order_item_3.fulfillable?).to eq(false)
     end
+
+    # it '.fulfill_order_item' do
+    #   merchant = FactoryBot.create(:merchant)
+    #   item_1 = FactoryBot.create(:item, instock_qty: 1)
+    #   item_2 = FactoryBot.create(:item, instock_qty: 2)
+    #   merchant.items += [item_1, item_2]
+    #   order = FactoryBot.create(:order)
+    #
+    #   order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, quantity: 2)
+    #   order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, quantity: 2)
+    #
+    #   order_item_1.fulfill_order_item
+    #
+    #   expect(item_1.instock_qty).to eq(0)
+    #
+    #   order_item_2.fulfill_order_item
+    #   expect(item_2.instock_qty).to eq(1)
+    #   order_item_2.fulfill_order_item
+    #   expect(item_2.instock_qty).to eq(0)
+    # end
   end
 
   describe 'before_validations' do
