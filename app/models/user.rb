@@ -67,7 +67,6 @@ class User < ApplicationRecord
         .where("orders.status=?", 1)
         .order("count(orders.id) desc")
         .limit(3)
-        .pluck(:state)
   end
 
   def self.top_cities
@@ -77,7 +76,6 @@ class User < ApplicationRecord
         .where("orders.status=?", 1)
         .order("count(orders.id) desc")
         .limit(3)
-        .pluck(:city)
   end
 
   def status
