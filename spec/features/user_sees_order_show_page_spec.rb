@@ -50,6 +50,7 @@ describe 'As a user' do
       end
 
       expect(page).to have_content("Grand total: $#{@order_1.total_price}")
+      expect(page).to have_content("Total items: #{@order_1.total_quantity}")
     end
 
     it 'can cancel order if it is still pending' do
