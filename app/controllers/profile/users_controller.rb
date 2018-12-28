@@ -3,6 +3,7 @@ class Profile::UsersController < ApplicationController
 
   def show
     @user = current_user
+    @order_path = :profile_order_path
   end
 
   def edit
@@ -15,7 +16,7 @@ class Profile::UsersController < ApplicationController
       flash[:success] = "Your data is updated"
       redirect_to profile_path
     else
-      flash[:error] = "the email you entered is already taken"
+      add_errors_on_flash(@user)
       render :edit
     end
   end

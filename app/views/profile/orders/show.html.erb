@@ -1,14 +1,15 @@
 <div class='order-show'>
 <h1><b>Order </b><%= @order.id %></h1>
-<h2><b>Status: </b><%= @order.status.titleize %>
+<h2 id="order-status"><b>Status: </b><%= @order.status.titleize %>
   <% if @order.status == 'pending' %>
-    <%= link_to "| Cancel Order?", profile_order_path(@order), method: :delete, data: {confirm: "Are you sure you want to cancel this order?"} %>
+    <%= link_to "| Cancel Order?", send(@order_path, @order), method: :delete, data: {confirm: "Are you sure you want to cancel this order?"} %>
   <% end %>
 </h2>
 <h2><b>Ordered on: </b><%= @order.created_at.to_date %></h2>
 <h2><b>Order updated on: </b><%= @order.updated_at.to_date %></h2>
   <div class="show-order">
     <%= render partial: "/order_items" %>
+    <h2><b>Total items: </b><%= @order.total_quantity %> </h2>
     <h2><b>Grand total: </b><%= number_to_currency(@order.total_price) %> </h2>
   </div>
 </div>

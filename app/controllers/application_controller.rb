@@ -41,6 +41,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin
+    render file: "/public/404", status: :not_found unless admin_user?
+  end
+
   def add_errors_on_flash(object_with_errors)
     object_with_errors.errors.each do |attribute, message|
       flash[attribute] = "#{error_prefix[object_with_errors.class.to_s]} #{attribute} #{message}."

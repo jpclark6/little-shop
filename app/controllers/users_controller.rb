@@ -19,9 +19,6 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def edit
-  end
-
   def index
     @users = User.all
     @orders = Order.all

@@ -4,11 +4,11 @@ Rails.application.routes.draw do
     resources :merchants, only: [:none], shallow: true do
       resources :items, expect: [:show]
     end
-    patch 'items/toggle/:id', to: "items#toggle", as: "item_toggle", as: "item_toggle"
-    get 'merchants/:id', to: "users#merchant_show", as: "merchant"
-    get 'users/:id', to: "users#show", as: "user"
-    get 'users', to: "users#index", as: "users"
+    resources :users, only: [:show, :index, :edit, :update]
+    resources :orders, only: [:show, :destroy]
+    patch 'items/toggle/:id', to: "items#toggle", as: "item_toggle"
     patch 'users/toggle/:id', to: "users#toggle", as: "toggle_user"
+    get 'merchants/:id', to: "users#merchant_show", as: "merchant"
   end
 
   resources :items, only: [:show, :index]
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :items, except: [:show]
     resources :orders, only: [:show, :index]
     patch "/items/toggle/:id", to: "items#toggle", as: "item_toggle"
+    patch "/order_items/fulfill/:id", to: "order_items#fulfill", as: "order_item_fulfill"
   end
 
   get '/register', to: 'users#new'

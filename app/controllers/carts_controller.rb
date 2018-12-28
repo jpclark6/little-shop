@@ -36,6 +36,4 @@ class CartsController < ApplicationController
     end
     redirect_to cart_path
   end
-
-
 end

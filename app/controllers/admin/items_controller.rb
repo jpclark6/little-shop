@@ -1,10 +1,10 @@
 class Admin::ItemsController < ApplicationController
+  before_action :require_admin
+
   def new
     @merchant = User.find(params[:merchant_id])
     @item = Item.new
   end
-
-
 
   def create
     @merchant = User.find(params[:merchant_id])
