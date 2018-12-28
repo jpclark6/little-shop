@@ -1,6 +1,5 @@
 class OrderItem < ApplicationRecord
   validates_presence_of :price, :quantity
-  # We could do on the database level by setting a default, but this works
   before_validation :ensure_quantity, :ensure_price
 
   belongs_to :item
@@ -8,6 +7,20 @@ class OrderItem < ApplicationRecord
 
   def subtotal
     quantity * price
+  end
+
+  def fulfillable?
+    if !fulfilled? && item.instock_qty >= quantity
+      true
+    else
+      false
+    end
+  end
+
+  def fulfill
+    new_instock_qty = item.instock_qty - quantity
+    item.update(instock_qty: new_instock_qty)
+    update(fulfilled: true)
   end
 
   private

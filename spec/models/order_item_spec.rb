@@ -12,7 +12,47 @@ RSpec.describe OrderItem, type: :model do
       order_item_1 = FactoryBot.create(:order_item, price: 2, quantity: 3)
       expect(order_item_1.subtotal).to eq(6)
     end
+
+    it '.fulfillable?' do
+      merchant = FactoryBot.create(:merchant)
+      item_1 = FactoryBot.create(:item, instock_qty: 1)
+      item_2 = FactoryBot.create(:item, instock_qty: 2)
+      item_3 = FactoryBot.create(:item, instock_qty: 2)
+      merchant.items += [item_1, item_2, item_3]
+      order = FactoryBot.create(:order)
+
+      order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, quantity: 2)
+      order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, quantity: 2)
+      order_item_3 = FactoryBot.create(:order_item, item: item_2, order: order, quantity: 2, fulfilled: true)
+
+      expect(order_item_1.fulfillable?).to eq(false)
+      expect(order_item_2.fulfillable?).to eq(true)
+      expect(order_item_3.fulfillable?).to eq(false)
+    end
+
+    it '.fulfill' do
+      merchant = FactoryBot.create(:merchant)
+      item_1 = FactoryBot.create(:item, instock_qty: 17)
+      item_2 = FactoryBot.create(:item, instock_qty: 3)
+      merchant.items += [item_1, item_2]
+      order = FactoryBot.create(:order)
+
+      order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, quantity: 5)
+      order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, quantity: 2)
+
+      expect(order_item_1.fulfilled?).to eq(false)
+
+      order_item_1.fulfill
+
+      expect(item_1.instock_qty).to eq(12)
+
+      order_item_2.fulfill
+      expect(item_2.instock_qty).to eq(1)
+
+      expect(order_item_1.fulfilled?).to eq(true)
+    end
   end
+
   describe 'before_validations' do
     it ".ensures_price is equal to item price" do
       user = FactoryBot.create(:user)

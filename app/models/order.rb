@@ -34,4 +34,5 @@ class Order < ApplicationRecord
     end
     update(status: 'cancelled')
   end
+  
 end
