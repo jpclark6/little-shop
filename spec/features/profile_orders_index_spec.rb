@@ -9,27 +9,24 @@ describe 'As a registered user' do
 
     order_1 = FactoryBot.create(:order, user: user, items: [item_1, item_2] )
     order_2 = FactoryBot.create(:order, user: user, items: [item_3], status: "fulfilled")
-    order_2 = FactoryBot.create(:order, user: user, items: [item_3], status: "cancelled")
+    order_3 = FactoryBot.create(:order, user: user, items: [item_3], status: "cancelled")
 
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit profile_orders_path
     save_and_open_page
 
-    within(".order-#{order_1.id}") do
-      expect(page).to have_link(order_1.id)
-      expect(page).to have_content(order_1.created_at)
-      expect(page).to have_content(order_1.updated_at)
-      expect(page).to have_content(order_1.status)
-      expect(page).to have_content(order_1.total_quantity)
-      expect(page).to have_content(order_1.total_price)
+    orders = [order_1, order_2, order_3]
+
+    orders.each do |order|
+      within(".order-#{order.id}") do
+        expect(page).to have_link(order.id)
+        expect(page).to have_content(order.created_at)
+        expect(page).to have_content(order.updated_at)
+        expect(page).to have_content(order.status)
+        expect(page).to have_content(order.total_quantity)
+        expect(page).to have_content(order.total_price)
+      end
     end
 
-    within(".order-#{order_2.id}") do
-      expect(page).to have_link(order_2.id)
-      expect(page).to have_content(order_2.created_at)
-      expect(page).to have_content(order_2.updated_at)
-      expect(page).to have_content(order_2.status)
-      expect(page).to have_content(order_2.total_quantity)
-      expect(page).to have_content(order_2.total_price)
-    end
   end
 end
