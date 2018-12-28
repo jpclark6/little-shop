@@ -124,6 +124,25 @@ describe 'order show page' do
       expected_quantity = item_1.instock_qty - order_item_1.quantity
       expect(page).to have_content("Inventory: #{expected_quantity}")
     end
+
+    it 'Only a Merchant User sees the fulfill button' do
+      merchant = FactoryBot.create(:merchant)
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      merchant.items += [item_1, item_2]
+      order = FactoryBot.create(:order)
+
+      order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 1.50)
+      order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, price: 2.75, quantity: 10)
+
+      registered = FactoryBot.create(:registered)
+      
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(registered)
+
+      visit dashboard_order_path(order)
+
+      expect(page).to_not have_button('Fulfill')
+    end
   end
 end
 

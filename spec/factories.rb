@@ -9,6 +9,9 @@ FactoryBot.define do
     password { '2738^f' }
     role { 0 }
     enabled { true }
+    factory :registered do
+      role { 0 }
+    end
     factory :merchant do
       role { 1 }
     end
