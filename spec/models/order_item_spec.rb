@@ -40,16 +40,20 @@ RSpec.describe OrderItem, type: :model do
       order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, quantity: 5)
       order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, quantity: 2)
 
+      expect(order.status).to eq("pending")
       expect(order_item_1.fulfilled?).to eq(false)
 
       order_item_1.fulfill
 
       expect(item_1.instock_qty).to eq(12)
+      expect(order.reload.status).to eq("pending")
+
 
       order_item_2.fulfill
       expect(item_2.instock_qty).to eq(1)
 
       expect(order_item_1.fulfilled?).to eq(true)
+      expect(order.reload.status).to eq("fulfilled")
     end
   end
 

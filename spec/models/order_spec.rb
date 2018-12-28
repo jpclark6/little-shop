@@ -94,5 +94,25 @@ RSpec.describe Order, type: :model do
       expect(item_2.instock_qty).to eq(item_2_pre_inv + 1)
       expect(item_3.instock_qty).to eq(item_3_pre_inv)
     end
+
+    it ".fulfill_if_complete" do
+      merchant = FactoryBot.create(:merchant)
+      item_1 = FactoryBot.create(:item, instock_qty: 17)
+      item_2 = FactoryBot.create(:item, instock_qty: 3)
+      merchant.items += [item_1, item_2]
+      order = FactoryBot.create(:order)
+
+      order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, quantity: 5, fulfilled: true)
+      order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, quantity: 2)
+
+      order.reload.fulfill_if_complete
+      expect(order.reload.status).to eq("pending")
+      order_item_2.update(fulfilled: true)
+      expect(order.reload.status).to eq("pending")
+      order.fulfill_if_complete
+
+      expect(order.reload.status).to eq("fulfilled")
+
+    end
   end
 end
