@@ -1,48 +1,49 @@
 <div class="statistics">
-  <!-- to do make this a sidebar -->
-  <ul class="top_quantity">
+
+  <h3>Statistics</h3>
+  <ol class="top_quantity">
     <h3> Top 3 merchants by quantity </h3>
     <% @merchants.top_merch_quantity.each do |merchant| %>
       <li><%= merchant.name %></li>
     <% end %>
-  </ul>
-  <ul class="top_price">
+  </ol>
+  <ol class="top_price">
     <h3> Top 3 merchants by price </h3>
     <% @merchants.top_merch_price.each do |merchant| %>
       <li><%= merchant.name %></li>
     <% end %>
-  </ul>
-  <ul class="fastest_fulfillment">
+  </ol>
+  <ol class="fastest_fulfillment">
     <h3>Fastest merchants </h3>
     <% @merchants.fastest_fulfillment.each do |merchant| %>
       <li><%= merchant.name %></li>
     <% end %>
-  </ul>
-  <ul class="slowest_fulfillment">
+  </ol>
+  <ol class="slowest_fulfillment">
     <h3>Slowest merchants </h3>
     <% @merchants.slowest_fulfillment.each do |merchant| %>
       <li><%= merchant.name %></li>
     <% end %>
-  </ul>
-  <ul class="biggest_orders">
+  </ol>
+  <ol class="biggest_orders">
     <h3>Biggest orders </h3>
     <% @orders.biggest_orders.each do |order| %>
       <li>Order id: <%= order.id %></li>
       <li>Order quantity: <%= order.order_total %></li>
     <% end %>
-  </ul>
-  <ul class="top_states">
+  </ol>
+  <ol class="top_states">
     <h3>Top states</h3>
     <% @users.top_states.each do |state| %>
       <li><%= state %></li>
     <% end %>
-  </ul>
-  <ul class="top_cities">
+  </ol>
+  <ol class="top_cities">
     <h3>Top cities</h3>
     <% @users.top_cities.each do |city| %>
       <li><%= city %></li>
     <% end %>
-  </ul>
+  </ol>
 </div>
 <h1> All Merchants </h1>
 <div id='all-merchants'>
