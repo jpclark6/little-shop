@@ -62,7 +62,7 @@ describe 'as a registerd user' do
       click_on "Update User"
 
       expect(current_path).to eq(profile_update_path)
-      expect(page).to have_content("the email you entered is already taken")
+      expect(page).to have_content("Your email has already been taken")
     end
   end
 end

@@ -9,6 +9,7 @@
 <h2><b>Order updated on: </b><%= @order.updated_at.to_date %></h2>
   <div class="show-order">
     <%= render partial: "/order_items" %>
+    <h2><b>Total items: </b><%= @order.total_quantity %> </h2>
     <h2><b>Grand total: </b><%= number_to_currency(@order.total_price) %> </h2>
   </div>
 </div>

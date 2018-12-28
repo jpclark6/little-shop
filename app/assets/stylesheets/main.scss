@@ -209,6 +209,11 @@ label {
   height: 200px;
 }
 
+.small_thumb {
+  width: 130px;
+  height: 100px;
+}
+
 .big-picture {
     width: 500px;
 }
@@ -288,10 +293,14 @@ label {
   ul {
     list-style-type: none;
   }
+  li {
+    font-size: 20px;
+  }
   border: 1px solid darkgrey;
   border-radius: 8px;
   margin: 10px;
   padding: 10px;
+  width: 600px;
 }
 
 #cart-item-title {

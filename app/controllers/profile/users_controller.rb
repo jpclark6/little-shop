@@ -16,7 +16,7 @@ class Profile::UsersController < ApplicationController
       flash[:success] = "Your data is updated"
       redirect_to profile_path
     else
-      flash[:error] = "the email you entered is already taken"
+      add_errors_on_flash(@user)
       render :edit
     end
   end
