@@ -15,8 +15,12 @@
               <%= "Not Fulfilled" %>
           <% end %></li>
         <li>
-            <% if order_item.fulfillable? %>
-              <%= button_to 'Fulfill', dashboard_order_item_fulfill_path(order_item), method: 'patch' %>
+            <% if order_item.fulfillable? && merchant_user? || order_item.fulfillable? && admin_user?%>
+              <% if current_user && current_user.merchant? %>
+                <%= button_to 'Fulfill', dashboard_order_item_fulfill_path(order_item), method: 'patch' %>
+              <% elsif current_user && current_user.admin? %>
+                <%= button_to 'Fulfill', admin_order_item_fulfill_path(order_item), method: 'patch' %>
+              <% end %>
             <% end %>
         </li>
       </ul>
