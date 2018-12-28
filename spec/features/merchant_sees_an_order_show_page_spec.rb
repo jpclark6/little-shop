@@ -126,15 +126,15 @@ describe 'order show page' do
     end
   end
 
-  it 'A Merchant User sees the fulfill button' do
+  it 'A Registered User does not see the fulfill button' do
     merchant = FactoryBot.create(:merchant)
     item_1 = FactoryBot.create(:item)
     item_2 = FactoryBot.create(:item)
     merchant.items += [item_1, item_2]
     order = FactoryBot.create(:order)
 
-    order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 1.50)
-    order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, price: 2.75, quantity: 10)
+    FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 1.50)
+    FactoryBot.create(:order_item, item: item_2, order: order, price: 2.75, quantity: 10)
 
     registered = FactoryBot.create(:registered)
 
@@ -192,27 +192,9 @@ describe 'order show page' do
 
     click_on "#{item_1.name.capitalize}"
 
-    # is the item path okay, or does it need to be admin_item_path?
     expect(current_path).to eq(item_path(item_1))
 
     expected_quantity = item_1.instock_qty - order_item_1.quantity
     expect(page).to have_content("Inventory: #{expected_quantity}")
   end
 end
-
-
-# As a merchant
-# When I visit an order show page from my dashboard
-# For each item of mine in the order
-# If the user's desired quantity is equal to or less than my current inventory quantity for that item
-# And I have not already "fulfilled" that item:
-# - Then I see a button or link to "fulfill" that item
-# - When I click on that link or button I am returned to the order show page
-# >>>>>>
-# - I see the item is now fulfilled
-# - I also see a flash message indicating that I have fulfilled that item
-# If I have already fulfilled this item, I see text indicating such.
-# >>>>>>>>>>>>>>>
-
-# - My inventory quantity is permanently reduced by the user's desired quantity
-#

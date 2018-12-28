@@ -8,5 +8,4 @@ class Admin::OrderItemsController < ApplicationController
     flash[:message] = "Item Fulfilled"
     redirect_to admin_order_path(order_item.order)
   end
-
 end
