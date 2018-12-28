@@ -126,7 +126,7 @@ RSpec.describe User, type: :model do
       user_7 = FactoryBot.create(:user, state:"FL")
       order_13 = FactoryBot.create(:order, user: user_7, status: "fulfilled")
 
-      expect(User.top_states).to eq([user_1.state, user_6.state, user_3.state])
+      expect(User.top_states.pluck(:state)).to eq([user_1.state, user_6.state, user_3.state])
     end
 
     it ".top_cities" do
@@ -149,7 +149,7 @@ RSpec.describe User, type: :model do
       order_10 = FactoryBot.create(:order, user: user_6, status: "fulfilled")
       order_11 = FactoryBot.create(:order, user: user_6, status: "pending")
 
-      expect(User.top_cities).to eq([user_1.city, user_3.city, user_5.city])
+      expect(User.top_cities.pluck(:city)).to eq([user_1.city, user_3.city, user_5.city])
     end
   end
 

@@ -158,8 +158,8 @@ describe 'merchant index page' do
       within ".biggest_orders" do
         expect(page).to have_content("Biggest orders")
         expect(all("li")[0]).to have_content("Order id: #{order_2.id}")
-        expect(all("li")[2]).to have_content("Order id: #{order_3.id}")
-        expect(all("li")[4]).to have_content("Order id: #{order_1.id}")
+        expect(all("li")[1]).to have_content("Order id: #{order_3.id}")
+        expect(all("li")[2]).to have_content("Order id: #{order_1.id}")
         expect(page).to_not have_content("Order id: #{order_4.id}")
       end
     end

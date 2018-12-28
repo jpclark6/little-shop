@@ -27,7 +27,7 @@
   </ol>
   <ol class="biggest_orders">
     <h3>Biggest orders </h3>
-    <% @orders.biggest_orders.each do |order| %>
+    <% Order.biggest_orders.each do |order| %>
       <li>Order id: <%= order.id %> | Order quantity: <%= order.order_total %></li>
     <% end %>
   </ol>
