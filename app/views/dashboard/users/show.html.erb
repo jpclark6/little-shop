@@ -12,28 +12,28 @@
 <div class='statistics dropdown-dashboard'>
   <h3>Statistics</h3>
   <div class='dropdown-content-dashboard'>
-    <% top_5_items = current_user.top_5_items %>
+    <% top_5_items = @user.top_5_items %>
     <h4>
       <b>Top items sold by quantity:</b>
       <% if top_5_items[0] %><%= top_5_items[0].name %><% end %><% if top_5_items[1] %>, <%= top_5_items[1].name %><% end %><% if top_5_items[2] %>, <%= top_5_items[2].name %><% end %><% if top_5_items[3] %>, <%= top_5_items[3].name %><% end %><% if top_5_items[4] %>, & <%= top_5_items[4].name %><% end %></h4>
     <h4>
-      <b>Inventory</b>: Sold <%= current_user.total_items_sold %> items, which is <%= current_user.percent_items_sold %>
+      <b>Inventory</b>: Sold <%= @user.total_items_sold %> items, which is <%= @user.percent_items_sold %>
       of your total inventory
     </h4>
     <h4>
-      <% top_states = current_user.top_3_states %>
+      <% top_states = @user.top_3_states %>
       <b>Top 3 states by quantity shipped:</b> <% if top_states[0] %><%= top_states[0] %><% end %><% if top_states[1] %>, <%= top_states[1] %><% end %><% if top_states[2] %>, & <%= top_states[2] %><% end %></h4>
     <h4>
-      <% top_city_states = current_user.top_3_city_states %>
+      <% top_city_states = @user.top_3_city_states %>
       <b>Top 3 city/states by quantity shipped:</b> <% if top_city_states[0] %><%= top_city_states[0] %><% end %><% if top_city_states[1] %>; <%= top_city_states[1] %><% end %><% if top_city_states[2] %>; & <%= top_city_states[2] %><% end %></h4>
     <h4>
-      <b>Top customer by most orders:</b> <%= current_user.top_customer_by_orders.name if current_user.top_customer_by_orders %>
+      <b>Top customer by most orders:</b> <%= @user.top_customer_by_orders.name if @user.top_customer_by_orders %>
     </h4>
     <h4>
-      <b>Top customer by most items ordered:</b> <%= current_user.top_customer_by_qty.name if current_user.top_customer_by_qty %>
+      <b>Top customer by most items ordered:</b> <%= @user.top_customer_by_qty.name if @user.top_customer_by_qty %>
     </h4>
     <h4>
-      <% top_3_customers_by_total_paid = current_user.top_3_customers_by_total_paid %>
+      <% top_3_customers_by_total_paid = @user.top_3_customers_by_total_paid %>
       <b>Top 3 customers by total money spent:</b> <%= top_3_customers_by_total_paid[0].name if top_3_customers_by_total_paid[0] %>,
       <%= top_3_customers_by_total_paid[1].name if top_3_customers_by_total_paid[1] %><%=", & " + top_3_customers_by_total_paid[2].name if top_3_customers_by_total_paid[2] %>
     </h4>
