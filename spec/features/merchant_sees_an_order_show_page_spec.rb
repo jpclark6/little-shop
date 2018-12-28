@@ -124,21 +124,29 @@ describe 'order show page' do
       expected_quantity = item_1.instock_qty - order_item_1.quantity
       expect(page).to have_content("Inventory: #{expected_quantity}")
     end
+
+    it 'Shows a big red notice next to the item indicating I cannot fulfill this item' do
+      merchant = FactoryBot.create(:merchant)
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      merchant.items += [item_1, item_2]
+      order = FactoryBot.create(:order)
+
+      order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 1.50)
+      order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, price: 2.75, quantity: 10)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+
+      visit dashboard_order_path(order)
+
+      # within "#item-#{order_item_1.item_id}" do
+      #   expect(page).to have_content("Status: Fulfilled")
+      # end
+
+      # within "#item-#{item_2.id}" do
+      #   click_on 'Fulfill'
+      # end
+      #
+    end
   end
 end
-
-# As a merchant
-# When I visit an order show page from my dashboard
-# For each item of mine in the order
-# If the user's desired quantity is equal to or less than my current inventory quantity for that item
-# And I have not already "fulfilled" that item:
-# - Then I see a button or link to "fulfill" that item
-# - When I click on that link or button I am returned to the order show page
-# >>>>>>
-# - I see the item is now fulfilled
-# - I also see a flash message indicating that I have fulfilled that item
-# If I have already fulfilled this item, I see text indicating such.
-# >>>>>>>>>>>>>>>
-
-# - My inventory quantity is permanently reduced by the user's desired quantity
-#
