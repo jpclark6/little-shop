@@ -1,4 +1,4 @@
-<h2><%= link_to "Order: #{order.id}", dashboard_order_path(order) %></h3>
+<h2><%= link_to "Order: #{order.id}", dashboard_order_path(order) %></h2>
 <h3><b>Date Created:</b> <%= order.created_at %></h3>
 <h3><b>Quantity:</b> <%= order.total_quantity %> items</h3>
 <h3><b>Price:</b> <%= number_to_currency(order.total_price) %></h3>
