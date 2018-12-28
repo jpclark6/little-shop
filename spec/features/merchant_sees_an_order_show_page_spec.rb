@@ -145,7 +145,7 @@ describe 'order show page' do
     expect(page).to_not have_button('Fulfill')
   end
 
-  it 'An Admin User sees the fulfill button' do
+  it 'An Admin User sees the fulfill button & functionality works correctly' do
     merchant = FactoryBot.create(:merchant)
     item_1 = FactoryBot.create(:item)
     item_2 = FactoryBot.create(:item)
@@ -162,6 +162,41 @@ describe 'order show page' do
     visit admin_order_path(order)
 
     expect(page).to have_button('Fulfill')
+
+    expect(order_item_1.fulfilled?).to eq(false)
+
+    within "#item-#{order_item_1.item_id}" do
+      expect(page).to have_content("Status: Not Fulfilled")
+    end
+
+    within "#item-#{item_1.id}" do
+      click_on 'Fulfill'
+    end
+
+    within ".flash-flex" do
+      expect(page).to have_content("Item Fulfilled")
+    end
+
+    expect(current_path).to eq(admin_order_path(order))
+    order_item_1 = OrderItem.find(order_item_1.id)
+    expect(order_item_1.fulfilled?).to eq(true)
+    expect(order_item_2.fulfilled?).to eq(false)
+
+    within "#item-#{order_item_1.item_id}" do
+      expect(page).to have_content("Status: Fulfilled")
+    end
+
+    within "#item-#{item_1.id}" do
+      expect(page).to_not have_button('Fulfill')
+    end
+
+    click_on "#{item_1.name.capitalize}"
+
+    # is the item path okay, or does it need to be admin_item_path?
+    expect(current_path).to eq(item_path(item_1))
+
+    expected_quantity = item_1.instock_qty - order_item_1.quantity
+    expect(page).to have_content("Inventory: #{expected_quantity}")
   end
 end
 
