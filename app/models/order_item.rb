@@ -17,11 +17,11 @@ class OrderItem < ApplicationRecord
     end
   end
 
-  # def fulfill_order_item
-  #   # binding.pry
-  #   new_instock_qty = item.instock_qty - quantity
-  #   item.update(instock_qty: new_instock_qty)
-  # end
+  def fulfill
+    new_instock_qty = item.instock_qty - quantity
+    item.update(instock_qty: new_instock_qty)
+    update(fulfilled: true)
+  end
 
   private
 

@@ -116,6 +116,13 @@ describe 'order show page' do
       within "#item-#{item_1.id}" do
         expect(page).to_not have_button('Fulfill')
       end
+
+      click_on "#{item_1.name.capitalize}"
+
+      expect(current_path).to eq(item_path(item_1))
+
+      expected_quantity = item_1.instock_qty - order_item_1.quantity
+      expect(page).to have_content("Inventory: #{expected_quantity}")
     end
   end
 end
