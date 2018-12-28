@@ -70,6 +70,16 @@ class User < ApplicationRecord
         .pluck(:state)
   end
 
+  def self.top_cities
+        select("users.city, count(orders.id) as order_count")
+        .joins(:orders)
+        .group("users.city, users.state")
+        .where("orders.status=?", 1)
+        .order("count(orders.id) desc")
+        .limit(3)
+        .pluck(:city)
+  end
+
   def status
    enabled? ? "Enabled" : "Disabled"
   end

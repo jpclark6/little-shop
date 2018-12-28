@@ -128,6 +128,29 @@ RSpec.describe User, type: :model do
 
       expect(User.top_states).to eq([user_1.state, user_6.state, user_3.state])
     end
+
+    it ".top_cities" do
+      user_1 = FactoryBot.create(:user, state:"MI", city:"Detroit")
+      order_1 = FactoryBot.create(:order, user: user_1, status: "fulfilled")
+      order_2 = FactoryBot.create(:order, user: user_1, status: "fulfilled")
+      order_3 = FactoryBot.create(:order, user: user_1, status: "pending")
+
+      user_3 = FactoryBot.create(:user, state:"IN", city: "Indianapolis")
+      order_6 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+      order_12 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+      order_14 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+
+
+      user_5 = FactoryBot.create(:user, state:"MI", city: "Detroit")
+      order_8 = FactoryBot.create(:order, user: user_5, status: "fulfilled")
+
+      user_6 = FactoryBot.create(:user, state:"CO", city: "Detroit")
+      order_9 = FactoryBot.create(:order, user: user_6, status: "fulfilled")
+      order_10 = FactoryBot.create(:order, user: user_6, status: "fulfilled")
+      order_11 = FactoryBot.create(:order, user: user_6, status: "pending")
+
+      expect(User.top_cities).to eq([user_1.city, user_3.city, user_5.city])
+    end
   end
 
   describe 'instance methods' do

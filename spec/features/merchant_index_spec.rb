@@ -171,7 +171,7 @@ describe 'merchant index page' do
 
       user_2 = FactoryBot.create(:user, state:"MI")
       order_4 = FactoryBot.create(:order, user: user_2, status: "fulfilled")
-      order_5 = FactoryBot.create(:order, user: user_2, status: "pending", status: "fulfilled")
+      order_5 = FactoryBot.create(:order, user: user_2, status: "pending")
 
       user_3 = FactoryBot.create(:user, state:"IN")
       order_6 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
@@ -199,6 +199,39 @@ describe 'merchant index page' do
         expect(all("li")[1]).to have_content(user_6.state)
         expect(all("li")[2]).to have_content(user_3.state)
         expect(page).to_not have_content(user_7.state)
+      end
+    end
+    it 'top 3 cities where any orders were shipped' do
+      user_1 = FactoryBot.create(:user, state:"MI", city:"Detroit")
+      order_1 = FactoryBot.create(:order, user: user_1, status: "fulfilled")
+      order_2 = FactoryBot.create(:order, user: user_1, status: "fulfilled")
+      order_3 = FactoryBot.create(:order, user: user_1, status: "pending")
+
+      user_3 = FactoryBot.create(:user, state:"IN", city: "Indianapolis")
+      order_6 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+      order_12 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+      order_14 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+
+
+      user_5 = FactoryBot.create(:user, state:"MI", city: "Detroit")
+      order_8 = FactoryBot.create(:order, user: user_5, status: "fulfilled")
+
+      user_6 = FactoryBot.create(:user, state:"CO", city: "Detroit")
+      order_9 = FactoryBot.create(:order, user: user_6, status: "fulfilled")
+      order_10 = FactoryBot.create(:order, user: user_6, status: "fulfilled")
+      order_11 = FactoryBot.create(:order, user: user_6, status: "pending")
+
+      user_7 = FactoryBot.create(:user, state:"FL", city: "Miami")
+      order_13 = FactoryBot.create(:order, user: user_7, status: "fulfilled")
+
+      visit merchants_path
+
+      within ".top_cities" do
+        expect(page).to have_content("Top cities")
+        expect(all("li")[0]).to have_content(user_1.city)
+        expect(all("li")[1]).to have_content(user_3.city)
+        expect(all("li")[2]).to have_content(user_5.city)
+        expect(page).to_not have_content(user_7.city)
       end
     end
   end

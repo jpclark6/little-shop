@@ -37,6 +37,12 @@
       <li><%= state %></li>
     <% end %>
   </ul>
+  <ul class="top_cities">
+    <h3>Top cities</h3>
+    <% @users.top_cities.each do |city| %>
+      <li><%= city %></li>
+    <% end %>
+  </ul>
 </div>
 <h1> All Merchants </h1>
 <div id='all-merchants'>
