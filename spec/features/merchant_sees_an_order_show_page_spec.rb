@@ -99,6 +99,9 @@ describe 'order show page' do
       within "#order_item-#{order_item_1.id}" do
         click_on 'Fulfill'
       end
+      within ".flash-flex" do
+        expect(page).to have_content("Item Fulfilled")
+      end
 
       expect(current_path).to eq(dashboard_order_path(order))
       order_item_1 = OrderItem.find(order_item_1.id)
@@ -124,9 +127,10 @@ end
 # - Then I see a button or link to "fulfill" that item
 # - When I click on that link or button I am returned to the order show page
 # >>>>>>
-
 # - I see the item is now fulfilled
 # - I also see a flash message indicating that I have fulfilled that item
+# If I have already fulfilled this item, I see text indicating such.
+# >>>>>>>>>>>>>>>
+
 # - My inventory quantity is permanently reduced by the user's desired quantity
 #
-# If I have already fulfilled this item, I see text indicating such.
