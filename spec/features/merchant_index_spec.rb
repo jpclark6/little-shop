@@ -163,6 +163,44 @@ describe 'merchant index page' do
         expect(page).to_not have_content("Order id: #{order_4.id}")
       end
     end
+    it 'top 3 states where any orders were shipped' do
+      user_1 = FactoryBot.create(:user, state:"MI")
+      order_1 = FactoryBot.create(:order, user: user_1, status: "fulfilled")
+      order_2 = FactoryBot.create(:order, user: user_1, status: "fulfilled")
+      order_3 = FactoryBot.create(:order, user: user_1, status: "pending")
+
+      user_2 = FactoryBot.create(:user, state:"MI")
+      order_4 = FactoryBot.create(:order, user: user_2, status: "fulfilled")
+      order_5 = FactoryBot.create(:order, user: user_2, status: "pending", status: "fulfilled")
+
+      user_3 = FactoryBot.create(:user, state:"IN")
+      order_6 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+      order_12 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+
+      user_4 = FactoryBot.create(:user, state:"CO")
+      order_7 = FactoryBot.create(:order, user: user_4, status: "fulfilled")
+
+      user_5 = FactoryBot.create(:user, state:"MI")
+      order_8 = FactoryBot.create(:order, user: user_5, status: "fulfilled")
+
+      user_6 = FactoryBot.create(:user, state:"CO")
+      order_9 = FactoryBot.create(:order, user: user_6, status: "fulfilled")
+      order_10 = FactoryBot.create(:order, user: user_6, status: "fulfilled")
+      order_11 = FactoryBot.create(:order, user: user_6, status: "pending")
+
+      user_7 = FactoryBot.create(:user, state:"FL")
+      order_13 = FactoryBot.create(:order, user: user_7, status: "fulfilled")
+
+      visit merchants_path
+
+      within ".top_states" do
+        expect(page).to have_content("Top states")
+        expect(all("li")[0]).to have_content(user_1.state)
+        expect(all("li")[1]).to have_content(user_6.state)
+        expect(all("li")[2]).to have_content(user_3.state)
+        expect(page).to_not have_content(user_7.state)
+      end
+    end
   end
   context "as an admin" do
     it 'I see merchant info, their names are links, and I see buttons to enable or disable them' do

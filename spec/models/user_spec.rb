@@ -98,6 +98,36 @@ RSpec.describe User, type: :model do
 
       expect(User.slowest_fulfillment).to eq([merchant_1, merchant_4, merchant_3])
     end
+    it ".top_states" do
+      user_1 = FactoryBot.create(:user, state:"MI")
+      order_1 = FactoryBot.create(:order, user: user_1, status: "fulfilled")
+      order_2 = FactoryBot.create(:order, user: user_1, status: "fulfilled")
+      order_3 = FactoryBot.create(:order, user: user_1, status: "pending")
+
+      user_2 = FactoryBot.create(:user, state:"MI")
+      order_4 = FactoryBot.create(:order, user: user_2, status: "fulfilled")
+      order_5 = FactoryBot.create(:order, user: user_2, status: "pending")
+
+      user_3 = FactoryBot.create(:user, state:"IN")
+      order_6 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+      order_12 = FactoryBot.create(:order, user: user_3, status: "fulfilled")
+
+      user_4 = FactoryBot.create(:user, state:"CO")
+      order_7 = FactoryBot.create(:order, user: user_4, status: "fulfilled")
+
+      user_5 = FactoryBot.create(:user, state:"MI")
+      order_8 = FactoryBot.create(:order, user: user_5, status: "fulfilled")
+
+      user_6 = FactoryBot.create(:user, state:"CO")
+      order_9 = FactoryBot.create(:order, user: user_6, status: "fulfilled")
+      order_10 = FactoryBot.create(:order, user: user_6, status: "fulfilled")
+      order_11 = FactoryBot.create(:order, user: user_6, status: "pending")
+
+      user_7 = FactoryBot.create(:user, state:"FL")
+      order_13 = FactoryBot.create(:order, user: user_7, status: "fulfilled")
+
+      expect(User.top_states).to eq([user_1.state, user_6.state, user_3.state])
+    end
   end
 
   describe 'instance methods' do

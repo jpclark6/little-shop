@@ -19,7 +19,7 @@ class User < ApplicationRecord
        .order('fulfillment_time asc')
        .limit(3)
   end
-  
+
   def self.top_merch_quantity
     User.where(role: "merchant")
         .joins(:items)
@@ -50,7 +50,7 @@ class User < ApplicationRecord
   end
 
   def self.top_merch_price
-    User.where(role: "merchant")
+        where(role: "merchant")
         .joins(:items)
         .joins("inner join order_items on items.id = order_items.item_id")
         .where(order_items:{fulfilled: true})
@@ -58,6 +58,16 @@ class User < ApplicationRecord
         .order(" sum_order_items_price desc")
         .select("users.*, sum(order_items.price) as sum_order_items_price")
         .limit(3)
+  end
+
+  def self.top_states
+        select("users.state, count(orders.id) as order_count")
+        .joins(:orders)
+        .group("users.state")
+        .where("orders.status=?", 1)
+        .order("count(orders.id) desc")
+        .limit(3)
+        .pluck(:state)
   end
 
   def status

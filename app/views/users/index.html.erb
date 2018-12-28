@@ -31,6 +31,12 @@
       <li>Order quantity: <%= order.order_total %></li>
     <% end %>
   </ul>
+  <ul class="top_states">
+    <h3>Top states</h3>
+    <% @users.top_states.each do |state| %>
+      <li><%= state %></li>
+    <% end %>
+  </ul>
 </div>
 <h1> All Merchants </h1>
 <div id='all-merchants'>
