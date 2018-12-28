@@ -2,7 +2,11 @@ class Dashboard::UsersController < ApplicationController
   before_action :require_merchant
 
   def show
-    @user = current_user
+    if current_user.admin?
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
     @orders = @user.merchant_pending_orders
     render template: 'dashboard/users/show'
   end

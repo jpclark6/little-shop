@@ -376,9 +376,17 @@ label {
 }
 
 .statistics {
-  border: 1px solid darkgrey;
-  padding: 5px;
-  margin: 10px;
+  width: 540px;
+  border: 2px solid darkgrey;
+  box-shadow: -1px 3px 37px -2px rgba(108, 43, 0, 0.2), 0 8px 23px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 4px;
+  padding: 17px 50px;
+  margin: 17px;
+  h3 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+  }
   h4 {
     font-weight: normal;
     b {
