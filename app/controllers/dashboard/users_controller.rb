@@ -2,7 +2,7 @@ class Dashboard::UsersController < ApplicationController
   before_action :require_merchant
 
   def show
-    if current_user.merchant?
+    if current_user.admin?
       @user = User.find(params[:id])
     else
       @user = current_user
