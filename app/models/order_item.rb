@@ -18,7 +18,9 @@ class OrderItem < ApplicationRecord
   end
 
   # def fulfill_order_item
-  #   item.instock_qty - 1
+  #   # binding.pry
+  #   new_instock_qty = item.instock_qty - quantity
+  #   item.update(instock_qty: new_instock_qty)
   # end
 
   private

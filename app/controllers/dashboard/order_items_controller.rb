@@ -3,10 +3,11 @@ class Dashboard::OrderItemsController < ApplicationController
 
   def fulfill
     order_item = OrderItem.find(params[:id])
+    binding.pry
     # order_item.fulfill_order_item
-
-    new_amount = order_item.item.instock_qty - 1
-    order_item.update(instock_qty: new_amount)
+    new_instock_qty = order_item.item.instock_qty - order_item.quantity
+    order_item.item.update(instock_qty: new_instock_qty)
+    binding.pry
     order_item.update(fulfilled: true)
     flash[:message] = "Item Fulfilled"
     redirect_to dashboard_order_path(order_item.order)
