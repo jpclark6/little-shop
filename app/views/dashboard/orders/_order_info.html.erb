@@ -1,4 +1,9 @@
-<h2><%= link_to "Order: #{order.id}", dashboard_order_path(order) %></h2>
+<% if current_user && current_user.merchant? %>
+  <h2><%= link_to "Order: #{order.id}", dashboard_order_path(order) %></h2>
+<% elsif current_user && current_user.admin? %>
+  <h2><%= link_to "Order: #{order.id}", admin_order_path(order) %></h2>
+<% end %>
+
 <h3><b>Date Created:</b> <%= order.created_at %></h3>
 <h3><b>Quantity:</b> <%= order.total_quantity %> items</h3>
 <h3><b>Price:</b> <%= number_to_currency(order.total_price) %></h3>
