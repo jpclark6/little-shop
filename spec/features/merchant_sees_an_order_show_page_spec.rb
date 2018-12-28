@@ -159,8 +159,8 @@ describe 'order show page' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-    visit dashboard_order_path(order)
-    
+    visit admin_order_path(order)
+
     expect(page).to have_button('Fulfill')
   end
 end
