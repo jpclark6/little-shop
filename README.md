@@ -20,10 +20,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+If you'd like to use this site, all you need to do it find a place you'd like to store it on your computer, and then clone it onto your computer.
 
 ```
 git clone https://github.com/bendelonlee/little_shop.git
+bundle install
 bundle update
 
 ```
