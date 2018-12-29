@@ -61,10 +61,10 @@ RSpec.describe User, type: :model do
     end
     it '.my_order_items(order)' do
       merchant = FactoryBot.create(:merchant)
-      item_1 = FactoryBot.create(:item)
+      item_1 = FactoryBot.create(:item, user: merchant)
       item_2 = FactoryBot.create(:item)
       FactoryBot.create(:item)
-      merchant.items << item_1
+      # merchant.items << item_1
 
       order = FactoryBot.create(:order, items: [item_1, item_2])
 
@@ -152,6 +152,10 @@ RSpec.describe User, type: :model do
       it '.top_3_customers_by_total_paid' do
         expect(@merchant.top_3_customers_by_total_paid).to eq([@user_5, @user_3, @user_2])
       end
+    end
+    it '.total_items' do
+      merchant = FactoryBot.create(:merchant)
+      expect(merchant.percent_items_sold).to eq("0%")
     end
   end
 end

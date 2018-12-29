@@ -34,9 +34,9 @@
     <h4><%= "#{index + 1}. #{city_state.city}, #{city_state.state}" %></h4>
   <% end %>
   <h4><b>Top customer by most orders:</b></h4>
-  <h4><%= @user.top_customer_by_orders.name %></h4>
+  <h4><%= @user.top_customer_by_orders.name if @user.top_customer_by_orders %></h4>
   <h4><b>Top customer by most items ordered:</b></h4>
-  <h4><%= @user.top_customer_by_qty.name %></h4>
+  <h4><%= @user.top_customer_by_qty.name if @user.top_customer_by_qty %></h4>
   <h4>
     <b>Top customers by total revenue:</b>
   </h4>
