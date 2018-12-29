@@ -101,7 +101,7 @@ class User < ApplicationRecord
   end
 
   def percent_items_sold
-    "#{(total_items_sold.to_f / total_items * 100).round}%"
+    (total_items_sold.to_f / total_items * 100).round
   end
 
   def top_3_states

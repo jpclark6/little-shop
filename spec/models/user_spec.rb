@@ -269,7 +269,7 @@ RSpec.describe User, type: :model do
         expect(@merchant.total_items_sold).to eq(859)
       end
       it '.percent_items_sold' do
-        expect(@merchant.percent_items_sold).to eq('35%')
+        expect(@merchant.percent_items_sold).to eq(35)
       end
       it '.top_3_states' do
         top_states = @merchant.top_3_states.map { |state| state.state }
@@ -291,7 +291,7 @@ RSpec.describe User, type: :model do
     end
     it '.total_items' do
       merchant = FactoryBot.create(:merchant)
-      expect(merchant.percent_items_sold).to eq("0%")
+      expect(merchant.percent_items_sold).to eq(0)
     end
   end
 end
