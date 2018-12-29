@@ -289,7 +289,7 @@ RSpec.describe User, type: :model do
         expect(@merchant.top_3_customers_by_total_paid).to eq([@user_5, @user_3, @user_2])
       end
     end
-    it '.total_items' do
+    it '.percent_items_sold' do
       merchant = FactoryBot.create(:merchant)
       expect(merchant.percent_items_sold).to eq(0)
     end

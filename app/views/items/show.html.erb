@@ -1,11 +1,11 @@
 <div class='item-show-page'>
-  <h1><%= @item.name %></h1>
+  <h1><%= @item.name.titleize %></h1>
   <div class="item-img">
     <%= image_tag(@item.image, class: "big-picture", onerror: 'this.src="/no_image_available.jpg"') %>
   </div>
   <ul>
     <li><b>Description:</b> <%= @item.description %></li>
-    <li><b>Merchant Name:</b> <%= @item.user.name %></li>
+    <li><b>Merchant Name:</b> <%= @item.user.name.titleize %></li>
     <li><b>Inventory:</b> <%= @item.instock_qty %></li>
     <li><strong>Price: </strong><%= number_to_currency(@item.price) %></li>
     <li><strong>Average Time to Fulfill Item: </strong>

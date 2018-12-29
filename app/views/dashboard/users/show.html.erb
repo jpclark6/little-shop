@@ -15,7 +15,7 @@
     <b>Top items sold by quantity:</b>
   </h4>
   <% @user.top_5_items.each_with_index do |top_item, index| %>
-    <h4><%= "#{index + 1}. #{top_item.name}" %></h4>
+    <h4><%= "#{index + 1}. #{top_item.name.titleize}" %></h4>
   <% end %>
   <h4><b>Inventory</b>:</h4>
   <h4>Sold <%= @user.total_items_sold %> items, which is <%= @user.percent_items_sold %>%
@@ -41,7 +41,7 @@
     <b>Top customers by total revenue:</b>
   </h4>
   <% @user.top_3_customers_by_total_paid.each_with_index do |cust, index| %>
-    <h4><%= "#{index + 1}. #{cust.name}" %></h4>
+    <h4><%= "#{index + 1}. #{cust.name.titleize}" %></h4>
   <% end %>
 </div>
 

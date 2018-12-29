@@ -6,7 +6,7 @@
         <h5>5 Most Popular Items</h5>
         <ol>
           <% @top_5_items.each do |item| %>
-            <li><%= link_to(item.name, item_path(item)) %> (<%= item.units_sold %> units sold)</li>
+            <li><%= link_to(item.name.titleize, item_path(item)) %> (<%= item.units_sold %> units sold)</li>
           <% end %>
         </ol>
       </span>
@@ -14,7 +14,7 @@
         <h5>5 Least Popular Items</h5>
         <ol>
           <% @bottom_5_items.each do |item| %>
-            <li><%= link_to(item.name, item_path(item)) %> (<%= item.units_sold %> units sold)</li>
+            <li><%= link_to(item.name.titleize, item_path(item)) %> (<%= item.units_sold %> units sold)</li>
           <% end %>
         </ol>
       </span>
@@ -27,9 +27,9 @@
   <% @items.each do |item| %>
     <div id="item-<%= item.id %>" class="inner-flex shadow">
       <%= link_to image_tag(item.image, class: :thumb, onerror: 'this.src="/no_image_available.jpg"'), item_path(item)%>
-      <h4><%= link_to(item.name, item_path(item)) %></h4>
+      <h4><%= link_to(item.name.titleize, item_path(item)) %></h4>
       <ul>
-        <li><b>Sold by:</b> <%= item.user.name %> </li>
+        <li><b>Sold by:</b> <%= item.user.name.titleize %> </li>
         <li><b>In Stock:</b> <%= item.instock_qty %> items</li>
         <li><b>Price:</b> <%= number_to_currency(item.price) %></li>
         <li><%= item.description %></li>
