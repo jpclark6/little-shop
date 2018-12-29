@@ -139,15 +139,13 @@ describe 'order show page' do
 
       visit dashboard_order_path(order)
 
-      # within "#item-#{order_item_1.item_id}" do
-      #   expect(page).to have_content("Status: Fulfilled")
-      # end
-
-      # within "#item-#{item_2.id}" do
-      #   click_on 'Fulfill'
-      # end
-      #
+      within "#item-#{order_item_1.item_id}" do
+        expect(page).to have_content("Out of Stock")
+      end
     end
+
+    # REPEAT THE ABOVE TEST FOR AS AN ADMIN.
+    # REPEAT THE ABOVE TEST FOR A REGISTERED USER DOES NOT SEE THE NOTICE.
   end
 
   it 'A Registered User does not see the fulfill button' do
