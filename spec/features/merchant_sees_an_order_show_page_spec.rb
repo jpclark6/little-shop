@@ -147,8 +147,6 @@ describe 'order show page' do
         expect(page).to_not have_content("Out of Stock")
       end
     end
-
-    # REPEAT THE ABOVE TEST FOR A REGISTERED USER DOES NOT SEE THE NOTICE.
   end
 
   it 'A Registered User does not see the fulfill button' do
