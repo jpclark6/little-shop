@@ -33,26 +33,24 @@ describe 'as an admin' do
       expect(page).to have_content(80026)
       expect(page).to have_content("john@gmail.com")
     end
-    it 'It shows flash when same email is entered' do
+
+    it 'It shows flash errors when data entered is bad' do
       user = FactoryBot.create(:user)
-      user_2 = FactoryBot.create(:user, email: "andrew@gmail.com")
+      user_2 = FactoryBot.create(:user)
       admin = FactoryBot.create(:admin)
 
-      visit login_path
-
-      fill_in :email, with: admin.email
-      fill_in :password, with: admin.password
-      click_on 'Log In'
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit admin_user_path(user)
 
       click_on "Edit Profile"
 
-      fill_in :user_email, with: "andrew@gmail.com"
+      fill_in :user_address, with: ""
+      fill_in :user_email, with: user_2.email
 
       click_on "Update User"
 
-      expect(page).to have_content("Your email has already been taken")
+      expect(page).to have_content("Your address can't be blank")
     end
   end
 end
