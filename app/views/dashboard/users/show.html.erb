@@ -11,33 +11,38 @@
 
 <div class='statistics'>
   <h3>Statistics</h3>
-  <div class='tbd'>
-    <% top_5_items = @user.top_5_items %>
-    <h4>
-      <b>Top items sold by quantity:</b>
-      <% if top_5_items[0] %><%= top_5_items[0].name %><% end %><% if top_5_items[1] %>, <%= top_5_items[1].name %><% end %><% if top_5_items[2] %>, <%= top_5_items[2].name %><% end %><% if top_5_items[3] %>, <%= top_5_items[3].name %><% end %><% if top_5_items[4] %>, & <%= top_5_items[4].name %><% end %></h4>
-    <h4>
-      <b>Inventory</b>: Sold <%= @user.total_items_sold %> items, which is <%= @user.percent_items_sold %>
-      of your total inventory
-    </h4>
-    <h4>
-      <% top_states = @user.top_3_states %>
-      <b>Top 3 states by quantity shipped:</b> <% if top_states[0] %><%= top_states[0] %><% end %><% if top_states[1] %>, <%= top_states[1] %><% end %><% if top_states[2] %>, & <%= top_states[2] %><% end %></h4>
-    <h4>
-      <% top_city_states = @user.top_3_city_states %>
-      <b>Top 3 city/states by quantity shipped:</b> <% if top_city_states[0] %><%= top_city_states[0] %><% end %><% if top_city_states[1] %>; <%= top_city_states[1] %><% end %><% if top_city_states[2] %>; & <%= top_city_states[2] %><% end %></h4>
-    <h4>
-      <b>Top customer by most orders:</b> <%= @user.top_customer_by_orders.name if @user.top_customer_by_orders %>
-    </h4>
-    <h4>
-      <b>Top customer by most items ordered:</b> <%= @user.top_customer_by_qty.name if @user.top_customer_by_qty %>
-    </h4>
-    <h4>
-      <% top_3_customers_by_total_paid = @user.top_3_customers_by_total_paid %>
-      <b>Top 3 customers by total money spent:</b> <%= top_3_customers_by_total_paid[0].name if top_3_customers_by_total_paid[0] %>,
-      <%= top_3_customers_by_total_paid[1].name if top_3_customers_by_total_paid[1] %><%=", & " + top_3_customers_by_total_paid[2].name if top_3_customers_by_total_paid[2] %>
-    </h4>
-  </div>
+  <h4>
+    <b>Top items sold by quantity:</b>
+  </h4>
+  <% @user.top_5_items.each_with_index do |top_item, index| %>
+    <h4><%= "#{index + 1}. #{top_item.name}" %></h4>
+  <% end %>
+  <h4><b>Inventory</b>:</h4>
+  <h4>Sold <%= @user.total_items_sold %> items, which is <%= @user.percent_items_sold %>
+    of your total inventory
+  </h4>
+  <h4>
+    <b>Top states shipped to by items shipped:</b>
+  </h4>
+  <% @user.top_3_states.each_with_index do |state_name, index| %>
+    <h4><%= "#{index + 1}. #{state_name.state}" %></h4>
+  <% end %>
+  <h4>
+    <b>Top city/states shipped to by items shipped:</b>
+  </h4>
+  <% @user.top_3_city_states.each_with_index do |city_state, index| %>
+    <h4><%= "#{index + 1}. #{city_state.city}, #{city_state.state}" %></h4>
+  <% end %>
+  <h4><b>Top customer by most orders:</b></h4>
+  <h4><%= @user.top_customer_by_orders.name if @user.top_customer_by_orders %></h4>
+  <h4><b>Top customer by most items ordered:</b></h4>
+  <h4><%= @user.top_customer_by_qty.name if @user.top_customer_by_qty %></h4>
+  <h4>
+    <b>Top customers by total revenue:</b>
+  </h4>
+  <% @user.top_3_customers_by_total_paid.each_with_index do |cust, index| %>
+    <h4><%= "#{index + 1}. #{cust.name}" %></h4>
+  <% end %>
 </div>
 
 <div class='pending-orders'>

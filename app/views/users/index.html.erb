@@ -1,4 +1,50 @@
 <h1> All Merchants </h1>
+<div class="statistics">
+
+  <h3>Statistics</h3>
+  <ol class="top_quantity">
+    <h3> Top 3 merchants by quantity </h3>
+    <% @merchants.top_merch_quantity.each do |merchant| %>
+      <li><%= merchant.name %> (<%= merchant.sum_order_items_quantity %> Items Sold)</li>
+    <% end %>
+  </ol>
+  <ol class="top_price">
+    <h3> Top 3 merchants by price </h3>
+    <% @merchants.top_merch_price.each do |merchant| %>
+      <li><%= merchant.name %></li>
+    <% end %>
+  </ol>
+  <ol class="fastest_fulfillment">
+    <h3>Fastest merchants </h3>
+    <% @merchants.fastest_fulfillment.each do |merchant| %>
+      <li><%= merchant.name %> | Average Fulfillment Time: <%= merchant.fulfillment_time %></li>
+    <% end %>
+  </ol>
+  <ol class="slowest_fulfillment">
+    <h3>Slowest merchants </h3>
+    <% @merchants.slowest_fulfillment.each do |merchant| %>
+      <li><%= merchant.name %> | Average Fulfillment Time: <%= merchant.fulfillment_time %></li>
+    <% end %>
+  </ol>
+  <ol class="biggest_orders">
+    <h3>Biggest orders </h3>
+    <% Order.biggest_orders.each do |order| %>
+      <li>Order id: <%= order.id %> | Order quantity: <%= order.order_total %></li>
+    <% end %>
+  </ol>
+  <ol class="top_states">
+    <h3>Top states</h3>
+    <% @users.top_states.each do |result| %>
+      <li><%= result.state %> (<%= result.order_count %> orders)</li>
+    <% end %>
+  </ol>
+  <ol class="top_cities">
+    <h3>Top cities</h3>
+    <% @users.top_cities.each do |result| %>
+      <li><%= result.city %>(<%= result.order_count %> orders)</li>
+    <% end %>
+  </ol>
+</div>
 <div id='all-merchants'>
   <% @merchants.each do |merchant| %>
     <div id="merchant-<%= merchant.id %>" class='merchant-index'>

@@ -72,6 +72,7 @@ describe 'registered user visits their own profile page' do
 
     order_1 = Order.all[-2]
     order_2 = Order.all[-1]
+    
 
     expect(current_path).to eq(profile_path)
 

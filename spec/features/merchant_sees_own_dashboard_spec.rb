@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+include ActionView::Helpers::NumberHelper
+
 describe 'As a Merchant' do
   it 'displays the merchants own profile data on the dashboard, but cannot edit' do
     user = FactoryBot.create(:merchant)
@@ -65,12 +67,12 @@ describe 'As a Merchant' do
     expect(page).to have_link(order_2.id)
     expect(page).to have_content(order_2.created_at)
     expect(page).to have_content("Quantity: #{order_2.total_quantity}")
-    expect(page).to have_content(order_2.total_price)
+    expect(page).to have_content(number_to_currency(order_2.total_price))
 
     expect(page).to have_link(order_5.id)
     expect(page).to have_content(order_5.created_at)
     expect(page).to have_content("Quantity: #{order_5.total_quantity}")
-    expect(page).to have_content("Price: $#{order_5.total_price}")
+    expect(page).to have_content("Price: #{number_to_currency(order_5.total_price)}")
 
     expect(page).to_not have_link(order_1.id)
     expect(page).to_not have_content("Id: #{order_1.id}")
