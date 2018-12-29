@@ -127,12 +127,12 @@ describe 'order show page' do
 
     it 'Shows a big red notice next to the item indicating I cannot fulfill this item' do
       merchant = FactoryBot.create(:merchant)
-      item_1 = FactoryBot.create(:item)
+      item_1 = FactoryBot.create(:item, instock_qty: 1)
       item_2 = FactoryBot.create(:item)
       merchant.items += [item_1, item_2]
       order = FactoryBot.create(:order)
 
-      order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 1.50)
+      order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 20)
       order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, price: 2.75, quantity: 10)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
