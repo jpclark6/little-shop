@@ -21,10 +21,6 @@ class Order < ApplicationRecord
     order_items. sum("order_items.price * order_items.quantity")
   end
 
-  def pending?
-    status == 'pending'
-  end
-
   def cancel_order
     order_items.each do |oi|
       if oi.fulfilled == true

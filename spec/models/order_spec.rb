@@ -53,20 +53,6 @@ RSpec.describe Order, type: :model do
       expect(order.total_price).to eq(14)
     end
 
-    it '.pending?' do
-      item_1 = FactoryBot.create(:item)
-      item_2 = FactoryBot.create(:item)
-      item_3 = FactoryBot.create(:item)
-
-      order_1 = FactoryBot.create(:pending, items: [item_1,item_2,item_3])
-      order_2 = FactoryBot.create(:fulfilled, items: [item_1,item_2,item_3])
-      order_3 = FactoryBot.create(:cancelled, items: [item_1,item_2,item_3])
-
-      expect(order_1.pending?).to eq(true)
-      expect(order_2.pending?).to eq(false)
-      expect(order_3.pending?).to eq(false)
-    end
-
     it '.cancel_order' do
       item_1 = FactoryBot.create(:item)
       item_2 = FactoryBot.create(:item)
