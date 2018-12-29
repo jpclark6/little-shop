@@ -128,7 +128,7 @@ describe 'order show page' do
     it 'Shows a big red notice next to the item indicating I cannot fulfill this item' do
       merchant = FactoryBot.create(:merchant)
       item_1 = FactoryBot.create(:item, instock_qty: 1)
-      item_2 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item, instock_qty: 500)
       merchant.items += [item_1, item_2]
       order = FactoryBot.create(:order)
 
@@ -142,9 +142,12 @@ describe 'order show page' do
       within "#item-#{order_item_1.item_id}" do
         expect(page).to have_content("Out of Stock")
       end
+
+      within "#item-#{order_item_2.item_id}" do
+        expect(page).to_not have_content("Out of Stock")
+      end
     end
 
-    # REPEAT THE ABOVE TEST FOR AS AN ADMIN.
     # REPEAT THE ABOVE TEST FOR A REGISTERED USER DOES NOT SEE THE NOTICE.
   end
 
@@ -218,5 +221,29 @@ describe 'order show page' do
 
     expected_quantity = item_1.instock_qty - order_item_1.quantity
     expect(page).to have_content("Inventory: #{expected_quantity}")
+  end
+
+  it 'For an Admin, shows a big red notice next to the item indicating I cannot fulfill this item' do
+    admin = FactoryBot.create(:admin)
+    merchant = FactoryBot.create(:merchant)
+    item_1 = FactoryBot.create(:item, instock_qty: 1)
+    item_2 = FactoryBot.create(:item, instock_qty: 500)
+    merchant.items += [item_1, item_2]
+    order = FactoryBot.create(:order)
+
+    order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 20)
+    order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, price: 2.75, quantity: 10)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+    visit admin_order_path(order)
+
+    within "#item-#{order_item_1.item_id}" do
+      expect(page).to have_content("Out of Stock")
+    end
+
+    within "#item-#{order_item_2.item_id}" do
+      expect(page).to_not have_content("Out of Stock")
+    end
   end
 end
