@@ -13,7 +13,6 @@ describe 'As a registered user' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit profile_orders_path
-    save_and_open_page
 
     orders = [order_1, order_2, order_3]
 
