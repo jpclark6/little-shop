@@ -136,10 +136,12 @@ RSpec.describe User, type: :model do
         expect(@merchant.percent_items_sold).to eq('35%')
       end
       it '.top_3_states' do
-        expect(@merchant.top_3_states).to eq(['CO', 'MI', 'UT'])
+        top_states = @merchant.top_3_states.map { |state| state.state }
+        expect(top_states).to eq(['CO', 'MI', 'UT'])
       end
       it '.top_3_city_states' do
-        expect(@merchant.top_3_city_states).to eq(["Denver, MI", "Salt Lake City, UT", "Denver, CO"])
+        top_cities = @merchant.top_3_city_states.map { |citystate| "#{citystate.city}, #{citystate.state}"}
+        expect(top_cities).to eq(["Denver, MI", "Salt Lake City, UT", "Denver, CO"])
       end
       it '.top_customer_by_orders' do
         expect(@merchant.top_customer_by_orders).to eq(@user_2)

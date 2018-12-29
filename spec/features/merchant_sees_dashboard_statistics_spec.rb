@@ -59,7 +59,7 @@ describe 'as a merchant on my dashboard' do
   it 'can find top 5 items sold by quantity' do
     visit dashboard_path
     within('.statistics') do
-      expected = "Top items sold by quantity: 1. #{@item_1.name} 2. #{@item_2.name} 3. #{@item_4.name} 4. #{@item_3.name} 5. #{@item_6.name}"
+      expected = "Top items sold by quantity:\n1. #{@item_1.name}\n2. #{@item_2.name}\n3. #{@item_4.name}\n4. #{@item_3.name}\n5. #{@item_6.name}"
       expect(page).to have_content(expected)
     end
   end
@@ -72,35 +72,110 @@ describe 'as a merchant on my dashboard' do
   it 'can find top 3 states where items were shipped' do
     visit dashboard_path
     within('.statistics') do
-      expect(page).to have_content("Top states shipped to by items shipped: 1. CO 2. MI 3. UT")
+      expect(page).to have_content("Top states shipped to by items shipped:\n1. CO\n2. MI\n3. UT")
     end
     # CO, MI, UT
   end
   it 'can find top 3 city/states where items were shipped' do
     visit dashboard_path
     within('.statistics') do
-      expect(page).to have_content("Top city/states shipped to by items shipped: 1. Denver, MI 2. Salt Lake City, UT 3. & Denver, CO")
+      expect(page).to have_content("Top city/states shipped to by items shipped:\n1. Denver, MI\n2. Salt Lake City, UT\n3. Denver, CO")
     end
     # Denver, MO, Salt Lake City, UT, Denver, CO
   end
   it 'can find name of user with most orders' do
     visit dashboard_path
     within('.statistics') do
-      expect(page).to have_content("Top customer by most orders: #{@user_2.name}")
+      expect(page).to have_content("Top customer by most orders:\n#{@user_2.name}")
     end
     # @user_2 or @user_3 # choose one for tie
   end
   it 'can find name of user who bought most total items' do
     visit dashboard_path
     within('.statistics') do
-      expect(page).to have_content("Top customer by most items ordered: #{@user_2.name}")
+      expect(page).to have_content("Top customer by most items ordered:\n#{@user_2.name}")
     end
     # @user_2 # choose one for tie
   end
   it 'can find top 3 users who have spent the most money on items' do
     visit dashboard_path
     within('.statistics') do
-      expect(page).to have_content("Top customers by total revenue: 1. #{@user_5.name} 2. #{@user_3.name} 3. #{@user_2.name}")
+      expect(page).to have_content("Top customers by total revenue:\n1. #{@user_5.name}\n2. #{@user_3.name}\n3. #{@user_2.name}")
+    end
+    # @user_5, @user_3, @user_2
+  end
+end
+describe 'as a merchant on my dashboard with not enough data' do
+  before(:each) do
+    @merchant = FactoryBot.create(:merchant)
+
+    @item_1 = FactoryBot.create(:item, instock_qty: 600, price: 5, user: @merchant)
+    @item_2 = FactoryBot.create(:item, instock_qty: 200, price: 10, user: @merchant)
+    @item_3 = FactoryBot.create(:item, instock_qty: 200, price: 20, user: @merchant)
+
+    @user_1 = FactoryBot.create(:user, city: 'Denver', state: 'CO')
+    @user_1_order_1 = FactoryBot.create(:fulfilled, user: @user_1)
+    @user_1_order_2 = FactoryBot.create(:fulfilled, user: @user_1)
+    FactoryBot.create(:order_item, item: @item_1, price: @item_1.price, quantity: 100, fulfilled: true, order: @user_1_order_1)
+    FactoryBot.create(:order_item, item: @item_1, price: @item_1.price, quantity: 100, fulfilled: true, order: @user_1_order_2)
+# $1000, 200 pcs
+    @user_2 = FactoryBot.create(:user, city: 'Denver', state: 'MI')
+    @user_2_order_1 = FactoryBot.create(:fulfilled, user: @user_2)
+    @user_2_order_2 = FactoryBot.create(:fulfilled, user: @user_2)
+    @user_2_order_3 = FactoryBot.create(:fulfilled, user: @user_2)
+    FactoryBot.create(:order_item, item: @item_1, price: @item_1.price, quantity: 100, fulfilled: true, order: @user_2_order_1)
+    FactoryBot.create(:order_item, item: @item_2, price: @item_2.price, quantity: 105, fulfilled: true, order: @user_2_order_2)
+    FactoryBot.create(:order_item, item: @item_3, price: @item_3.price, quantity: 50, fulfilled: true, order: @user_2_order_3)
+# $1550, 255 pcs,
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
+
+  end
+  it 'can find top 5 items sold by quantity' do
+    visit dashboard_path
+    within('.statistics') do
+      expected = "Top items sold by quantity:\n1. #{@item_1.name}\n2. #{@item_2.name}\n3. #{@item_3.name}"
+      expect(page).to have_content(expected)
+    end
+  end
+  it 'can find percentage sold against total inventory' do
+    visit dashboard_path
+    within(".statistics") do
+      expect(page).to have_content("Sold 455 items, which is 31% of your total inventory")
+    end
+  end
+  it 'can find top 3 states where items were shipped' do
+    visit dashboard_path
+    within('.statistics') do
+      expect(page).to have_content("Top states shipped to by items shipped:\n1. MI\n2. CO")
+    end
+    # CO, MI, UT
+  end
+  it 'can find top 3 city/states where items were shipped' do
+    visit dashboard_path
+    within('.statistics') do
+      expect(page).to have_content("Top city/states shipped to by items shipped:\n1. Denver, MI\n2. Denver, CO")
+    end
+    # Denver, MO, Salt Lake City, UT, Denver, CO
+  end
+  it 'can find name of user with most orders' do
+    visit dashboard_path
+    within('.statistics') do
+      expect(page).to have_content("Top customer by most orders:\n#{@user_2.name}")
+    end
+    # @user_2 or @user_3 # choose one for tie
+  end
+  it 'can find name of user who bought most total items' do
+    visit dashboard_path
+    within('.statistics') do
+      expect(page).to have_content("Top customer by most items ordered:\n#{@user_2.name}")
+    end
+    # @user_2 # choose one for tie
+  end
+  it 'can find top 3 users who have spent the most money on items' do
+    visit dashboard_path
+    within('.statistics') do
+      expect(page).to have_content("Top customers by total revenue:\n1. #{@user_2.name}\n2. #{@user_1.name}")
     end
     # @user_5, @user_3, @user_2
   end
