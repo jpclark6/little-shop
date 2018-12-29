@@ -197,10 +197,10 @@ RSpec.describe User, type: :model do
     end
     it '.my_order_items(order)' do
       merchant = FactoryBot.create(:merchant)
-      item_1 = FactoryBot.create(:item)
+      item_1 = FactoryBot.create(:item, user: merchant)
       item_2 = FactoryBot.create(:item)
       FactoryBot.create(:item)
-      merchant.items << item_1
+      # merchant.items << item_1
 
       order = FactoryBot.create(:order, items: [item_1, item_2])
 
@@ -272,10 +272,12 @@ RSpec.describe User, type: :model do
         expect(@merchant.percent_items_sold).to eq('35%')
       end
       it '.top_3_states' do
-        expect(@merchant.top_3_states).to eq(['CO', 'MI', 'UT'])
+        top_states = @merchant.top_3_states.map { |state| state.state }
+        expect(top_states).to eq(['CO', 'MI', 'UT'])
       end
       it '.top_3_city_states' do
-        expect(@merchant.top_3_city_states).to eq(["Denver, MI", "Salt Lake City, UT", "Denver, CO"])
+        top_cities = @merchant.top_3_city_states.map { |citystate| "#{citystate.city}, #{citystate.state}"}
+        expect(top_cities).to eq(["Denver, MI", "Salt Lake City, UT", "Denver, CO"])
       end
       it '.top_customer_by_orders' do
         expect(@merchant.top_customer_by_orders).to eq(@user_2)
@@ -286,6 +288,10 @@ RSpec.describe User, type: :model do
       it '.top_3_customers_by_total_paid' do
         expect(@merchant.top_3_customers_by_total_paid).to eq([@user_5, @user_3, @user_2])
       end
+    end
+    it '.total_items' do
+      merchant = FactoryBot.create(:merchant)
+      expect(merchant.percent_items_sold).to eq("0%")
     end
   end
 end

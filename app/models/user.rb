@@ -114,32 +114,11 @@ class User < ApplicationRecord
   end
 
   def top_3_states
-    states = OrderItem.joins(order: :user).joins(:item).where("items.user_id=#{id}").where("fulfilled=true").select("users.state, sum(quantity) as total_quantity").group("users.state").order("total_quantity desc").limit(3)
-    if states[2]
-      [states[0].state, states[1].state, states[2].state]
-    elsif states[1]
-      [states[0].state, states[1].state]
-    elsif states[0]
-      [states[0].state]
-    else
-      ["No shipments"]
-    end
+    OrderItem.joins(order: :user).joins(:item).where("items.user_id=#{id}").where("fulfilled=true").select("users.state, sum(quantity) as total_quantity").group("users.state").order("total_quantity desc").limit(3)
   end
 
   def top_3_city_states
-    city_states = OrderItem.joins(order: :user).joins(:item).where("items.user_id=#{id}").where("fulfilled=true").select("users.city, users.state, sum(quantity) as total_quantity").group("users.city, users.state").order("total_quantity desc").limit(3)
-    if city_states[2]
-      ["#{city_states[0].city}, #{city_states[0].state}",
-      "#{city_states[1].city}, #{city_states[1].state}",
-      "#{city_states[2].city}, #{city_states[2].state}"]
-    elsif city_states[1]
-      ["#{city_states[0].city}, #{city_states[0].state}",
-      "#{city_states[1].city}, #{city_states[1].state}"]
-    elsif city_states[0]
-      ["#{city_states[0].city}, #{city_states[0].state}"]
-    else
-      ["Not enough data"]
-    end
+    OrderItem.joins(order: :user).joins(:item).where("items.user_id=#{id}").where("fulfilled=true").select("users.city, users.state, sum(quantity) as total_quantity").group("users.city, users.state").order("total_quantity desc").limit(3)
   end
 
   def top_customer_by_orders

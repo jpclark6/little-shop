@@ -15,10 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = current_user
-  end
-
   def index
     @users = User.all
     @orders = Order.all
