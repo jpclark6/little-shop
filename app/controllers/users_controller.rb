@@ -20,8 +20,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
-    @orders = Order.all
     if current_user && current_user.admin?
       @merchants = User.where(role: "merchant")
     else

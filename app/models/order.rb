@@ -35,14 +35,6 @@ class Order < ApplicationRecord
     update(status: 'cancelled')
   end
 
-  def self.biggest_orders
-    Order.joins(:order_items)
-         .select("orders.*, sum(order_items.quantity) as order_total")
-         .group(:id)
-         .order("sum(order_items.quantity) desc")
-         .limit(3)
-  end
-
   def fulfill_if_complete
     update(status: "fulfilled") if order_items.all?(&:fulfilled)
   end
