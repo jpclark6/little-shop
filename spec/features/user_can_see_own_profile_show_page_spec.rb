@@ -1,4 +1,5 @@
 require "rails_helper"
+include ActionView::Helpers::TextHelper
 
 describe 'registered user visits their own profile page' do
   it 'shows all profile data except password' do
@@ -72,7 +73,7 @@ describe 'registered user visits their own profile page' do
 
     order_1 = Order.all[-2]
     order_2 = Order.all[-1]
-    
+
 
     expect(current_path).to eq(profile_path)
 
@@ -82,7 +83,7 @@ describe 'registered user visits their own profile page' do
       expect(page).to have_content(order_1.updated_at)
       expect(page).to have_content(order_1.status)
       expect(page).to have_content(order_1.total_quantity)
-      expect(page).to have_content(order_1.total_price)
+      expect(page).to have_content(number_to_currency(order_1.total_price))
     end
 
     within(".order-#{order_2.id}") do
@@ -91,7 +92,7 @@ describe 'registered user visits their own profile page' do
       expect(page).to have_content(order_2.updated_at)
       expect(page).to have_content(order_2.status)
       expect(page).to have_content(order_2.total_quantity)
-      expect(page).to have_content(order_2.total_price)
+      expect(page).to have_content(number_to_currency(order_2.total_price))
     end
 
   end

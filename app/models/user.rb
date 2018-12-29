@@ -10,15 +10,6 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  def self.fastest_fulfillment
-   User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
-       .joins(items: :order_items)
-       .where('order_items.fulfilled = true')
-       .group('users.id')
-       .order('fulfillment_time asc')
-       .limit(3)
-  end
-
   def self.top_merch_quantity
     User.where(role: "merchant")
         .joins(:items)
