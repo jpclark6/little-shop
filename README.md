@@ -143,14 +143,26 @@ Our App is hosted on [Heroku](https://evening-eyrie-16856.herokuapp.com/)
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
+* Rails
+* PostrgeSQL
+* Bcrypt
+* [Waffle.io](https://waffle.io)
+* [GitHub](github.com)
+* [FactoryBot](https://github.com/thoughtbot/factory_bot)
+* RSpec
+* Capybara
+* Pry
+* Launchy
+* SimpleCov
+* Shouldamatchers
+* Chrome dev tools
+* [Faker](https://github.com/stympy/faker)
+* [Picsum Ipsum](https://picsumipsum.herokuapp.com/)
 
 ## Versioning
 
-We use [GitHub](https://github.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+We use [GitHub](https://github.com/) for versioning.
+We usee [Waffle.io](https://waffle.io/) as a project management tool.
 
 ## Authors
 
@@ -162,6 +174,5 @@ We use [GitHub](https://github.com/) for versioning. For the versions available,
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* **Ian Douglas** - [iandouglas](https://iandouglas.com/turing/)
+* **Dione Wilson** - [dionew1](https://github.com/dionew1)
