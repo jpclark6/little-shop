@@ -24,7 +24,7 @@ FactoryBot.define do
   end
 
   factory :item do
-    association :user
+    association :user, factory: :merchant
     sequence(:name) { |n| "Thing #{n}" }
     sequence(:instock_qty) { |n| 27 + n }
     sequence(:price) { |n| 44 + n }
@@ -36,11 +36,11 @@ FactoryBot.define do
   factory :order do
     association :user
     status { 0 }
-    factory :pending do
-      status { 0 }
-    end
     factory :fulfilled do
       status { 1 }
+    end
+    factory :pending do
+      status { 0 }
     end
     factory :cancelled do
       status { 2 }
@@ -52,5 +52,6 @@ FactoryBot.define do
     association :item
     sequence(:price) { |n| n + 1  }
     sequence(:quantity) { |n| 1 + n }
+    fulfilled { false }
   end
 end

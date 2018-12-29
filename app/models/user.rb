@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
+
   def self.fastest_fulfillment
    User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
        .joins(items: :order_items)
@@ -17,6 +18,64 @@ class User < ApplicationRecord
        .group('users.id')
        .order('fulfillment_time asc')
        .limit(3)
+  end
+
+  def self.top_merch_quantity
+    User.where(role: "merchant")
+        .joins(:items)
+        .joins("inner join order_items on items.id = order_items.item_id")
+        .where(order_items:{fulfilled: true})
+        .group(:id)
+        .order(" sum_order_items_quantity desc")
+        .select("users.*, sum(order_items.quantity) as sum_order_items_quantity")
+        .limit(3)
+  end
+
+  def self.fastest_fulfillment
+    User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
+        .joins(items: :order_items)
+        .where('order_items.fulfilled = true')
+        .group('users.id')
+        .order('fulfillment_time')
+        .limit(3)
+  end
+
+  def self.slowest_fulfillment
+    User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
+        .joins(items: :order_items)
+        .where('order_items.fulfilled = true')
+        .group('users.id')
+        .order('fulfillment_time desc')
+        .limit(3)
+  end
+
+  def self.top_merch_price
+        where(role: "merchant")
+        .joins(:items)
+        .joins("inner join order_items on items.id = order_items.item_id")
+        .where(order_items:{fulfilled: true})
+        .group(:id)
+        .order(" sum_order_items_price desc")
+        .select("users.*, sum(order_items.price) as sum_order_items_price")
+        .limit(3)
+  end
+
+  def self.top_states
+        select("users.state, count(orders.id) as order_count")
+        .joins(:orders)
+        .group("users.state")
+        .where("orders.status=?", 1)
+        .order("count(orders.id) desc")
+        .limit(3)
+  end
+
+  def self.top_cities
+        select("users.city, count(orders.id) as order_count")
+        .joins(:orders)
+        .group("users.city, users.state")
+        .where("orders.status=?", 1)
+        .order("count(orders.id) desc")
+        .limit(3)
   end
 
   def status
