@@ -93,10 +93,13 @@ class User < ApplicationRecord
   end
 
   def total_items
-    if total_items_sold && total_items_in_stock
-      return total_items_sold + total_items_in_stock
+    tos = total_items_sold || 0
+    tois = total_items_in_stock || 0
+    result = tois + tos
+    if result == 0
+      Float::INFINITY
     else
-      return Float::INFINITY
+      result
     end
   end
 

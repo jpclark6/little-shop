@@ -270,6 +270,12 @@ RSpec.describe User, type: :model do
       end
       it '.percent_items_sold' do
         expect(@merchant.percent_items_sold).to eq(35)
+        merchant = FactoryBot.create(:merchant)
+        expect(merchant.percent_items_sold).to eq(0)
+        item = FactoryBot.create(:item, user: merchant, instock_qty: 0)
+        FactoryBot.create(:order, items: [item], status: "fulfilled")
+        item.order_items.first.update(fulfilled: true)
+        expect(merchant.percent_items_sold).to eq(100)
       end
       it '.top_3_states' do
         top_states = @merchant.top_3_states.map { |state| state.state }
@@ -289,9 +295,13 @@ RSpec.describe User, type: :model do
         expect(@merchant.top_3_customers_by_total_paid).to eq([@user_5, @user_3, @user_2])
       end
     end
-    it '.percent_items_sold' do
-      merchant = FactoryBot.create(:merchant)
-      expect(merchant.percent_items_sold).to eq(0)
+    it '.total_items' do
+      merchant_2 = FactoryBot.create(:merchant)
+      item = FactoryBot.create(:item, user: merchant_2, instock_qty: 1)
+      expect(merchant_2.total_items).to eq(1)
+      FactoryBot.create(:order, items: [item], status: "fulfilled")
+      item.order_items.first.update(fulfilled: true)
+      expect(merchant_2.total_items).to eq(2)
     end
   end
 end
