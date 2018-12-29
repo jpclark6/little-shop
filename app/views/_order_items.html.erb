@@ -19,7 +19,7 @@
 
             <% if order_item.fulfillable? %>
               <%= button_to 'Fulfill', dashboard_order_item_fulfill_path(order_item), method: 'patch' %>
-            <% elsif order_item.quantity <= order_item.item.instock_qty %>
+            <% elsif order_item.quantity > order_item.item.instock_qty %>
               <div class='Out_of_Stock'>Out of Stock</div>
             <% end %>
 
@@ -27,11 +27,11 @@
 
             <% if order_item.fulfillable? %>
               <%= button_to 'Fulfill', admin_order_item_fulfill_path(order_item), method: 'patch' %>
-            <% elsif order_item.quantity <= order_item.item.instock_qty %>
+            <% elsif order_item.quantity > order_item.item.instock_qty %>
               <div class='Out_of_Stock'>Out of Stock</div>
             <% end %>
           <% end %>
-          
+
         </li>
       </ul>
   </div>
