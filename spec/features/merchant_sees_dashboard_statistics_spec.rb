@@ -59,7 +59,7 @@ describe 'as a merchant on my dashboard' do
   it 'can find top 5 items sold by quantity' do
     visit dashboard_path
     within('.statistics') do
-      expected = "Top items sold by quantity: #{@item_1.name}, #{@item_2.name}, #{@item_4.name}, #{@item_3.name}, & #{@item_6.name}"
+      expected = "Top items sold by quantity: 1. #{@item_1.name} 2. #{@item_2.name} 3. #{@item_4.name} 4. #{@item_3.name} 5. #{@item_6.name}"
       expect(page).to have_content(expected)
     end
   end
@@ -72,14 +72,14 @@ describe 'as a merchant on my dashboard' do
   it 'can find top 3 states where items were shipped' do
     visit dashboard_path
     within('.statistics') do
-      expect(page).to have_content("Top 3 states by quantity shipped: CO, MI, & UT")
+      expect(page).to have_content("Top states shipped to by items shipped: 1. CO 2. MI 3. UT")
     end
     # CO, MI, UT
   end
   it 'can find top 3 city/states where items were shipped' do
     visit dashboard_path
     within('.statistics') do
-      expect(page).to have_content("Top 3 city/states by quantity shipped: Denver, MI; Salt Lake City, UT; & Denver, CO")
+      expect(page).to have_content("Top city/states shipped to by items shipped: 1. Denver, MI 2. Salt Lake City, UT 3. & Denver, CO")
     end
     # Denver, MO, Salt Lake City, UT, Denver, CO
   end
@@ -100,7 +100,7 @@ describe 'as a merchant on my dashboard' do
   it 'can find top 3 users who have spent the most money on items' do
     visit dashboard_path
     within('.statistics') do
-      expect(page).to have_content("Top 3 customers by total money spent: #{@user_5.name}, #{@user_3.name}, & #{@user_2.name}")
+      expect(page).to have_content("Top customers by total revenue: 1. #{@user_5.name} 2. #{@user_3.name} 3. #{@user_2.name}")
     end
     # @user_5, @user_3, @user_2
   end
