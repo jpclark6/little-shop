@@ -9,29 +9,39 @@
   </div>
 <% end %>
 
+
+<div class='pending-orders'>
+  <h2>Pending Orders</h2>
+  <% @orders.each do |order| %>
+    <div class="order-<%= order.id %> profile-order">
+      <%= render partial: "/dashboard/orders/order_info", locals: {order: order} %>
+    </div>
+  <% end %>
+</div>
+
 <div class='statistics'>
   <h3>Statistics</h3>
   <h4>
     <b>Top items sold by quantity:</b>
   </h4>
   <% @user.top_5_items.each_with_index do |top_item, index| %>
-    <h4><%= "#{index + 1}. #{top_item.name}" %></h4>
+  <h4><%= "#{index + 1}. #{top_item.name.titleize}" %></h4>
   <% end %>
   <h4><b>Inventory</b>:</h4>
-  <h4>Sold <%= @user.total_items_sold %> items, which is <%= @user.percent_items_sold %>
+  <h4>Sold <%= @user.total_items_sold %> items, which is <%= @user.percent_items_sold %>%
     of your total inventory
   </h4>
   <h4>
     <b>Top states shipped to by items shipped:</b>
   </h4>
   <% @user.top_3_states.each_with_index do |state_name, index| %>
-    <h4><%= "#{index + 1}. #{state_name.state}" %></h4>
+  <h4><%= "#{index + 1}. #{state_name.state}" %></h4>
   <% end %>
   <h4>
     <b>Top city/states shipped to by items shipped:</b>
   </h4>
   <% @user.top_3_city_states.each_with_index do |city_state, index| %>
-    <h4><%= "#{index + 1}. #{city_state.city}, #{city_state.state}" %></h4>
+  <h4><%= "#{index + 1}. #{city_state.city}, #{city_state.state}" %></h4>
   <% end %>
   <h4><b>Top customer by most orders:</b></h4>
   <h4><%= @user.top_customer_by_orders.name if @user.top_customer_by_orders %></h4>
@@ -41,15 +51,6 @@
     <b>Top customers by total revenue:</b>
   </h4>
   <% @user.top_3_customers_by_total_paid.each_with_index do |cust, index| %>
-    <h4><%= "#{index + 1}. #{cust.name}" %></h4>
-  <% end %>
-</div>
-
-<div class='pending-orders'>
-  <h2>Pending Orders</h2>
-  <% @orders.each do |order| %>
-    <div class="order-<%= order.id %> profile-order">
-      <%= render partial: "/dashboard/orders/order_info", locals: {order: order} %>
-    </div>
+  <h4><%= "#{index + 1}. #{cust.name.titleize}" %></h4>
   <% end %>
 </div>

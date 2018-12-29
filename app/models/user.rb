@@ -10,15 +10,6 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  def self.fastest_fulfillment
-   User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
-       .joins(items: :order_items)
-       .where('order_items.fulfilled = true')
-       .group('users.id')
-       .order('fulfillment_time asc')
-       .limit(3)
-  end
-
   def self.top_merch_quantity
     User.where(role: "merchant")
         .joins(:items)
@@ -102,15 +93,18 @@ class User < ApplicationRecord
   end
 
   def total_items
-    if total_items_sold && total_items_in_stock
-      return total_items_sold + total_items_in_stock
+    tos = total_items_sold || 0
+    tois = total_items_in_stock || 0
+    result = tois + tos
+    if result == 0
+      Float::INFINITY
     else
-      return Float::INFINITY
+      result
     end
   end
 
   def percent_items_sold
-    "#{(total_items_sold.to_f / total_items * 100).round}%"
+    (total_items_sold.to_f / total_items * 100).round
   end
 
   def top_3_states

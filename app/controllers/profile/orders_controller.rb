@@ -20,9 +20,6 @@ class Profile::OrdersController < ApplicationController
       @cart.empty_cart
       flash[:notice] = "Order created successfully"
       redirect_to profile_path
-    else
-      flash[:error] = "Order not processed"
-      redirect_to profile_path
     end
   end
 

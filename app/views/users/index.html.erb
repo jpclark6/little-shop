@@ -5,25 +5,25 @@
   <ol class="top_quantity">
     <h3> Top 3 merchants by quantity </h3>
     <% @merchants.top_merch_quantity.each do |merchant| %>
-      <li><%= merchant.name %> (<%= merchant.sum_order_items_quantity %> Items Sold)</li>
+      <li><%= merchant.name.titleize %> (<%= merchant.sum_order_items_quantity %> Items Sold)</li>
     <% end %>
   </ol>
   <ol class="top_price">
     <h3> Top 3 merchants by price </h3>
     <% @merchants.top_merch_price.each do |merchant| %>
-      <li><%= merchant.name %></li>
+      <li><%= merchant.name.titleize %></li>
     <% end %>
   </ol>
   <ol class="fastest_fulfillment">
     <h3>Fastest merchants </h3>
     <% @merchants.fastest_fulfillment.each do |merchant| %>
-      <li><%= merchant.name %> | Average Fulfillment Time: <%= merchant.fulfillment_time %></li>
+      <li><%= merchant.name.titleize %> | Average Fulfillment Time: <%= merchant.fulfillment_time %></li>
     <% end %>
   </ol>
   <ol class="slowest_fulfillment">
     <h3>Slowest merchants </h3>
     <% @merchants.slowest_fulfillment.each do |merchant| %>
-      <li><%= merchant.name %> | Average Fulfillment Time: <%= merchant.fulfillment_time %></li>
+      <li><%= merchant.name.titleize %> | Average Fulfillment Time: <%= merchant.fulfillment_time %></li>
     <% end %>
   </ol>
   <ol class="biggest_orders">
@@ -50,7 +50,7 @@
     <div id="merchant-<%= merchant.id %>" class='merchant-index'>
       <% if current_user && current_user.admin? %>
         <span class='merchant-name'>
-          <%= link_to(merchant.name, admin_merchant_path(merchant)) %>
+          <%= link_to(merchant.name.titleize, admin_merchant_path(merchant)) %>
         </span>
       <% else %>
         <span class='merchant-name'><%= merchant.name.titleize %></span>
