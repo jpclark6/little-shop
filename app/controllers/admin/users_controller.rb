@@ -31,7 +31,7 @@ class Admin::UsersController < ApplicationController
       flash[:success] = "Your data is updated"
       redirect_to admin_user_path(@user)
     else
-      flash[:error] = "the email you entered is already taken"
+      add_errors_on_flash(@user)
       render :edit
     end
   end
