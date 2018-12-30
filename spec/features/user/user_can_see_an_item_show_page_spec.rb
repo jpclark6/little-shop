@@ -29,4 +29,9 @@ describe "user sees an item" do
 
     expect(page).to_not have_content(item_2.name)
   end
+  it 'shows explanation if an item has never been ordered' do
+    item_1 = FactoryBot.create(:item)
+    visit item_path(item_1)
+    expect(page).to have_content("Item has yet to be ordered... be the first!")
+  end
 end

@@ -11,6 +11,8 @@
     <li><b>Average Time to Fulfill Item: </b>
     <% if avg_time = @item.avg_fulfillment_time %>
       <%= avg_time.sub(/\.\d*$/, '') %>
+    <% else %>
+    Item has yet to be ordered... be the first!
     <% end %>
     </li>
     <% unless admin_user? || merchant_user? %>
