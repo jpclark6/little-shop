@@ -35,7 +35,6 @@ class Dashboard::ItemsController < ApplicationController
     end
   end
 
-
   def toggle
     item = Item.find(params[:id])
     toggle_enabled(item)
@@ -48,6 +47,7 @@ class Dashboard::ItemsController < ApplicationController
     flash[:alert] = "Item #{item.id} with name '#{item.name}' has been deleted."
     redirect_to dashboard_items_path
   end
+
   private
 
   def item_params

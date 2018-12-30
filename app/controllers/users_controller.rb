@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @biggest_orders = Order.biggest_orders
-    if current_user && current_user.admin?
+    if admin_user?
       @merchants = User.where(role: "merchant")
     else
       @merchants = User.where(enabled: true, role: "merchant")

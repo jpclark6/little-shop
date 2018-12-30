@@ -20,40 +20,54 @@
 
 <div class='statistics'>
   <h3>Statistics</h3>
-  <h4>
-    <b>Top items sold by quantity:</b>
-  </h4>
-  <ol>
-    <% @user.top_5_items.each do |top_item| %>
-      <li><%= top_item.name.titleize %></li>
-    <% end %>
-  </ol>
-  <h4><b>Inventory</b>:</h4>
-  <h4>Sold <%= @user.total_items_sold %> items, which is <%= @user.percent_items_sold %>%
-    of your total inventory
-  </h4>
-  <h4>
-    <b>Top states shipped to by items shipped:</b>
-  </h4>
-  <ol>
-    <% @user.top_3_states.each do |state_name| %>
-      <li><%= state_name.state %></li>
-    <% end %>
-  </ol>
-  <h4><b>Top city/states shipped to by items shipped:</b></h4>
-  <ol>
-    <% @user.top_3_city_states.each do |city_state| %>
-      <li><%= "#{city_state.city}, #{city_state.state}" %></li>
-    <% end %>
-  </ol>
-  <h4><b>Top customer by most orders:</b></h4>
-  <h4><%= @user.top_customer_by_orders.name if @user.top_customer_by_orders %></h4>
-  <h4><b>Top customer by most items ordered:</b></h4>
-  <h4><%= @user.top_customer_by_qty.name if @user.top_customer_by_qty %></h4>
-  <h4><b>Top customers by total revenue:</b></h4>
-  <ol>
-    <% @user.top_3_customers_by_total_paid.each do |cust| %>
-      <li><%= cust.name.titleize %></li>
-    <% end %>
-  </ol>
+  <div class='stats-section'>
+    <h4>
+      <b>Top items sold by quantity:</b>
+    </h4>
+    <ol>
+      <% @user.top_5_items.each do |top_item| %>
+        <li><%= top_item.name.titleize %></li>
+      <% end %>
+    </ol>
+  </div>
+  <div class='stats-section'>
+    <h4><b>Inventory</b>:</h4>
+    <h4>Sold <%= @user.total_items_sold %> items, which is <%= @user.percent_items_sold %>%
+      of your total inventory
+    </h4>
+  </div>
+  <div class='stats-section'
+    <h4>
+      <b>Top states shipped to by items shipped:</b>
+    </h4>
+    <ol>
+      <% @user.top_3_states.each do |state_name| %>
+        <li><%= state_name.state %></li>
+      <% end %>
+    </ol>
+  </div>
+  <div class='stats-section'>
+    <h4><b>Top city/states shipped to by items shipped:</b></h4>
+    <ol>
+      <% @user.top_3_city_states.each do |city_state| %>
+        <li><%= "#{city_state.city}, #{city_state.state}" %></li>
+      <% end %>
+    </ol>
+  </div>
+  <div class="stats-section">
+    <h4><b>Top customer by most orders:</b></h4>
+    <h4><%= @user.top_customer_by_orders.name if @user.top_customer_by_orders %></h4>
+  </div>
+  <div class="stats-section">
+    <h4><b>Top customer by most items ordered:</b></h4>
+    <h4><%= @user.top_customer_by_qty.name if @user.top_customer_by_qty %></h4>
+  </div>
+  <div class="stats-section">
+    <h4><b>Top customers by total revenue:</b></h4>
+    <ol>
+      <% @user.top_3_customers_by_total_paid.each do |cust| %>
+        <li><%= cust.name.titleize %></li>
+      <% end %>
+    </ol>
+  </div>
 </div>

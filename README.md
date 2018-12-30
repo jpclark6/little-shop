@@ -8,7 +8,7 @@ We have built an online e-commerce platform to sell local artisan goods. Our sit
 
 ## Getting Started
 
-If you'd like to use this site, all you need to do it find a place you'd like to store it on your computer, and then clone it onto your computer.
+To get started, clone the repo to a local directory, and then enter that directory.
 
 ```
 git clone https://github.com/bendelonlee/little_shop.git

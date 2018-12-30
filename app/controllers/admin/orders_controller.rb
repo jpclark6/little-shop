@@ -1,5 +1,6 @@
 class Admin::OrdersController < ApplicationController
   before_action :require_admin
+
   def show
     @order = Order.find(params[:id])
     @order_items = @order.order_items
@@ -7,6 +8,7 @@ class Admin::OrdersController < ApplicationController
     @order_path = :admin_order_path
     render template: "profile/orders/show"
   end
+  
   def destroy
     order = Order.find(params[:id])
     @user = order.user
