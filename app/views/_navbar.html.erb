@@ -23,7 +23,7 @@
       <% unless merchant_user? || admin_user? %>
         <li>
           <h3>
-            <%= button_to "cart", method: "get", html: {class: "cart-button"} do  %>
+            <%= button_to "/cart", method: "get", html: {class: "cart-button"} do  %>
               <div>
                 <i class="fas fa-shopping-cart"></i>
               </div>
