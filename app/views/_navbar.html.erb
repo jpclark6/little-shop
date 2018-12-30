@@ -4,14 +4,13 @@
       <li><h3><%= link_to "Home", "/" %></h3></li>
       <li><h3><%= link_to "Browse", "/items" %></h3></li>
       <li><h3><%= link_to "Merchants", "/merchants" %></h3></li>
-
-      <% if current_user && current_user.merchant? %>
+      <% if merchant_user? %>
         <li><h3><%= link_to "Dashboard", "/dashboard" %></h3></li>
-      <% elsif current_user && current_user.admin? %>
+      <% elsif admin_user? %>
         <li><h3><%= link_to "All Users", "/admin/users" %></h3></li>
       <% end %>
       <% if current_user %>
-        <% if current_user.registered? %>
+        <% if registered_user? %>
           <li><h3><%= link_to "Profile", profile_path %></h3></li>
           <li><h3><%= link_to "Orders", profile_orders_path %></h3></li>
         <% end %>
@@ -21,7 +20,7 @@
         <li><h3><%= link_to "Log in", "/login" %></h3></li>
         <li><h3><%= link_to "Register", "/register" %></h3></li>
       <% end %>
-      <% unless current_user && (current_user.merchant? || current_user.admin?) %>
+      <% unless merchant_user? || admin_user? %>
         <li>
           <h3>
             <%= button_to "cart", method: "get", html: {class: "cart-button"} do  %>
@@ -35,5 +34,4 @@
       <% end %>
     </ul>
   </div>
-
 </nav>

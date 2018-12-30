@@ -12,6 +12,7 @@ https://dbdiagram.io/d/5c1539dc97b0960014c337df
 
 If you'd like to explore this application on your local computer, please find an appropriate local directory and clone down the application utilizing the following directions:
 
+
 ```
 git clone https://github.com/bendelonlee/little_shop.git
 cd little_shop

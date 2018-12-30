@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :merchant_user?, :admin_user?
+  helper_method :current_user, :registered_user?, :merchant_user?, :admin_user?
   before_action :set_cart
 
   def set_cart
@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
 
   def merchant_user?
    current_user && current_user.merchant?
+  end
+
+  def registered_user?
+   current_user && current_user.registered?
   end
 
   def require_current_user

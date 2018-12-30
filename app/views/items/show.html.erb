@@ -7,13 +7,13 @@
     <li><b>Description:</b> <%= @item.description %></li>
     <li><b>Merchant Name:</b> <%= @item.user.name.titleize %></li>
     <li><b>Inventory:</b> <%= @item.instock_qty %></li>
-    <li><strong>Price: </strong><%= number_to_currency(@item.price) %></li>
-    <li><strong>Average Time to Fulfill Item: </strong>
+    <li><b>Price: </b><%= number_to_currency(@item.price) %></li>
+    <li><b>Average Time to Fulfill Item: </b>
     <% if avg_time = @item.avg_fulfillment_time %>
       <%= avg_time.sub(/\.\d*$/, '') %>
     <% end %>
     </li>
-    <% unless current_user && (current_user.admin? || current_user.merchant?) %>
+    <% unless admin_user? || merchant_user? %>
       <li>
         <%= button_to "Add Item", carts_path(item_id: @item.id) %>
       </li>

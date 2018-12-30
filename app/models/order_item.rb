@@ -10,18 +10,14 @@ class OrderItem < ApplicationRecord
   end
 
   def fulfillable?
-    if !fulfilled? && item.instock_qty >= quantity
-      true
-    else
-      false
-    end
+    !fulfilled? && item.instock_qty >= quantity ? true : false
   end
 
   def fulfill
     new_instock_qty = item.instock_qty - quantity
     item.update(instock_qty: new_instock_qty)
     update(fulfilled: true)
-    order.fulfill_if_complete  
+    order.fulfill_if_complete
   end
 
   private
