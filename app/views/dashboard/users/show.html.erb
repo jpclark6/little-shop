@@ -9,7 +9,6 @@
   </div>
 <% end %>
 
-
 <div class='pending-orders'>
   <h2>Pending Orders</h2>
   <% @orders.each do |order| %>
@@ -25,7 +24,7 @@
     <b>Top items sold by quantity:</b>
   </h4>
   <ol>
-    <% @user.top_5_items.each_with_index do |top_item, index| %>
+    <% @user.top_5_items.each do |top_item| %>
       <li><%= top_item.name.titleize %></li>
     <% end %>
   </ol>
@@ -34,7 +33,7 @@
     of your total inventory
   </h4>
   <h4>
-    <b>Top states shipped to b y items shipped:</b>
+    <b>Top states shipped to by items shipped:</b>
   </h4>
   <ol>
     <% @user.top_3_states.each do |state_name| %>
@@ -53,7 +52,7 @@
   <h4><%= @user.top_customer_by_qty.name if @user.top_customer_by_qty %></h4>
   <h4><b>Top customers by total revenue:</b></h4>
   <ol>
-    <% @user.top_3_customers_by_total_paid.each_with_index do |cust, index| %>
+    <% @user.top_3_customers_by_total_paid.each do |cust| %>
       <li><%= cust.name.titleize %></li>
     <% end %>
   </ol>
