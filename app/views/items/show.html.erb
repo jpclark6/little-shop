@@ -13,7 +13,7 @@
       <%= avg_time.sub(/\.\d*$/, '') %>
     <% end %>
     </li>
-    <% unless current_user && (current_user.admin? || current_user.merchant?) %>
+    <% unless admin_user? || merchant_user? %>
       <li>
         <%= button_to "Add Item", carts_path(item_id: @item.id) %>
       </li>
