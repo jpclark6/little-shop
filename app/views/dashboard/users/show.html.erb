@@ -27,7 +27,7 @@
   <% @user.top_5_items.each_with_index do |top_item, index| %>
   <h4><%= "#{index + 1}. #{top_item.name.titleize}" %></h4>
   <% end %>
-  <h4><b>Inventory</b>:</h4>
+  <h4><b>Inventory<b>:</h4>
   <h4>Sold <%= @user.total_items_sold %> items, which is <%= @user.percent_items_sold %>%
     of your total inventory
   </h4>

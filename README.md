@@ -1,10 +1,10 @@
-# Database Schema:
-![Alt text](./public/Database_1.png?raw=true "Title")
-
-
 # Little Shop
 
-We have built an online e-commerce platform to sell local artisan goods. Our site allows users to add items to a cart and check out to purchase them from merchants. Merchants may log in to purchase items, add items to their own inventories, enable and disable items, fulfill orders, and edit existing items available. Admin users have access to change user status from merchants to regular users and vice versa, disable and enable users and merchants, have access to additional analytics, and cancel orders.
+Little Shop is an online e-commerce platform for selling local artisan goods. The site allows users to add items to their cart and to check-out their cart in order to purchase the items from a merchant. Users have the ability to register with an account, which saves their profile and orders to the database. Merchants have the ability to log-in, in order to add items to their inventories, edit existing items, enable/disable items, and fulfill orders. Admin users have access to alter the status' of other merchant and registered users, including the ability to enable/disable a registered user/merchant's account. Admin users also have access to additional analytics and the ability to cancel orders.
+
+## Database Schema:
+![Alt text](./public/Database_1.png?raw=true "Title")
+https://dbdiagram.io/d/5c1539dc97b0960014c337df
 
 ## Getting Started
 
@@ -130,12 +130,6 @@ RSpec.describe Order, type: :model do
 end
 
 ```
-# Schema:
-https://dbdiagram.io/d/5c1539dc97b0960014c337df
-
-# Rubric: https://github.com/turingschool-projects/little_shop_v2/blob/master/LittleShopRubric.pdf
-
-# DTR: https://docs.google.com/document/d/1Yk3XVh2ThZJTLu6YO8zYsrDdLwssvQEewJIszPIGfcg/edit?usp=sharing
 
 ## Deployment
 
@@ -161,8 +155,14 @@ Our App is hosted on [Heroku](https://evening-eyrie-16856.herokuapp.com/)
 
 ## Versioning
 
-We use [GitHub](https://github.com/) for versioning.
-We usee [Waffle.io](https://waffle.io/) as a project management tool.
+We used [GitHub](https://github.com/) for versioning.
+We used [Waffle.io](https://waffle.io/) as a project management tool.
+
+# Rubrics:
+https://github.com/turingschool-projects/little_shop_v2/blob/master/LittleShopRubric.pdf
+https://github.com/turingschool-projects/little_shop_v2/blob/master/rubric_text.md
+
+# DTR: https://docs.google.com/document/d/1Yk3XVh2ThZJTLu6YO8zYsrDdLwssvQEewJIszPIGfcg/edit?usp=sharing
 
 ## Authors
 
