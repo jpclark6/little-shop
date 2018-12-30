@@ -11,19 +11,19 @@ class Item < ApplicationRecord
 
   def self.top_5
     select("items.name, items.id, sum(order_items.quantity) as units_sold")
-          .joins(:order_items)
-          .where(order_items: {fulfilled: true})
-          .group(:id)
-          .order("units_sold desc")
-          .limit(5)
+        .joins(:order_items)
+        .where(order_items: {fulfilled: true})
+        .group(:id)
+        .order("units_sold desc")
+        .limit(5)
   end
 
   def self.bottom_5
     select("items.name, items.id, coalesce(sum(order_items.quantity), 0) as units_sold")
-          .left_outer_joins(:order_items)
-          .group(:id)
-          .order("coalesce(sum(order_items.quantity), 0)")
-          .limit(5)
+        .left_outer_joins(:order_items)
+        .group(:id)
+        .order("coalesce(sum(order_items.quantity), 0)")
+        .limit(5)
   end
 
   def never_ordered?
@@ -31,7 +31,8 @@ class Item < ApplicationRecord
   end
 
   def avg_fulfillment_time
-    results = OrderItem.select("avg(updated_at - created_at) as avg_f_time").where(item: self, fulfilled: true)
+    results = OrderItem.select("avg(updated_at - created_at) as avg_f_time")
+                       .where(item: self, fulfilled: true)
     if results.present?
       return results.first['avg_f_time']
     else

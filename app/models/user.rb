@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_secure_password
 
   def self.top_merch_quantity
-    User.where(role: "merchant")
+    where(role: "merchant")
         .joins(:items)
         .joins("inner join order_items on items.id = order_items.item_id")
         .where(order_items:{fulfilled: true})
@@ -22,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def self.fastest_fulfillment
-    User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
+    select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
         .joins(items: :order_items)
         .where('order_items.fulfilled = true')
         .group('users.id')
@@ -31,7 +31,7 @@ class User < ApplicationRecord
   end
 
   def self.slowest_fulfillment
-    User.select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
+    select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
         .joins(items: :order_items)
         .where('order_items.fulfilled = true')
         .group('users.id')
@@ -40,7 +40,7 @@ class User < ApplicationRecord
   end
 
   def self.top_merch_price
-        where(role: "merchant")
+    where(role: "merchant")
         .joins(:items)
         .joins("inner join order_items on items.id = order_items.item_id")
         .where(order_items:{fulfilled: true})
@@ -51,7 +51,7 @@ class User < ApplicationRecord
   end
 
   def self.top_states
-        select("users.state, count(orders.id) as order_count")
+    select("users.state, count(orders.id) as order_count")
         .joins(:orders)
         .group("users.state")
         .where("orders.status=?", 1)
@@ -60,7 +60,7 @@ class User < ApplicationRecord
   end
 
   def self.top_cities
-        select("users.city, count(orders.id) as order_count")
+    select("users.city, count(orders.id) as order_count")
         .joins(:orders)
         .group("users.city, users.state")
         .where("orders.status=?", 1)
@@ -69,61 +69,101 @@ class User < ApplicationRecord
   end
 
   def status
-   enabled? ? "Enabled" : "Disabled"
+    enabled? ? "Enabled" : "Disabled"
   end
 
   def my_order_items(order)
-    OrderItem.joins(:item).where(order: order, items: {user_id: self.id})
+    OrderItem.joins(:item)
+        .where(order: order, items: {user_id: self.id})
   end
 
   def merchant_pending_orders
-    Order.joins(:items).select("orders.*").where("items.user_id=#{self.id}").where(orders: {status: :pending}).group(:id)
+    Order.select("orders.*")
+        .joins(:items)
+        .where("items.user_id=#{self.id}")
+        .where(orders: {status: :pending})
+        .group(:id)
   end
 
   def top_5_items
-    Item.joins(:order_items).select("items.*, sum(order_items.quantity) as item_count").where("order_items.fulfilled=true").group(:id).order("item_count desc").limit(5)
+    Item.select("items.*, sum(order_items.quantity) as item_count")
+        .joins(:order_items)
+        .where("order_items.fulfilled=true")
+        .group(:id)
+        .order("item_count desc")
+        .limit(5)
   end
 
   def total_items_sold
-    OrderItem.joins(:item).select("sum(quantity) as total_quantity").where("items.user_id=#{id}").where("fulfilled=true")[0].total_quantity
+    OrderItem.select("sum(quantity) as total_quantity")
+        .joins(:item)
+        .where("fulfilled=true")
+        .find_by("items.user_id=#{id}")
+        .total_quantity
   end
 
   def total_items_in_stock
-    Item.select("sum(instock_qty) as total_stock").where("user_id=#{id}")[0].total_stock
+    Item.select("sum(instock_qty) as total_stock")
+        .find_by("user_id=#{id}")
+        .total_stock
   end
 
   def total_items
-    tos = total_items_sold || 0
-    tois = total_items_in_stock || 0
-    result = tois + tos
-    if result == 0
-      Float::INFINITY
-    else
-      result
-    end
+    (total_items_sold || 0) + (total_items_in_stock || 0)
   end
 
   def percent_items_sold
-    (total_items_sold.to_f / total_items * 100).round
+    (total_items_sold.to_f / (total_items.nonzero? || 1) * 100).round
   end
 
   def top_3_states
-    OrderItem.joins(order: :user).joins(:item).where("items.user_id=#{id}").where("fulfilled=true").select("users.state, sum(quantity) as total_quantity").group("users.state").order("total_quantity desc").limit(3)
+    OrderItem.select("users.state, sum(quantity) as total_quantity")
+        .joins(order: :user)
+        .joins(:item)
+        .where("items.user_id=#{id}")
+        .where("fulfilled=true")
+        .group("users.state")
+        .order("total_quantity desc")
+        .limit(3)
   end
 
   def top_3_city_states
-    OrderItem.joins(order: :user).joins(:item).where("items.user_id=#{id}").where("fulfilled=true").select("users.city, users.state, sum(quantity) as total_quantity").group("users.city, users.state").order("total_quantity desc").limit(3)
+    OrderItem.select("users.city, users.state, sum(quantity) as total_quantity")
+        .joins(order: :user)
+        .joins(:item)
+        .where("items.user_id=#{id}")
+        .where("fulfilled=true")
+        .group("users.city, users.state")
+        .order("total_quantity desc")
+        .limit(3)
   end
 
   def top_customer_by_orders
-    User.joins(orders: {order_items: :item}).where("items.user_id=#{id}").where("order_items.fulfilled=true").select("users.*, count(orders.id) as order_qty").group("users.id").order("order_qty desc").first
+    User.select("users.*, count(orders.id) as order_qty")
+        .joins(orders: {order_items: :item})
+        .where("items.user_id=#{id}")
+        .where("order_items.fulfilled=true")
+        .group("users.id")
+        .order("order_qty desc")
+        .first
   end
 
   def top_customer_by_qty
-    User.joins(orders: {order_items: :item}).where("items.user_id=#{id}").where("order_items.fulfilled=true").select("users.*, count(order_items.id) as total_qty").group("users.id").order("total_qty desc").first
+    User.select("users.*, count(order_items.id) as total_qty")
+        .joins(orders: {order_items: :item})
+        .where("items.user_id=#{id}")
+        .where("order_items.fulfilled=true")
+        .group("users.id")
+        .order("total_qty desc")
+        .first
   end
 
   def top_3_customers_by_total_paid
-    User.joins(orders: {order_items: :item}).where("items.user_id=#{id}").where("order_items.fulfilled=true").select("users.*, sum(order_items.price * order_items.quantity) as total_paid").group("users.id").order("total_paid desc").limit(3)
+    User.select("users.*, sum(order_items.price * order_items.quantity) as total_paid")
+        .joins(orders: {order_items: :item})
+        .where("items.user_id=#{id}")
+        .where("order_items.fulfilled=true")
+        .group("users.id").order("total_paid desc")
+        .limit(3)
   end
 end
