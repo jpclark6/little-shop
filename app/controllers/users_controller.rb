@@ -23,6 +23,12 @@ class UsersController < ApplicationController
     else
       @merchants = User.where(enabled: true, role: "merchant")
     end
+    @top_merch_quantity = @merchants.top_merch_quantity
+    @top_merch_revenue = @merchants.top_merch_revenue
+    @fastest_fulfillment = @merchants.fastest_fulfillment
+    @slowest_fulfillment = @merchants.slowest_fulfillment
+    @top_states = @users.top_states
+    @top_cities = @users.top_cities
   end
 
   private
