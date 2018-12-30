@@ -1,4 +1,6 @@
 <%= render partial: "/user_info"%>
 <%= link_to 'Edit Profile', profile_edit_path %>
-<h2>All orders:</h2>
+<% unless @user.orders.empty? %>
+  <h2>All orders:</h2>
+<% end %>
 <%= render partial: "profile/users/user_order_summary"%>
