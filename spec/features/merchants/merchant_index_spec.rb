@@ -52,7 +52,7 @@ describe 'merchant index page' do
         expect(page).to_not have_content(merchant_3.name)
       end
     end
-    it "I see the 3 merchants that have sold the most by price" do
+    it "I see the 3 merchants that have sold the most by revenue" do
       order_item_1= FactoryBot.create(:order_item, price: 5.0, fulfilled: true)
       merchant_1 = order_item_1.item.user
 
@@ -69,8 +69,8 @@ describe 'merchant index page' do
 
       visit merchants_path
 
-      within (".top_price") do
-        expect(page).to have_content("Top 3 merchants by price")
+      within (".top_revenue") do
+        expect(page).to have_content("Top 3 merchants by revenue")
         expect(page).to have_content(merchant_2.name)
         expect(page).to have_content(merchant_4.name)
         expect(page).to have_content(merchant_1.name)

@@ -36,22 +36,22 @@ RSpec.describe User, type: :model do
 
       expect(User.top_merch_quantity).to eq([merchant_2, merchant_1, merchant_4])
     end
-    it ".top_merch_price" do
-      order_item_1= FactoryBot.create(:order_item, price: 5.0, fulfilled: true)
+    it ".top_merch_revenue" do
+      order_item_1= FactoryBot.create(:order_item, quantity: 5, fulfilled: true, price: 1)
       merchant_1 = order_item_1.item.user
 
-      order_item_2= FactoryBot.create(:order_item, price: 10.0, fulfilled: true)
+      order_item_2= FactoryBot.create(:order_item, quantity: 10, fulfilled: true, price: 1)
       merchant_2 = order_item_2.item.user
 
-      order_item_3= FactoryBot.create(:order_item, price: 2.5, fulfilled: true)
+      order_item_3= FactoryBot.create(:order_item, quantity: 2, fulfilled: true, price: 100)
       merchant_3 = order_item_3.item.user
 
-      order_item_4= FactoryBot.create(:order_item, price: 1.8, fulfilled: true)
+      order_item_4= FactoryBot.create(:order_item, quantity: 1, fulfilled: true, price: 1)
       merchant_4 = order_item_4.item.user
       item_4 = FactoryBot.create(:item, user: merchant_4)
-      order_item_5= FactoryBot.create(:order_item, price: 3.5, item: item_4, fulfilled: true)
+      order_item_5= FactoryBot.create(:order_item, quantity: 3, item: item_4, fulfilled: true, price: 1)
 
-      expect(User.top_merch_price).to eq([merchant_2, merchant_4, merchant_1])
+      expect(User.top_merch_revenue).to eq([merchant_3, merchant_2, merchant_1])
     end
     it '.fastest_fulfillment' do
       order_item_1 = FactoryBot.create(:order_item, updated_at: 1.days.ago, created_at: 10.days.ago, fulfilled: true)

@@ -5,13 +5,13 @@
   <ol class="top_quantity">
     <h3> Top 3 merchants by quantity </h3>
     <% @merchants.top_merch_quantity.each do |merchant| %>
-      <li><%= merchant.name.titleize %> (<%= merchant.sum_order_items_quantity %> Items Sold)</li>
+      <li><%= merchant.name.titleize %> | <%= merchant.sum_order_items_quantity %> Items Sold</li>
     <% end %>
   </ol>
-  <ol class="top_price">
-    <h3> Top 3 merchants by price </h3>
-    <% @merchants.top_merch_price.each do |merchant| %>
-      <li><%= merchant.name.titleize %></li>
+  <ol class="top_revenue">
+    <h3> Top 3 merchants by revenue </h3>
+    <% @merchants.top_merch_revenue.each do |merchant| %>
+      <li><%= merchant.name.titleize %> | <%= number_to_currency(merchant.sum_order_items_revenue) %></li>
     <% end %>
   </ol>
   <ol class="fastest_fulfillment">
@@ -35,13 +35,13 @@
   <ol class="top_states">
     <h3>Top states</h3>
     <% @users.top_states.each do |result| %>
-      <li><%= result.state %> (<%= result.order_count %> orders)</li>
+      <li><%= result.state %> | <%= result.order_count %> orders</li>
     <% end %>
   </ol>
   <ol class="top_cities">
     <h3>Top cities</h3>
     <% @users.top_cities.each do |result| %>
-      <li><%= result.city %>(<%= result.order_count %> orders)</li>
+      <li><%= result.city %> | <%= result.order_count %> orders </li>
     <% end %>
   </ol>
 </div>
