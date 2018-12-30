@@ -2,8 +2,10 @@
 
 Little Shop is an online e-commerce platform for selling local artisan goods. The site allows users to add items to their cart and to check-out their cart in order to purchase the items from a merchant. Users have the ability to register with an account, which saves their profile and orders to the database. Merchants have the ability to log-in, in order to add items to their inventories, edit existing items, enable/disable items, and fulfill orders. Admin users have access to alter the status' of other merchant and registered users, including the ability to enable/disable a registered user/merchant's account. Admin users also have access to additional analytics and the ability to cancel orders.
 
+![Alt text](./public/application_image.png?raw=true "Little Shop Application")
+
 ## Database Schema
-![Alt text](./public/Database_1.png?raw=true "Title")
+![Alt text](./public/Database_1.png?raw=true "Database Schema")
 https://dbdiagram.io/d/5c1539dc97b0960014c337df
 
 ## Getting Started
@@ -35,9 +37,9 @@ rails s
 ```
 Open a new tab in your favorite browser. (Preferably your favorite browser is Google Chrome)
 
-Navigate to `localhost:3000`. The app should load to the page. Enjoy!
+Navigate to `localhost:3000`. The application will load to the page. Enjoy!
 
-## Running the Test Suite
+## Running The Test Suite
 
 Note: Before running RSpec, ensure you're in the project root directory (`little_shop`).
 
@@ -134,7 +136,7 @@ end
 
 ## Deployment
 
-The Little Shop App is hosted on [Heroku](https://evening-eyrie-16856.herokuapp.com/).
+The Little Shop Application is hosted on [Heroku](https://evening-eyrie-16856.herokuapp.com/).
 
 ## Tools Utilized
 
