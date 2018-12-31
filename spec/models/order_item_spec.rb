@@ -8,6 +8,19 @@ RSpec.describe OrderItem, type: :model do
     it {should belong_to :order}
   end
   describe 'instance methods' do
+    it ".insufficient_stock?" do
+      item = FactoryBot.create(:item, instock_qty: 1)
+
+      order_item_1 = FactoryBot.create(:order_item, item: item, quantity: 500)
+      order_item_2 = FactoryBot.create(:order_item, item: item, quantity: 1)
+      order_item_3 = FactoryBot.create(:order_item, item: item, quantity: 500, fulfilled: true)
+
+      expect(order_item_1.insufficient_stock?).to eq(true)
+      expect(order_item_2.insufficient_stock?).to eq(false)
+      expect(order_item_3.insufficient_stock?).to eq(false)
+    
+    end
+
     it ".subtotal" do
       order_item_1 = FactoryBot.create(:order_item, price: 2, quantity: 3)
       expect(order_item_1.subtotal).to eq(6)

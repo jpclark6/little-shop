@@ -6,9 +6,10 @@ class Admin::OrdersController < ApplicationController
     @order_items = @order.order_items
     @user = @order.user
     @order_path = :admin_order_path
+    @order_item_fulfill_path = :admin_order_item_fulfill_path
     render template: "profile/orders/show"
   end
-  
+
   def destroy
     order = Order.find(params[:id])
     @user = order.user

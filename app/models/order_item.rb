@@ -20,6 +20,10 @@ class OrderItem < ApplicationRecord
     order.fulfill_if_complete
   end
 
+  def insufficient_stock?
+    quantity > item.instock_qty && !fulfilled?
+  end
+
   private
 
   def ensure_quantity
