@@ -20,9 +20,7 @@ Rails.application.routes.draw do
 
   namespace :profile do
     get '', to: 'users#show'
-    resources :orders, only: [:show, :destroy, :index, :create] do
-      resources :order_items, only: [:update]
-    end
+    resources :orders, only: [:show, :destroy, :index, :create]
     get '/edit', to: 'users#edit', as: "edit"
     patch '/update', to: 'users#update'
   end
