@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'items#index'
   namespace :admin do
     resources :merchants, only: [:none], shallow: true do
-      resources :items, expect: [:show]
+      resources :items, except: [:show]
     end
     resources :users, only: [:show, :index, :edit, :update]
     resources :orders, only: [:show, :destroy]
@@ -25,12 +25,13 @@ Rails.application.routes.draw do
     patch '/update', to: 'users#update'
   end
 
-  get '/cart', to: 'carts#show'
-  patch '/cart', to: 'carts#update'
-  delete '/cart', to: 'carts#delete'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  get '/cart', to: 'carts#show', as: 'cart'
+  patch '/cart', to: 'carts#update'
+  delete '/cart', to: 'carts#delete'
 
   namespace :dashboard do
     get "", to: 'users#show'
