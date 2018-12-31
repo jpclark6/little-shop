@@ -1,6 +1,11 @@
 <div class='order-show'>
 <h1><b>Order </b><%= @order.id %></h1>
-<h2 id="order-status"><b>Status: </b><%= @order.status.titleize %>
+<h2 id="order-status"><b>Status: </b>
+  <% unless @order.status.titleize == 'Fulfilled' %>
+    <%= @order.status.titleize %>
+  <% else %>
+    <%= "Complete" %>
+  <% end %>
   <% if @order.status == 'pending' %>
     <%= link_to "| Cancel Order?", send(@order_path, @order), method: :delete, data: {confirm: "Are you sure you want to cancel this order?"} %>
   <% end %>

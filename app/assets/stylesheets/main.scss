@@ -476,7 +476,8 @@ display: block;
 
 .view-items {
   margin: 7px;
-  font-size: 26px;
+  font-size: 22px;
+  text-align: center;
 }
 
 .merchant-item-index {
@@ -509,4 +510,8 @@ display: block;
 
 .stats-section {
   margin: 8px 0;
+}
+
+.dashboard-buttons {
+  margin-left: 50px;
 }

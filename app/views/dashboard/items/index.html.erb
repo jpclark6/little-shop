@@ -15,11 +15,13 @@
         <li><%= image_tag(item.image, class: :thumb,  onerror: 'this.src="/no_image_available.jpg"') %></li>
         <li><b>In stock:</b> <%= item.instock_qty %></li>
       </ul>
-      <% if merchant_user? %>
-        <%= render partial: "/dashboard/items/buttons", locals: {item: item}%>
-      <% elsif admin_user? %>
-        <%= render partial: "/admin/items/buttons", locals: {item: item}%>
-      <% end %>
+      <div class='dashboard-buttons'>
+        <% if merchant_user? %>
+          <%= render partial: "/dashboard/items/buttons", locals: {item: item}%>
+        <% elsif admin_user? %>
+          <%= render partial: "/admin/items/buttons", locals: {item: item}%>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

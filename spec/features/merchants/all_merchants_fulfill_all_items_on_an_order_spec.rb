@@ -47,7 +47,7 @@ describe 'All merchants fullfill all items on an order' do
     visit profile_order_path(order_1)
 
     within "#order-status" do
-      expect(page).to have_content("Status: Fulfilled")
+      expect(page).to have_content("Status: Complete")
     end
 
   end
