@@ -140,11 +140,11 @@ describe 'order show page' do
       visit dashboard_order_path(order)
 
       within "#item-#{order_item_1.item_id}" do
-        expect(page).to have_content("Out of Stock")
+        expect(page).to have_content("Insufficent Stock")
       end
 
       within "#item-#{order_item_2.item_id}" do
-        expect(page).to_not have_content("Out of Stock")
+        expect(page).to_not have_content("Insufficent Stock")
       end
     end
   end
@@ -226,22 +226,28 @@ describe 'order show page' do
     merchant = FactoryBot.create(:merchant)
     item_1 = FactoryBot.create(:item, instock_qty: 1)
     item_2 = FactoryBot.create(:item, instock_qty: 500)
+    item_3 = FactoryBot.create(:item, instock_qty: 1)
     merchant.items += [item_1, item_2]
     order = FactoryBot.create(:order)
 
     order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 20)
     order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, price: 2.75, quantity: 10)
+    order_item_3 = FactoryBot.create(:order_item, item: item_3, order: order, price: 2.75, quantity: 10, fulfilled: true)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit admin_order_path(order)
 
     within "#item-#{order_item_1.item_id}" do
-      expect(page).to have_content("Out of Stock")
+      expect(page).to have_content("Insufficent Stock")
+    end
+    
+    within "#item-#{order_item_2.item_id}" do
+      expect(page).to_not have_content("Insufficent Stock")
     end
 
-    within "#item-#{order_item_2.item_id}" do
-      expect(page).to_not have_content("Out of Stock")
+    within "#item-#{order_item_3.item_id}" do
+      expect(page).to_not have_content("Insufficent Stock")
     end
   end
 end

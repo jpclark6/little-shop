@@ -20,13 +20,13 @@
               <% if order_item.fulfillable? %>
                 <%= button_to 'Fulfill', dashboard_order_item_fulfill_path(order_item), method: 'patch'%>
               <% elsif order_item.quantity > order_item.item.instock_qty %>
-                <div class='out-of-stock'>Out of Stock</div>
+                <div class='out-of-stock'>Insufficent Stock</div>
               <% end %>
             <% elsif current_user && current_user.admin? %>
               <% if order_item.fulfillable? %>
                 <%= button_to 'Fulfill', admin_order_item_fulfill_path(order_item), method: 'patch' %>
-              <% elsif order_item.quantity > order_item.item.instock_qty %>
-                <div class='out-of-stock'>Out of Stock</div>
+              <% elsif order_item.insufficient_stock? %>
+                <div class='out-of-stock'>Insufficent Stock</div>
               <% end %>
             <% end %>
           </li>
