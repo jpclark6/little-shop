@@ -1,19 +1,22 @@
 
 # Little Shop
-Welcome to Little Shop, a template of an e-commerce platform that's ready for you to build into the real thing. Here's a brief tour of the functionality built out for different types of users.
+Welcome to Little Shop, a template of an e-commerce platform that's ready for you to build into the real thing. Here's a brief tour of the functionality built out for different types of users: visitors, customers, merchants, and admins.
 
 ![Alt text](./public/application_image.png?raw=true "Little Shop Application")
 
 
-As a visitor to the site, you can browse items, place items into your cart, register, check out*, and view your order.  You can even view statistics!
+As a visitor to the site, you can browse items, place items into your cart, register*, check out**, and view your order.  You can even view statistics!
 
-*payment handling is not included
+*you're now a customer! We solemnly swear not to sell your email address, though, the way our database is set up nothing is really stops that from happening. Your password, however, is protected by b-crypt.
+** payment handling is not included in this template
+
 
 
 ![Alt text](./public/statsdrop.png?raw=true "Stats Dropdown")
 
 
 (oooh statistics dropdown! nice!!)
+
 
 As merchant user, your view of the site is a little different:
 
