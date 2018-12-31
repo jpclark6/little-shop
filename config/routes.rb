@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :destroy]
     patch 'items/toggle/:id', to: "items#toggle", as: "item_toggle"
     patch 'users/toggle/:id', to: "users#toggle", as: "toggle_user"
+    patch 'users/upgrade/:id', to: "users#upgrade", as: "user_upgrade"
+    patch 'users/downgrade/:id', to: "users#downgrade", as: "merchant_downgrade"
     get 'merchants/:id', to: "users#merchant_show", as: "merchant"
     patch "/order_items/fulfill/:id", to: "order_items#fulfill", as: "order_item_fulfill"
   end
