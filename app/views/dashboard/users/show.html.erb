@@ -6,6 +6,7 @@
 <% elsif admin_user? %>
   <div class='view-items'>
     <%= link_to 'View Items', admin_merchant_items_path(@user) %>
+    <%= link_to 'Downgrade From Merchant', admin_merchant_downgrade_path(@user), method: :patch %>
   </div>
 <% end %>
 

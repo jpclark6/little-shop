@@ -36,6 +36,20 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def upgrade
+    user = User.find(params[:id])
+    user.merchant!
+    flash[:success] = "User #{user.id} with name '#{user.name}' is now a merchant."
+    redirect_to admin_merchant_path(user)
+  end
+
+  def downgrade
+    user = User.find(params[:id])
+    user.registered!
+    flash[:success] = "User #{user.id} with name '#{user.name}' is no longer a merchant."
+    redirect_to admin_user_path(user)
+  end
+
   def toggle
     user = User.find(params[:id])
     toggle_enabled(user)
