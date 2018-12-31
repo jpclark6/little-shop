@@ -21,6 +21,17 @@ class User < ApplicationRecord
         .limit(3)
   end
 
+  def self.top_merch_revenue
+    where(role: "merchant")
+        .joins(:items)
+        .joins("inner join order_items on items.id = order_items.item_id")
+        .where(order_items:{fulfilled: true})
+        .group(:id)
+        .order(" sum_order_items_revenue desc")
+        .select("users.*, sum(order_items.quantity * order_items.price) as sum_order_items_revenue")
+        .limit(3)
+  end
+
   def self.fastest_fulfillment
     select('users.*, avg(order_items.updated_at-order_items.created_at) as fulfillment_time')
         .joins(items: :order_items)
@@ -36,17 +47,6 @@ class User < ApplicationRecord
         .where('order_items.fulfilled = true')
         .group('users.id')
         .order('fulfillment_time desc')
-        .limit(3)
-  end
-
-  def self.top_merch_price
-    where(role: "merchant")
-        .joins(:items)
-        .joins("inner join order_items on items.id = order_items.item_id")
-        .where(order_items:{fulfilled: true})
-        .group(:id)
-        .order(" sum_order_items_price desc")
-        .select("users.*, sum(order_items.price) as sum_order_items_price")
         .limit(3)
   end
 
