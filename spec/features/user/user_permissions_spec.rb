@@ -1,93 +1,85 @@
 require 'rails_helper'
 
-describe 'as a visitor' do
-  it 'should not be allowed to see admin, registered and merchant paths' do
-    paths = [ profile_path,
-              profile_edit_path,
-              dashboard_path,
-              dashboard_items_path,
-              new_dashboard_item_path,
-              dashboard_orders_path,
-              dashboard_order_path(1),
-              admin_merchant_path(1),
-              admin_user_path(1),
-              admin_order_path(1),
-              admin_users_path ]
-
+describe 'user_permissions' do
+  def check_paths(paths)
     paths.each do |path|
       visit path
-
+      expect(current_path).to eq(path)
       expect(page.status_code).to eq(404)
       expect(page).to have_content("The page you were looking for doesn't exist")
     end
   end
-end
-describe 'as a registered user' do
-  it 'should not be allowed to see admin and merchant paths' do
-    user_1 = FactoryBot.create(:user)
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_1)
+  before(:each) do
 
-    paths = [ dashboard_path,
-              dashboard_items_path,
-              new_dashboard_item_path,
-              dashboard_orders_path,
-              dashboard_order_path(1),
-              admin_merchant_path(1),
-              admin_user_path(1),
-              admin_order_path(1),
-              admin_users_path ]
+    @paths_that_should_require_merchant = [
+        dashboard_path,
+        dashboard_items_path,
+        new_dashboard_item_path,
+        dashboard_orders_path,
+        dashboard_order_path(1),
+      ]
+    @paths_that_should_require_admin = [
+        admin_merchant_path(1),
+        admin_user_path(1),
+        admin_order_path(1),
+        admin_users_path
+      ]
 
-    paths.each do |path|
-      visit path
+    @paths_that_should_require_regular_user = [
+        profile_path,
+        profile_edit_path,
+      ]
 
-      expect(page.status_code).to eq(404)
-      expect(page).to have_content("The page you were looking for doesn't exist")
+    @paths_that_admins_and_merchants_cannot_see = [
+        cart_path
+      ]
+  end
+
+  describe 'as a visitor' do
+    it 'should not be allowed to see admin, registered and merchant paths' do
+      paths = @paths_that_should_require_merchant +
+              @paths_that_should_require_regular_user +
+              @paths_that_should_require_admin
+      check_paths(paths)
     end
   end
-end
-describe 'as a merchant' do
-  it 'should not be allowed to see admin, profile and cart paths' do
-    merchant = FactoryBot.create(:merchant)
+  describe 'as a registered user' do
+    it 'should not be allowed to see admin and merchant paths' do
+      user_1 = FactoryBot.create(:user)
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_1)
 
-    paths = [ profile_path,
-              profile_edit_path,
-              cart_path,
-              admin_merchant_path(1),
-              admin_user_path(1),
-              admin_order_path(1),
-              admin_users_path ]
+      paths = @paths_that_should_require_merchant +
+              @paths_that_should_require_admin
 
-    paths.each do |path|
-      visit path
-
-      expect(page.status_code).to eq(404)
-      expect(page).to have_content("The page you were looking for doesn't exist")
+      check_paths(paths)
     end
   end
-end
-describe 'as a admin' do
-  it 'should not be allowed to see cart, registered and merchant paths' do
-    admin = FactoryBot.create(:admin)
+  describe 'as a merchant' do
+    it 'should not be allowed to see admin, profile and cart paths' do
+      merchant = FactoryBot.create(:merchant)
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 
-    paths = [ profile_path,
-              profile_edit_path,
-              dashboard_path,
-              dashboard_items_path,
-              new_dashboard_item_path,
-              dashboard_orders_path,
-              dashboard_order_path(1),
-              cart_path]
+      paths = @paths_that_should_require_regular_user +
+              @paths_that_should_require_admin +
+              @paths_that_admins_and_merchants_cannot_see
 
-    paths.each do |path|
-      visit path
+      check_paths(paths)
+    end
+  end
+  describe 'as a admin' do
+    it 'should not be allowed to see cart, registered and merchant paths' do
+      admin = FactoryBot.create(:admin)
 
-      expect(page.status_code).to eq(404)
-      expect(page).to have_content("The page you were looking for doesn't exist")
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      paths = @paths_that_should_require_regular_user +
+              @paths_that_should_require_merchant +
+              @paths_that_admins_and_merchants_cannot_see
+
+      check_paths(paths)
     end
   end
 end

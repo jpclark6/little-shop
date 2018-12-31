@@ -1,8 +1,49 @@
-# Little Shop
 
-Little Shop is an online e-commerce platform for selling local artisan goods. The site allows users to add items to their cart and to check-out their cart in order to purchase the items from a merchant. Users have the ability to register with an account, which saves their profile and orders to the database. Merchants have the ability to log-in, in order to add items to their inventories, edit existing items, enable/disable items, and fulfill orders. Admin users have access to alter the status' of other merchant and registered users, including the ability to enable/disable a registered user/merchant's account. Admin users also have access to additional analytics and the ability to cancel orders.
+# Little Shop
+Welcome to Little Shop, a template of an e-commerce platform that's ready for you to build into the real thing. Here's a brief tour of the functionality built out for different types of users: visitors, customers, merchants, and admins.
 
 ![Alt text](./public/application_image.png?raw=true "Little Shop Application")
+
+
+As a visitor to the site, you can browse items, place items into your cart, register*, check out**, and view your order.  You can even view statistics!
+
+*you're now a customer! We solemnly swear not to sell your email address, though, the way our database is set up nothing is really stops that from happening. Your password, however, is protected by b-crypt.
+** payment handling is not included in this template
+
+
+
+![Alt text](./public/statsdrop.png?raw=true "Stats Dropdown")
+
+
+(oooh statistics dropdown! nice!!)
+
+
+As merchant user, your view of the site is a little different:
+
+
+![Alt text](./public/navbarmerchant.png?raw=true)
+
+Instead of a profile and a cart, you have a dashboard. There you can fulfill all your pending orders, add and adjust your items (name, description, picture, price, quantity), and view analytics about your item sales:
+
+![Alt text](./public/stats-dash.png?raw=true)
+
+Aren't statistics great? There's also statistics available to all users about you, the merchant:
+
+![Alt text](./public/statsind.png?raw=true)
+
+Don't worry, it's not a competition.
+
+(Worry. It is 100% a competition.)
+
+Luckily, as the owner of the site you won't have to worry about competing, you'll just be raking in a large but fair percentage from all the awesome commerce your platform is hosting. But what if a merchant user starts ruining your site's reputation by selling less than the hippest, most organic, artisanal wares? That's why we've built in a third type of user, admin users.
+
+![Alt text](./public/truepower.png?raw=true)
+
+(a view of true power!)
+
+Admin users can deactivate merchant and customer accounts, as well as reactivate them.They can upgrade customers into merchants, and downgrade them. They can also view a merchant's dashboard and do anything that merchant would: add and edit items, even fulfill orders. They are simply put:
+
+![Alt text](./public/boss.gif?raw=true)
 
 ## Database Schema
 ![Alt text](./public/Database_1.png?raw=true "Database Schema")
@@ -137,7 +178,20 @@ end
 
 ## Deployment
 
-The Little Shop Application is hosted on [Heroku](https://evening-eyrie-16856.herokuapp.com/).
+Our version of the Little Shop Application is hosted on [Heroku](https://evening-eyrie-16856.herokuapp.com/).
+
+You can also deploy it on your own server by following these steps:
+
+1. Have all prequisites installed (postrgres, pum, the pg gem)
+
+2. In your terminal, in your little shop directory, run:
+* `$ createuser -s -r little_shop`
+* `$ RAILS_ENV=production rake db:{drop,create,migrate,seed}`
+* `$ rake assets:precompile`
+
+3. Instead of running `rails s` which would start your server in development mode, run: `rails s -e production`
+
+
 
 ## Tools Utilized
 
