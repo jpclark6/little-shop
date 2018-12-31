@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'user_permissions' do
   def check_paths(paths)
     paths.each do |path|
-      visit path
-      expect(current_path).to eq(path)
+      page.driver.submit path[0], path[1], {} rescue binding.pry
+      expect(current_path).to eq(path[1])
       expect(page.status_code).to eq(404)
       expect(page).to have_content("The page you were looking for doesn't exist")
     end
@@ -13,43 +13,57 @@ describe 'user_permissions' do
   before(:each) do
 
     @paths_that_should_require_merchant = [
-        dashboard_path,
-        dashboard_items_path,
-        new_dashboard_item_path,
-        edit_dashboard_item_path(1),
-        dashboard_item_path(1),
-        dashboard_orders_path,
-        dashboard_order_path(1),
-        dashboard_item_toggle_path(1),
-        dashboard_order_item_fulfill_path(1)
-      ]
+      [:get, dashboard_path],
+      [:get, dashboard_items_path],
+      [:post, dashboard_items_path],
+      [:get, new_dashboard_item_path],
+      [:put, dashboard_item_path(1)],
+      [:patch, dashboard_item_path(1)],
+      [:delete, dashboard_item_path(1)],
+      [:get, dashboard_orders_path],
+      [:get, dashboard_order_path(1)],
+      [:patch, dashboard_item_toggle_path(1)],
+      [:patch, dashboard_order_item_fulfill_path(1)]
+    ]
     @paths_that_should_require_admin = [
-        admin_merchant_path(1),
-        admin_user_path(1),
-        admin_item_path(1),
-        admin_order_path(1),
-        admin_users_path,
-        edit_admin_user_path(1),
-        edit_admin_item_path(1),
-        admin_merchant_items_path(1),
-        new_admin_merchant_item_path(1),
-        admin_item_toggle_path(1),
-        admin_toggle_user_path(1),
-        admin_order_item_fulfill_path(1)
-      ]
+      [:get, admin_merchant_items_path(1)],
+      [:post, admin_merchant_items_path(1)],
+      [:get, new_admin_merchant_item_path(1)],
+      [:get, edit_admin_item_path(1)],
+      [:patch, admin_item_path(1)],
+      [:put, admin_item_path(1)],
+      [:delete, admin_item_path(1)],
+      [:get, admin_users_path],
+      [:get, edit_admin_user_path(1)],
+      [:get, admin_user_path(1)],
+      [:patch, admin_user_path(1)],
+      [:put, admin_user_path(1)],
+      [:get, admin_order_path(1)],
+      [:delete, admin_order_path(1)],
+      [:patch, admin_item_toggle_path(1)],
+      [:patch, admin_toggle_user_path(1)],
+      [:patch, admin_user_upgrade_path(1)],
+      [:patch, admin_merchant_downgrade_path(1)],
+      [:get, admin_merchant_path(1)],
+      [:patch, admin_order_item_fulfill_path(1)]
+    ]
 
     @paths_that_should_require_regular_user = [
-        profile_path,
-        profile_edit_path,
-        profile_order_order_item_path(1, 1),
-        profile_orders_path,
-        profile_order_path(1),
-        profile_update_path(1)
-      ]
+      [:get, profile_path],
+      [:get, profile_orders_path],
+      [:post, profile_orders_path],
+      [:get, profile_order_path(1)],
+      [:delete, profile_order_path(1)],
+      [:get, profile_edit_path],
+      [:patch, profile_update_path(1)]
+    ]
 
     @paths_that_admins_and_merchants_cannot_see = [
-        cart_path
-      ]
+      [:post, carts_path],
+      [:get, cart_path],
+      [:patch, cart_path],
+      [:delete, cart_path],
+    ]
   end
 
   describe 'as a visitor' do
