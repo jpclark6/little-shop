@@ -16,19 +16,35 @@ describe 'user_permissions' do
         dashboard_path,
         dashboard_items_path,
         new_dashboard_item_path,
+        edit_dashboard_item_path(1),
+        dashboard_item_path(1),
         dashboard_orders_path,
         dashboard_order_path(1),
+        dashboard_item_toggle_path(1),
+        dashboard_order_item_fulfill_path(1)
       ]
     @paths_that_should_require_admin = [
         admin_merchant_path(1),
         admin_user_path(1),
+        admin_item_path(1),
         admin_order_path(1),
-        admin_users_path
+        admin_users_path,
+        edit_admin_user_path(1),
+        edit_admin_item_path(1),
+        admin_merchant_items_path(1),
+        new_admin_merchant_item_path(1),
+        admin_item_toggle_path(1),
+        admin_toggle_user_path(1),
+        admin_order_item_fulfill_path(1)
       ]
 
     @paths_that_should_require_regular_user = [
         profile_path,
         profile_edit_path,
+        profile_order_order_item_path(1, 1),
+        profile_orders_path,
+        profile_order_path(1),
+        profile_update_path(1)
       ]
 
     @paths_that_admins_and_merchants_cannot_see = [
