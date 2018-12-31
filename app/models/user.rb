@@ -74,13 +74,13 @@ class User < ApplicationRecord
 
   def my_order_items(order)
     OrderItem.joins(:item)
-        .where(order: order, items: {user_id: self.id})
+        .where(order: order, items: {user_id: id})
   end
 
   def merchant_pending_orders
     Order.select("orders.*")
         .joins(:items)
-        .where("items.user_id=#{self.id}")
+        .where("items.user_id=#{id}")
         .where(orders: {status: :pending})
         .group(:id)
   end
@@ -89,6 +89,7 @@ class User < ApplicationRecord
     Item.select("items.*, sum(order_items.quantity) as item_count")
         .joins(:order_items)
         .where("order_items.fulfilled=true")
+        .where("user_id=#{id}")
         .group(:id)
         .order("item_count desc")
         .limit(5)
