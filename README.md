@@ -1,26 +1,32 @@
+
 # Little Shop
 Welcome to Little Shop, a template of an e-commerce platform that's ready for you to build into the real thing. Here's a brief tour of the functionality built out for different types of users.
+
+![Alt text](./public/application_image.png?raw=true "Little Shop Application")
+
 
 As a visitor to the site, you can browse items, place items into your cart, register, check out*, and view your order.  You can even view statistics!
 
 *payment handling is not included
 
-[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#172d8d11e3f04c2b907b7ac501459a8d)
+
+![Alt text](./public/statsdrop.png?raw=true "Stats Dropdown")
+
 
 (oooh statistics dropdown! nice!!)
 
 As merchant user, your view of the site is a little different:
 
 
-[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#ba02ef2552d84fe4a6edf1f30f87f86d)
+![Alt text](./public/navbarmerchant.png?raw=true)
 
 Instead of a profile and a cart, you have a dashboard. There you can fulfill all your pending orders, add and adjust your items (name, description, picture, price, quantity), and view analytics about your item sales:
 
-[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#59b78c025b104e37bfc946627b8f0780)
+![Alt text](./public/stats-dash.png?raw=true)
 
 Aren't statistics great? There's also statistics available to all users about you, the merchant:
 
-[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#0940610741db4f7c92969d2f2bf76428)
+![Alt text](./public/statsind.png?raw=true)
 
 Don't worry, it's not a competition.
 
@@ -28,14 +34,13 @@ Don't worry, it's not a competition.
 
 Luckily, as the owner of the site you won't have to worry about competing, you'll just be raking in a large but fair percentage from all the awesome commerce your platform is hosting. But what if a merchant user starts ruining your site's reputation by selling less than the hippest, most organic, artisanal wares? That's why we've built in a third type of user, admin users.
 
-[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#15320c1d77c14f34af92b2b81320d8c0)
+![Alt text](./public/truepower.png?raw=true)
 
 (a view of true power!)
 
 Admin users can deactivate merchant and customer accounts, as well as reactivate them.They can upgrade customers into merchants, and downgrade them. They can also view a merchant's dashboard and do anything that merchant would: add and edit items, even fulfill orders. They are simply put:
 
-[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#7aa295588e0240f6afbf8030dbf65637)
-![Alt text](./public/application_image.png?raw=true "Little Shop Application")
+![Alt text](./public/boss.gif?raw=true)
 
 ## Database Schema
 ![Alt text](./public/Database_1.png?raw=true "Database Schema")
@@ -170,7 +175,20 @@ end
 
 ## Deployment
 
-The Little Shop Application is hosted on [Heroku](https://evening-eyrie-16856.herokuapp.com/).
+Our version of the Little Shop Application is hosted on [Heroku](https://evening-eyrie-16856.herokuapp.com/).
+
+You can also deploy it on your own server by following these steps:
+
+1. Have all prequisites installed (postrgres, pum, the pg gem)
+
+2. In your terminal, in your little shop directory, run:
+* `$ createuser -s -r little_shop`
+* `$ RAILS_ENV=production rake db:{drop,create,migrate,seed}`
+* `$ rake assets:precompile`
+
+3. Instead of running `rails s` which would start your server in development mode, run: `rails s -e production`
+
+
 
 ## Tools Utilized
 
