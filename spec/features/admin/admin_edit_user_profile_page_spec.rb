@@ -21,6 +21,7 @@ describe 'as an admin' do
       fill_in :user_zip_code, with: 80026
       fill_in :user_email, with: "john@gmail.com"
       fill_in :user_password, with: "15"
+      fill_in :user_password_confirmation, with: "15"
 
       click_on "Update User"
 
