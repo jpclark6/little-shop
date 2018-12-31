@@ -58,7 +58,7 @@ end
     order = user.orders.create!(status: status, created_at: ordered_at)
     order.items = merchants.sample(1)[0].items.sample(rand(2..8))
     order.order_items.each do |order_item|
-      order_item.update({price: order_item.item.price, quantity: (order_item.item.instock_qty/4).round, fulfilled: fulfilled, created_at: ordered_at, updated_at: fulfilled_at})
+      order_item.update({price: order_item.item.price, quantity: rand(1..25), fulfilled: fulfilled, created_at: ordered_at, updated_at: fulfilled_at})
     end
   end
 end
