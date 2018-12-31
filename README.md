@@ -1,7 +1,40 @@
 # Little Shop
+Welcome to Little Shop, a template of an e-commerce platform that's ready for you to build into the real thing. Here's a brief tour of the functionality built out for different types of users.
 
-Little Shop is an online e-commerce platform for selling local artisan goods. The site allows users to add items to their cart and to check-out their cart in order to purchase the items from a merchant. Users have the ability to register with an account, which saves their profile and orders to the database. Merchants have the ability to log-in, in order to add items to their inventories, edit existing items, enable/disable items, and fulfill orders. Admin users have access to alter the status' of other merchant and registered users, including the ability to enable/disable a registered user/merchant's account. Admin users also have access to additional analytics and the ability to cancel orders.
+As a visitor to the site, you can browse items, place items into your cart, register, check out*, and view your order.  You can even view statistics!
 
+*payment handling is not included
+
+[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#172d8d11e3f04c2b907b7ac501459a8d)
+
+(oooh statistics dropdown! nice!!)
+
+As merchant user, your view of the site is a little different:
+
+
+[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#ba02ef2552d84fe4a6edf1f30f87f86d)
+
+Instead of a profile and a cart, you have a dashboard. There you can fulfill all your pending orders, add and adjust your items (name, description, picture, price, quantity), and view analytics about your item sales:
+
+[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#59b78c025b104e37bfc946627b8f0780)
+
+Aren't statistics great? There's also statistics available to all users about you, the merchant:
+
+[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#0940610741db4f7c92969d2f2bf76428)
+
+Don't worry, it's not a competition.
+
+(Worry. It is 100% a competition.)
+
+Luckily, as the owner of the site you won't have to worry about competing, you'll just be raking in a large but fair percentage from all the awesome commerce your platform is hosting. But what if a merchant user starts ruining your site's reputation by selling less than the hippest, most organic, artisanal wares? That's why we've built in a third type of user, admin users.
+
+[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#15320c1d77c14f34af92b2b81320d8c0)
+
+(a view of true power!)
+
+Admin users can deactivate merchant and customer accounts, as well as reactivate them.They can upgrade customers into merchants, and downgrade them. They can also view a merchant's dashboard and do anything that merchant would: add and edit items, even fulfill orders. They are simply put:
+
+[](https://www.notion.so/e979aa0439e54d67bd0fb9709b6834c8#7aa295588e0240f6afbf8030dbf65637)
 ![Alt text](./public/application_image.png?raw=true "Little Shop Application")
 
 ## Database Schema
