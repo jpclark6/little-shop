@@ -99,16 +99,20 @@ end
 describe 'as a merchant on my dashboard with not enough data' do
   before(:each) do
     @merchant = FactoryBot.create(:merchant)
+    @merchant_2 = FactoryBot.create(:merchant)
 
     @item_1 = FactoryBot.create(:item, instock_qty: 600, price: 5, user: @merchant)
     @item_2 = FactoryBot.create(:item, instock_qty: 200, price: 10, user: @merchant)
     @item_3 = FactoryBot.create(:item, instock_qty: 200, price: 20, user: @merchant)
+    @item_4 = FactoryBot.create(:item, instock_qty: 1000, price: 20, user: @merchant_2)
 
     @user_1 = FactoryBot.create(:user, city: 'Denver', state: 'CO')
     @user_1_order_1 = FactoryBot.create(:fulfilled, user: @user_1)
     @user_1_order_2 = FactoryBot.create(:fulfilled, user: @user_1)
+    @user_1_order_3 = FactoryBot.create(:fulfilled, user: @user_1)
     FactoryBot.create(:order_item, item: @item_1, price: @item_1.price, quantity: 100, fulfilled: true, order: @user_1_order_1)
     FactoryBot.create(:order_item, item: @item_1, price: @item_1.price, quantity: 100, fulfilled: true, order: @user_1_order_2)
+    FactoryBot.create(:order_item, item: @item_4, price: @item_4.price, quantity: 800, fulfilled: true, order: @user_1_order_3)
 
     @user_2 = FactoryBot.create(:user, city: 'Denver', state: 'MI')
     @user_2_order_1 = FactoryBot.create(:fulfilled, user: @user_2)
