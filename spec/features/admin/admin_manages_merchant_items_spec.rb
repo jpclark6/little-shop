@@ -14,7 +14,10 @@ describe "as an admin" do
 
     @item_1 = FactoryBot.create(:item)
     @item_2 = FactoryBot.create(:item, enabled: false)
+    @item_3 = FactoryBot.create(:item, instock_qty: 2)
 
+
+    @order_1 =FactoryBot.create(:order, status: :pending, items: [@item_3] )
     @item_2.orders << FactoryBot.create(:fulfilled)
     @merchant.items += [@item_1, @item_2]
 
@@ -190,6 +193,13 @@ describe "as an admin" do
       expect(page).to have_content("Item instock_qty must be greater than or equal to 0.")
     end
 
+  end
+  it 'I can fulfill an item' do
+    visit admin_order_path(@order_1)
+    click_on "Fulfill"
+    expect(page).to have_content "Status: Fulfilled"
+    visit item_path(@item_3)
+    expect(page).to have_content("Inventory: 1")
   end
 
 end
