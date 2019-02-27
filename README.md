@@ -178,7 +178,7 @@ end
 
 ## Deployment
 
-Our version of the Little Shop Application is hosted on [Heroku](https://evening-eyrie-16856.herokuapp.com/).
+Our version of the Little Shop Application is hosted on [Heroku](https://boutique-orders.herokuapp.com/).
 
 You can also deploy it on your own server by following these steps:
 
